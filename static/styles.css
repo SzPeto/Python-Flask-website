@@ -1,0 +1,19 @@
+.navbar {
+    background: linear-gradient(to top, rgb(205, 255, 255), rgb(235, 255, 255)); !important;
+}
+
+.navbar .nav-link {
+    color: rgb(0, 144, 144) !important;
+}
+
+.navbar-brand {
+    color: rgb(0, 148, 148) !important;
+}
+
+footer {
+    text-align: left;
+    font-family: Bahnschrift;
+    color: rgb(0, 144, 144);
+    padding: 0px 12px;
+    background: linear-gradient(to top, rgb(205, 255, 255), rgb(235, 255, 255));
+}
