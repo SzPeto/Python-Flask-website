@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+    <main>
+        <div class="container">
+            <div class="h-box-main">
+
+                <div class="v-box-left">
+                    <form method="POST" action="/weather-app">
+                        <input type="text" id="city-input" name="city-input" placeholder="Enter a city name"><br>
+                        <button type="submit" name="event" id="city-submit">Submit</button>
+                    </form>
+                </div>
+                <div class="v-box-right">
+                    <h1>Right</h1>
+                    <p>Right</p>
+                    <p>Right</p><p>Right</p>
+                    <p>Right</p>
+
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+{% endblock %}

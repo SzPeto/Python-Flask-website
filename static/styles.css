@@ -12,8 +12,54 @@
 
 footer {
     text-align: left;
-    font-family: Bahnschrift;
+    font-family: Segoe UI;
     color: rgb(0, 144, 144);
     padding: 0px 12px;
     background: linear-gradient(to top, rgb(205, 255, 255), rgb(235, 255, 255));
+}
+
+.h-box-main {
+    display: flex;
+    flex-direction: row;
+    border-radius: 10px;
+    border: 1px solid rgb(200, 200, 200);
+    margin: 20px;
+}
+
+.v-box-left {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    border-right: 1px solid rgb(200, 200, 200);
+    align-items: center;
+    text-align: center;
+}
+
+.v-box-right {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    align-items: center;
+}
+
+#city-submit {
+  padding: 5px 10px;
+  background-color: rgb(76, 175, 80);
+  color: white;
+  text-decoration: none;
+  border-radius: 3px;
+  border: none;
+  cursor: pointer;
+}
+
+#city-submit:hover {
+    background-color: rgb(69, 160, 73);
+}
+
+input[type="text"] {
+    font-size: 14px;
+    border-radius: 8px;
+    padding: 6px 12px;
+    width: 180px;
+    margin: 15px;
 }
