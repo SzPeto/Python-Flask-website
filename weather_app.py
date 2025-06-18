@@ -7,6 +7,7 @@ class WeatherApp:
         self.api_key = "f0130aa9896b42e7eec767c74fbb474b"
         self.city_name = "Hrhov"
         self.functions = Functions()
+        self.data = None
 
     def get_weather(self):
 
@@ -15,7 +16,7 @@ class WeatherApp:
             response = requests.get(url)
             response.raise_for_status()
             if response.status_code == 200:
-                data = response.json()
-                print(data)
+                self.data = response.json()
+                print(self.data)
         except Exception as e:
             self.functions.write_log(f"def get_weather : {e}")

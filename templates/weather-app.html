@@ -7,6 +7,12 @@
             <div class="h-box-main">
 
                 <div class="v-box-left">
+                    {% if data %}
+                        <p class="current-weather-label">Current weather<br>in {{ data.get("name") }},
+                        {{ data.get("sys").get("country") }}</p>
+                    {% else %}
+                        <p class="current-weather-label">Waiting for city name...</p>
+                    {% endif %}
                     <form method="POST" action="/weather-app">
                         <input type="text" id="city-input" name="city-input" placeholder="Enter a city name"><br>
                         <button type="submit" name="event" id="city-submit">Submit</button>

@@ -24,6 +24,8 @@ footer {
     border-radius: 10px;
     border: 1px solid rgb(200, 200, 200);
     margin: 20px;
+    background-color: rgb(245, 250, 255);
+    box-shadow: 0px 2px 10px rgba(0,0,0,0.2);
 }
 
 .v-box-left {
@@ -45,10 +47,10 @@ footer {
 #city-submit {
   padding: 5px 10px;
   background-color: rgb(76, 175, 80);
+  border: 1px solid green;
   color: white;
   text-decoration: none;
   border-radius: 3px;
-  border: none;
   cursor: pointer;
 }
 
@@ -56,10 +58,21 @@ footer {
     background-color: rgb(69, 160, 73);
 }
 
+#city-submit:active {
+    background-color: rgb(51, 144, 58);
+    border: 1px inset green;
+}
+
 input[type="text"] {
-    font-size: 14px;
+    font-size: 18px;
     border-radius: 8px;
     padding: 6px 12px;
     width: 180px;
     margin: 15px;
+}
+
+.current-weather-label {
+    font-size: 25px;
+    font-family: Bahnschrift;
+    color: rgb(144, 144, 144);
 }
