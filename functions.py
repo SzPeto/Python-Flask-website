@@ -28,4 +28,4 @@ class Functions:
                 log_file.write(f"\n\n{timestamp} - {text}")
         else:
             with open(self.log_file, "a", encoding = "UTF-8") as log_file:
-                log_file.write(f"\n{timestamp} - {text}")
+                log_file.write(f"{timestamp} - {text}")

@@ -23,3 +23,69 @@
 2025-06-18 19:07:16 - ******************************* Initial run *******************************************
 
 2025-06-18 19:13:57 - def get_weather : 400 Client Error: Bad Request for url: https://api.openweathermap.org/data/2.5/weather?q=&appid=f0130aa9896b42e7eec767c74fbb474b
+
+2025-06-18 19:20:39 - ******************************* Initial run *******************************************
+
+2025-06-18 19:32:55 - ******************************* Initial run *******************************************
+
+2025-06-18 19:32:59 - def get_weather : 404 Client Error: Not Found for url: https://api.openweathermap.org/data/2.5/weather?q=52&appid=f0130aa9896b42e7eec767c74fbb474b
+
+2025-06-18 19:36:08 - ******************************* Initial run *******************************************
+
+2025-06-18 19:36:12 - def get_weather : 404 Client Error: Not Found for url: https://api.openweathermap.org/data/2.5/weather?q=54&appid=f0130aa9896b42e7eec767c74fbb474b
+
+2025-06-18 19:36:33 - ******************************* Initial run *******************************************
+
+2025-06-18 19:36:34 - def get_weather : 404 Client Error: Not Found for url: https://api.openweathermap.org/data/2.5/weather?q=dd&appid=f0130aa9896b42e7eec767c74fbb474b
+
+2025-06-18 19:52:48 - ******************************* Initial run *******************************************
+
+2025-06-18 19:54:30 - def get_weather : 400 Client Error: Bad Request for url: https://api.openweathermap.org/data/2.5/weather?q=&appid=f0130aa9896b42e7eec767c74fbb474b
+
+2025-06-18 19:55:53 - ******************************* Initial run *******************************************
+
+2025-06-18 19:55:55 - def get_weather : 404 Client Error: Not Found for url: https://api.openweathermap.org/data/2.5/weather?q=kl&appid=f0130aa9896b42e7eec767c74fbb474b
+
+2025-06-18 19:56:22 - def get_weather : 404 Client Error: Not Found for url: https://api.openweathermap.org/data/2.5/weather?q=drfg&appid=f0130aa9896b42e7eec767c74fbb474b
+
+2025-06-18 20:43:42 - ******************************* Initial run *******************************************
+
+2025-06-18 20:53:16 - ******************************* Initial run *******************************************
+
+2025-06-18 21:20:31 - ******************************* Initial run *******************************************
+
+2025-06-18 21:21:41 - def get_weather : 400 Client Error: Bad Request for url: https://api.openweathermap.org/data/2.5/weather?q=&appid=f0130aa9896b42e7eec767c74fbb474b
+
+2025-06-18 21:21:43 - def get_weather : 404 Client Error: Not Found for url: https://api.openweathermap.org/data/2.5/weather?q=w&appid=f0130aa9896b42e7eec767c74fbb474b
+
+2025-06-18 21:21:55 - def get_weather : 404 Client Error: Not Found for url: https://api.openweathermap.org/data/2.5/weather?q=12&appid=f0130aa9896b42e7eec767c74fbb474b
+
+2025-06-18 21:22:32 - ******************************* Initial run *******************************************
+
+2025-06-18 21:22:34 - def get_weather : 404 Client Error: Not Found for url: https://api.openweathermap.org/data/2.5/weather?q=41&appid=f0130aa9896b42e7eec767c74fbb474b
+
+2025-06-18 21:23:00 - def get_weather : 400 Client Error: Bad Request for url: https://api.openweathermap.org/data/2.5/weather?q=&appid=f0130aa9896b42e7eec767c74fbb474b
+
+2025-06-18 21:23:52 - def get_weather : 400 Client Error: Bad Request for url: https://api.openweathermap.org/data/2.5/weather?q=&appid=f0130aa9896b42e7eec767c74fbb474b
+
+2025-06-18 21:29:52 - ******************************* Initial run *******************************************
+
+2025-06-18 21:35:38 - ******************************* Initial run *******************************************
+
+2025-06-18 21:44:12 - ******************************* Initial run *******************************************
+
+2025-06-18 21:53:24 - ******************************* Initial run *******************************************
+
+2025-06-18 21:53:40 - ******************************* Initial run *******************************************
+
+2025-06-18 21:55:18 - ******************************* Initial run *******************************************
+
+2025-06-18 21:59:00 - ******************************* Initial run *******************************************
+
+2025-06-18 21:59:47 - ******************************* Initial run *******************************************
+
+2025-06-18 21:59:51 - def get_weather : 'WeatherApp' object has no attribute 'weather_code'
+
+2025-06-18 22:01:06 - ******************************* Initial run *******************************************
+
+2025-06-18 22:01:07 - def get_weather : 'WeatherApp' object has no attribute 'weather_code'

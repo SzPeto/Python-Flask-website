@@ -1,6 +1,7 @@
 import os
 
 from flask import Flask, render_template, url_for, request
+from werkzeug.utils import redirect
 
 from functions import Functions
 from weather_app import WeatherApp
@@ -21,8 +22,12 @@ def weather_app():
     if request.method == "POST":
         weather_app_object.city_name = request.form.get("city-input").lower()
         weather_app_object.get_weather()
-        return render_template("weather-app.html", title="Weather app by Peter Szepesi",
-                               data = weather_app_object.data)
+        if weather_app_object.data:
+            return render_template("weather-app.html", title = "Weather app by Peter Szepesi",
+                                   data = weather_app_object.data, local_time = weather_app_object.local_time,
+                                   weather_icon = weather_app_object.weather_icon_path)
+        else:
+            return redirect("/weather-app")
 
     return render_template("weather-app.html", title = "Weather app by Peter Szepesi",
                            data = {})
@@ -33,4 +38,4 @@ if __name__ == "__main__":
         functions.write_log("******************************* Initial run *******************************************")
         is_first_log = False
 
-    app.run(debug = True)
+    app.run(debug=True)
