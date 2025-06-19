@@ -28,7 +28,10 @@ def weather_app():
                                    data = weather_app_object.data, local_time = weather_app_object.local_time,
                                    weather_icon = weather_app_object.weather_icon_path,
                                    temperature = weather_app_object.temperature,
-                                   temp_sign = weather_app_object.temp_sign)
+                                   temp_sign = weather_app_object.temp_sign,
+                                   wind_symbol = weather_app_object.wind_symbol,
+                                   wind_speed=weather_app_object.wind_speed,
+                                   speed_unit = weather_app_object.speed_unit)
         else:
             return redirect("/weather-app")
 
@@ -36,7 +39,10 @@ def weather_app():
                            data = weather_app_object.data, local_time = weather_app_object.local_time,
                            weather_icon = weather_app_object.weather_icon_path,
                            temperature = weather_app_object.temperature,
-                           temp_sign = weather_app_object.temp_sign)
+                           temp_sign = weather_app_object.temp_sign,
+                           wind_symbol = weather_app_object.wind_symbol,
+                           wind_speed = weather_app_object.wind_speed,
+                           speed_unit = weather_app_object.speed_unit)
 
 # Main *******************************************************************************************************
 if __name__ == "__main__":

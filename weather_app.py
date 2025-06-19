@@ -16,6 +16,9 @@ class WeatherApp:
         self.temperature = "0.00"
         self.temp_unit = "c"
         self.temp_sign = "°C"
+        self.speed_unit = "km/h"
+        self.wind_symbol = "⬆️"
+        self.wind_speed = 0.0
 
     def get_weather(self):
 
@@ -42,7 +45,7 @@ class WeatherApp:
         # Formatting temperature
         temp_temperature = self.data.get("main").get("temp")
         if self.temp_unit == "c":
-            self.temperature = f"{float(temp_temperature - 273.15):.2f}"
+            self.temperature = f"{float(temp_temperature - 273.15):.1f}"
             self.temp_sign = "°C"
 
         # Getting the icon
@@ -65,3 +68,15 @@ class WeatherApp:
             self.weather_icon_path = "Images/sun - minimalist.png"
         elif 801 <= self.weather_code <= 804:
             self.weather_icon_path = "Images/cloud - minimalist.png"
+
+        # Setting the wind
+        self.set_wind()
+
+    def set_wind(self):
+        wind_degree = int(self.data.get("wind").get("deg"))
+        wind_symbols = ("⬇️", "↙️", "⬅️", "↖️", "⬆️", "↗️", "➡️", "↘️")
+        wind_index = ((wind_degree + 22) % 360) // 45
+        self.wind_symbol = wind_symbols[wind_index]
+        temp_speed = float(self.data.get("wind").get("speed"))
+        if self.speed_unit == "km/h":
+            self.wind_speed = int(temp_speed * 3.6)

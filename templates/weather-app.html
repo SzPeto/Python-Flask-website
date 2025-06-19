@@ -54,7 +54,7 @@
                             width="40" id="humidity-icon">
                         </div>
                         <div class="data-content">
-                            <p class="data-label">{{ data.get("") }} %</p>
+                            <p class="data-label">{{ data.get("main").get("humidity") }} %</p>
                         </div>
                     </div>
 
@@ -64,7 +64,7 @@
                             width="40" id="pressure-icon">
                         </div>
                         <div class="data-content">
-                            <p class="data-label">{{ temperature }} {{ temp_sign }}</p>
+                            <p class="data-label">{{ data.get("main").get("pressure") }} hPa</p>
                         </div>
                     </div>
 
@@ -74,7 +74,8 @@
                             width="40" id="wind-icon">
                         </div>
                         <div class="data-content">
-                            <p class="data-label">{{ temperature }} {{ temp_sign }}</p>
+                            <p class="data-label">{{ wind_speed }} {{ speed_unit }}</p>
+                            <p class="wind-symbol">{{ wind_symbol }}</p>
                         </div>
                     </div>
                     
