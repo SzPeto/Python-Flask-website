@@ -24,13 +24,26 @@
 
                     {% if data %}
                         <p class="current-weather-label">{{ data.get("name") }},
-                        {{ data.get("sys").get("country") }}</p>
+                        {{ data.get("sys").get("country") }}</p><br><br>
                     {% else %}
                         <p class="current-weather-label">Waiting for city name...</p>
                     {% endif %}<br><br>
 
-                    <img src="{{ url_for('static', filename=weather_icon) }}" alt="Sunny weather">
+                    {% if weather_icon %}
+                        <img src="{{ url_for('static', filename=weather_icon) }}" alt="{{ weather_icon }}"
+                            width="80">
+                    {% endif %}
 
+                    {% if data %}
+                        <p id="description-label">{{ data.get("weather")[0].get("description") }}</p>
+                    {% endif %}
+                    
+                    <div class="h-box-temperature">
+                        <img src="{{ url_for('static', filename='Images/temperature - minimalist.png') }}"
+                        width="40">
+                        <p id="tmperature-label">{{ temperature }}</p>
+                    </div>
+                    
                 </div>
 
             </div>

@@ -43,6 +43,13 @@ footer {
     align-items: center;
 }
 
+.h-box-temperature {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex: 1;
+}
+
 #city-submit {
   padding: 5px 10px;
   background-color: rgb(76, 175, 80);

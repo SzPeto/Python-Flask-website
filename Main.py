@@ -22,15 +22,19 @@ def weather_app():
     if request.method == "POST":
         weather_app_object.city_name = request.form.get("city-input").lower()
         weather_app_object.get_weather()
+        print(weather_app_object.data)
         if weather_app_object.data:
             return render_template("weather-app.html", title = "Weather app by Peter Szepesi",
                                    data = weather_app_object.data, local_time = weather_app_object.local_time,
-                                   weather_icon = weather_app_object.weather_icon_path)
+                                   weather_icon = weather_app_object.weather_icon_path,
+                                   temperature = weather_app_object.temperature)
         else:
             return redirect("/weather-app")
 
     return render_template("weather-app.html", title = "Weather app by Peter Szepesi",
-                           data = {})
+                           data = weather_app_object.data, local_time = weather_app_object.local_time,
+                           weather_icon = weather_app_object.weather_icon_path,
+                           temperature = weather_app_object.temperature)
 
 # Main *******************************************************************************************************
 if __name__ == "__main__":
@@ -38,4 +42,4 @@ if __name__ == "__main__":
         functions.write_log("******************************* Initial run *******************************************")
         is_first_log = False
 
-    app.run(debug=True)
+    app.run(host = "0.0.0.0", debug=True)

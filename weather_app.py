@@ -11,7 +11,10 @@ class WeatherApp:
         self.functions = Functions()
         self.data = None
         self.local_time = None
-        self.weather_icon_path = "Images/sun - minimalist.png"
+        self.weather_icon_path = None
+        self.weather_code = None
+        self.temperature = None
+        self.temp_unit = "c"
 
     def get_weather(self):
 
@@ -35,7 +38,12 @@ class WeatherApp:
         local_time_temp = utc_time + datetime.timedelta(seconds=time_zone_correction)
         self.local_time = local_time_temp.strftime("%d.%m.%Y %H:%M:%S")
 
+        # Formatting temperature
+        #if self.temp_unit = "c":
+
+
         # Getting the icon
+        self.weather_code = self.data.get("weather")[0].get("id")
         if 200 <= self.weather_code <= 232:
             self.weather_icon_path = "Images/thunderstorm - minimalist.png"
         elif 300 <= self.weather_code <= 321:
