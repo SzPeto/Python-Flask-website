@@ -35,6 +35,7 @@ def weather_app():
         else:
             return redirect("/weather-app")
 
+    weather_app_object.get_weather() # TODO - remove this line after completing if statements in html
     return render_template("weather-app.html", title = "Weather app by Peter Szepesi",
                            data = weather_app_object.data, local_time = weather_app_object.local_time,
                            weather_icon = weather_app_object.weather_icon_path,
