@@ -8,6 +8,8 @@
 
                 <div class="v-box-left">
 
+                    <p class="section">Current weather</p>
+
                     <form method="POST" action="/weather-app">
                         <input type="text" id="city-input" name="city-input" placeholder="Enter a city name"><br>
                         <button type="submit" name="event" id="city-submit">Submit</button>
@@ -54,6 +56,7 @@
                             width="40" id="humidity-icon">
                         </div>
                         <div class="data-content">
+                            <!-- Make the if statements for data -->
                             <p class="data-label">{{ data.get("main").get("humidity") }} %</p>
                         </div>
                     </div>

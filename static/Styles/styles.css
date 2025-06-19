@@ -53,6 +53,7 @@ footer {
     justify-content: flex-start;
     width: 100%;
     padding: 20px 30px 20px 30px;
+    border-bottom: 1px solid rgb(188, 222, 222);
 }
 
 /* Other ***************************************************************************************************** */
@@ -126,4 +127,20 @@ input[type="text"] {
 .wind-symbol{
     font-family: Segoe UI emoji;
     font-size: 25px;
+}
+
+#description-label {
+    font-family: Segoe UI;
+    font-size: 18px;
+    color: rgb(0, 111, 111);
+}
+
+#divider-h-box-data {
+    color: red;
+}
+
+.section {
+    font-family: Bahnschrift;
+    font-size: 25px;
+    color: rgb(0, 111, 111);
 }
