@@ -21,16 +21,24 @@ class WeatherApp:
         self.wind_speed = 0.0
 
     def get_weather(self):
+        geo_url = f"http://api.openweathermap.org/geo/1.0/direct?q={self.city_name}&limit=1&appid={self.api_key}"
+        try:
+            geo_response = requests.get(geo_url).json()
+            lat = geo_response[0].get("lat")
+            lon = geo_response[0].get("lon")
+        except Exception as e:
+            self.functions.write_log(f"def get_weather - geo_response : {e}")
 
         url = f"https://api.openweathermap.org/data/2.5/weather?q={self.city_name}&appid={self.api_key}"
+        url_new = f"https://api.openweathermap.org/data/3.0/onecall?lat={lat}&lon={lon}&appid={self.api_key}"
         try:
-            response = requests.get(url)
+            response = requests.get(url_new)
             response.raise_for_status()
             if response.status_code == 200:
                 self.data = response.json()
                 self.format_data()
         except Exception as e:
-            self.functions.write_log(f"def get_weather : {e}")
+            self.functions.write_log(f"def get_weather response : {e}")
             self.data = None
 
     def format_data(self):

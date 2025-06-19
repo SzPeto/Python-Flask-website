@@ -36,6 +36,7 @@ footer {
     border-right: 1px solid rgb(200, 200, 200);
     align-items: center;
     text-align: center;
+    padding: 20px 0px 20px 0px;
 }
 
 .v-box-right {
@@ -43,6 +44,7 @@ footer {
     flex-direction: column;
     flex: 1;
     align-items: center;
+    padding: 20px 0px 20px 0px;
 }
 
 .h-box-data {
@@ -56,7 +58,18 @@ footer {
     border-bottom: 1px solid rgb(188, 222, 222);
 }
 
-/* Other ***************************************************************************************************** */
+/* Containers ************************************************************************************************** */
+.data-content {
+    flex: 1; /* takes up remaining space */
+    display: flex;
+    justify-content: center; /* centers text horizontally */
+    font-family: Bahnschrift;
+    font-size: 23px;
+    color: rgb(0, 111, 111);
+    padding: 4px;
+}
+
+/* Buttons ***************************************************************************************************** */
 #city-submit {
   padding: 5px 10px;
   background-color: rgb(76, 175, 80);
@@ -77,6 +90,7 @@ footer {
     border: 1px inset green;
 }
 
+/* Input fields ******************************************************************************************** */
 input[type="text"] {
     font-size: 18px;
     border-radius: 8px;
@@ -87,6 +101,7 @@ input[type="text"] {
     margin: 15px;
 }
 
+/* Labels and icons ****************************************************************************************** */
 .current-weather-label {
     font-size: 25px;
     font-family: Bahnschrift;
@@ -114,16 +129,6 @@ input[type="text"] {
     justify-content: flex-start;
 }
 
-.data-content {
-    flex: 1; /* takes up remaining space */
-    display: flex;
-    justify-content: center; /* ✅ centers text horizontally */
-    font-family: Bahnschrift;
-    font-size: 23px;
-    color: rgb(0, 111, 111);
-    padding: 4px;
-}
-
 .wind-symbol{
     font-family: Segoe UI emoji;
     font-size: 25px;
@@ -135,12 +140,47 @@ input[type="text"] {
     color: rgb(0, 111, 111);
 }
 
+.section-label {
+    font-family: Bahnschrift;
+    font-size: 25px;
+    color: rgb(0, 111, 111);
+}
+
+/* Other ***************************************************************************************************** */
 #divider-h-box-data {
     color: red;
 }
 
-.section {
+/* Unsorted ************************************************************************************************** */
+.switch-bar {
+    display: flex;
+    justify-content: center;
+    margin: 20px auto;
+    width: fit-content;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.15);
+}
+
+.switch-tab {
+    padding: 10px 20px;
+    background-color: rgb(224, 247, 250);
+    color: rgb(0, 121, 107);
+    text-decoration: none;
     font-family: Bahnschrift;
-    font-size: 25px;
-    color: rgb(0, 111, 111);
+    font-weight: bold;
+    border-right: 1px solid rgb(178, 223, 219);
+    transition: background 0.3s ease;
+}
+
+.switch-tab:last-child {
+    border-right: none;
+}
+
+.switch-tab:hover {
+    background-color: rgb(178, 223, 219);
+}
+
+.switch-tab.active {
+    background-color: rgb(188, 247, 250);
 }

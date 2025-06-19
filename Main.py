@@ -1,3 +1,4 @@
+# TODO - Make the new API call
 import os
 
 from flask import Flask, render_template, url_for, request
@@ -31,11 +32,11 @@ def weather_app():
                                    temp_sign = weather_app_object.temp_sign,
                                    wind_symbol = weather_app_object.wind_symbol,
                                    wind_speed=weather_app_object.wind_speed,
-                                   speed_unit = weather_app_object.speed_unit)
+                                   speed_unit = weather_app_object.speed_unit,
+                                   active_tab = "current")
         else:
             return redirect("/weather-app")
 
-    weather_app_object.get_weather() # TODO - remove this line after completing if statements in html
     return render_template("weather-app.html", title = "Weather app by Peter Szepesi",
                            data = weather_app_object.data, local_time = weather_app_object.local_time,
                            weather_icon = weather_app_object.weather_icon_path,
@@ -43,7 +44,8 @@ def weather_app():
                            temp_sign = weather_app_object.temp_sign,
                            wind_symbol = weather_app_object.wind_symbol,
                            wind_speed = weather_app_object.wind_speed,
-                           speed_unit = weather_app_object.speed_unit)
+                           speed_unit = weather_app_object.speed_unit,
+                           active_tab = "current")
 
 # Main *******************************************************************************************************
 if __name__ == "__main__":

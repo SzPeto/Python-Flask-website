@@ -3,12 +3,17 @@
 {% block body %}
 
     <main>
+
         <div class="container">
+            <div class="switch-bar">
+              <a href="/weather-app" class="switch-tab {% if active_tab == 'current' %}active{% endif %}">Current</a>
+              <a href="/weather-app" class="switch-tab {% if active_tab == 'forecast' %}active{% endif %}">Forecast</a>
+            </div>
             <div class="h-box-main">
 
                 <div class="v-box-left">
 
-                    <p class="section">Current weather</p>
+                    <p class="section-label">Current weather</p>
 
                     <form method="POST" action="/weather-app">
                         <input type="text" id="city-input" name="city-input" placeholder="Enter a city name"><br>
@@ -56,8 +61,9 @@
                             width="40" id="humidity-icon">
                         </div>
                         <div class="data-content">
-                            <!-- Make the if statements for data -->
+                            {% if data %}
                             <p class="data-label">{{ data.get("main").get("humidity") }} %</p>
+                            {% endif %}
                         </div>
                     </div>
 
@@ -67,7 +73,9 @@
                             width="40" id="pressure-icon">
                         </div>
                         <div class="data-content">
+                            {% if data %}
                             <p class="data-label">{{ data.get("main").get("pressure") }} hPa</p>
+                            {% endif %}
                         </div>
                     </div>
 
