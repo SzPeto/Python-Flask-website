@@ -38,10 +38,44 @@
                         <p id="description-label">{{ data.get("weather")[0].get("description") }}</p>
                     {% endif %}
                     
-                    <div class="h-box-temperature">
-                        <img src="{{ url_for('static', filename='Images/temperature - minimalist.png') }}"
-                        width="40">
-                        <p id="tmperature-label">{{ temperature }}</p>
+                    <div class="h-box-data">
+                        <div class="data-icon">
+                            <img src="{{ url_for('static', filename='Images/temperature - minimalist.png') }}"
+                            width="40" id="temp-icon">
+                        </div>
+                        <div class="data-content">
+                            <p class="data-label">{{ temperature }} {{ temp_sign }}</p>
+                        </div>
+                    </div>
+
+                    <div class="h-box-data">
+                        <div class="data-icon">
+                            <img src="{{ url_for('static', filename='Images/humidity.png') }}"
+                            width="40" id="humidity-icon">
+                        </div>
+                        <div class="data-content">
+                            <p class="data-label">{{ temperature }} {{ temp_sign }}</p>
+                        </div>
+                    </div>
+
+                    <div class="h-box-data">
+                        <div class="data-icon">
+                            <img src="{{ url_for('static', filename='Images/pressure - minimalist.png') }}"
+                            width="40" id="pressure-icon">
+                        </div>
+                        <div class="data-content">
+                            <p class="data-label">{{ temperature }} {{ temp_sign }}</p>
+                        </div>
+                    </div>
+
+                    <div class="h-box-data">
+                        <div class="data-icon">
+                            <img src="{{ url_for('static', filename='Images/wind - minimalist.png') }}"
+                            width="40" id="wind-icon">
+                        </div>
+                        <div class="data-content">
+                            <p class="data-label">{{ temperature }} {{ temp_sign }}</p>
+                        </div>
                     </div>
                     
                 </div>

@@ -27,14 +27,16 @@ def weather_app():
             return render_template("weather-app.html", title = "Weather app by Peter Szepesi",
                                    data = weather_app_object.data, local_time = weather_app_object.local_time,
                                    weather_icon = weather_app_object.weather_icon_path,
-                                   temperature = weather_app_object.temperature)
+                                   temperature = weather_app_object.temperature,
+                                   temp_sign = weather_app_object.temp_sign)
         else:
             return redirect("/weather-app")
 
     return render_template("weather-app.html", title = "Weather app by Peter Szepesi",
                            data = weather_app_object.data, local_time = weather_app_object.local_time,
                            weather_icon = weather_app_object.weather_icon_path,
-                           temperature = weather_app_object.temperature)
+                           temperature = weather_app_object.temperature,
+                           temp_sign = weather_app_object.temp_sign)
 
 # Main *******************************************************************************************************
 if __name__ == "__main__":

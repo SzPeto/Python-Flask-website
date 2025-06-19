@@ -13,8 +13,9 @@ class WeatherApp:
         self.local_time = None
         self.weather_icon_path = None
         self.weather_code = None
-        self.temperature = None
+        self.temperature = "0.00"
         self.temp_unit = "c"
+        self.temp_sign = "°C"
 
     def get_weather(self):
 
@@ -39,8 +40,10 @@ class WeatherApp:
         self.local_time = local_time_temp.strftime("%d.%m.%Y %H:%M:%S")
 
         # Formatting temperature
-        #if self.temp_unit = "c":
-
+        temp_temperature = self.data.get("main").get("temp")
+        if self.temp_unit == "c":
+            self.temperature = f"{float(temp_temperature - 273.15):.2f}"
+            self.temp_sign = "°C"
 
         # Getting the icon
         self.weather_code = self.data.get("weather")[0].get("id")

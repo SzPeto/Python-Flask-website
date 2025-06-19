@@ -1,0 +1,13 @@
+block          Fills the full width, starts on a new line
+
+inline         Sits inside a line (like text), only takes as much space as it needs
+
+inline-block   Like inline, but you can set width/height
+
+none           Completely hides the element
+
+flex           Turns the element into a flex container — powerful for aligning children
+
+grid           Turns the element into a grid container (rows + columns)
+
+table          Makes it behave like an HTML <table> (rarely used manually)

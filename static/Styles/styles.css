@@ -1,3 +1,4 @@
+/* Main **************************************************************************************************** */
 .navbar {
     background: linear-gradient(to top, rgb(205, 255, 255), rgb(235, 255, 255)); !important;
 }
@@ -18,6 +19,7 @@ footer {
     background: linear-gradient(to top, rgb(205, 255, 255), rgb(235, 255, 255));
 }
 
+/* Layout **************************************************************************************************** */
 .h-box-main {
     display: flex;
     flex-direction: row;
@@ -43,13 +45,17 @@ footer {
     align-items: center;
 }
 
-.h-box-temperature {
+.h-box-data {
     display: flex;
     flex-direction: row;
     align-items: center;
     flex: 1;
+    justify-content: flex-start;
+    width: 100%;
+    padding: 20px 30px 20px 30px;
 }
 
+/* Other ***************************************************************************************************** */
 #city-submit {
   padding: 5px 10px;
   background-color: rgb(76, 175, 80);
@@ -88,4 +94,24 @@ input[type="text"] {
     font-size: 18px;
     font-family: Bahnschrift;
     color: rgb(122, 122, 122);
+}
+
+#temp-icon {
+    text-align: left;
+}
+
+.data-label {
+    align-items: right;
+}
+
+.data-icon {
+    width: 40px; /* fixed width to align left */
+    display: flex;
+    justify-content: flex-start;
+}
+
+.data-content {
+    flex: 1; /* takes up remaining space */
+    display: flex;
+    justify-content: center; /* ✅ centers text horizontally */
 }
