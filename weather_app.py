@@ -43,6 +43,7 @@ class WeatherApp:
                 response.raise_for_status()
                 if response.status_code == 200:
                     self.data = response.json()
+                    print(self.data)
                     self.format_data()
         except Exception as e:
             self.functions.write_log(f"def get_weather response : {e}")
@@ -50,16 +51,13 @@ class WeatherApp:
 
     def format_data(self):
 
-        # TODO - complete the sunrise and sunset data
         # Formatting time
-        local_time_temp = self.calculate_temp_time(int(self.data.get("dt")))
-        self.local_time = local_time_temp.strftime("%d.%m.%Y %H:%M:%S")
+        self.local_time = self.calculate_local_time(int(self.data.get("dt")))
             # Sunrise
-        local_time_temp = self.calculate_temp_time(int(self.data.get("dt")))
-        self.sunrise = local_time_temp.strftime("%d.%m.%Y %H:%M:%S")
+        self.sunrise = self.calculate_local_time(int(self.data.get("sys").get("sunrise")), with_date=False)
             # Sunset
-        local_time_temp = self.calculate_temp_time(int(self.data.get("dt")))
-        self.sunset = local_time_temp.strftime("%d.%m.%Y %H:%M:%S")
+        self.sunset = self.calculate_local_time(int(self.data.get("sys").get("sunset")), with_date=False)
+        print(f"{self.local_time}, {self.sunrise}, {self.sunset}")
 
         # Formatting temperature
         temp_temperature = self.data.get("main").get("temp")
@@ -100,7 +98,10 @@ class WeatherApp:
         if self.speed_unit == "km/h":
             self.wind_speed = int(temp_speed * 3.6)
 
-    def calculate_temp_time(self, unix_timestamp):
+    def calculate_local_time(self, unix_timestamp, with_date=True):
         time_zone_correction = int(self.data.get("timezone"))
         utc_time = datetime.datetime.fromtimestamp(unix_timestamp, datetime.UTC)
-        return utc_time + datetime.timedelta(seconds=time_zone_correction)
+        temp_time = utc_time + datetime.timedelta(seconds=time_zone_correction)
+        if with_date:
+            return temp_time.strftime("%d.%m.%Y %H:%M:%S")
+        return temp_time.strftime("%H:%M:%S")

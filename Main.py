@@ -32,8 +32,8 @@ def weather_app():
                                    wind_symbol = weather_app_object.wind_symbol,
                                    wind_speed=weather_app_object.wind_speed,
                                    speed_unit = weather_app_object.speed_unit,
-                                   active_tab = "current",
-                                   geo_data = weather_app_object.geo_data)
+                                   active_tab = "current", geo_data = weather_app_object.geo_data,
+                                   sunrise = weather_app_object.sunrise, sunset = weather_app_object.sunset)
         else:
             return redirect("/weather-app")
 
@@ -45,8 +45,8 @@ def weather_app():
                            wind_symbol = weather_app_object.wind_symbol,
                            wind_speed = weather_app_object.wind_speed,
                            speed_unit = weather_app_object.speed_unit,
-                           active_tab = "current",
-                           geo_data = weather_app_object.geo_data)
+                           active_tab = "current", geo_data = weather_app_object.geo_data,
+                           sunrise = weather_app_object.sunrise, sunset = weather_app_object.sunset)
 
 # Main *******************************************************************************************************
 if __name__ == "__main__":

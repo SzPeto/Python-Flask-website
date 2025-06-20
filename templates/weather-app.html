@@ -95,10 +95,14 @@
 
             </div>
             <div class="h-box-main-2">
-                <img src="{{url_for('static', filename='Images/sunrise - minimalist.png')}}" width="100"
+                <div class="sunset-sunrise-icon-container">
+                    <img src="{{url_for('static', filename='Images/sunrise - minimalist.png')}}" width="100"
                      alt="sunrise">
-                <p>Sunrise : </p>
-                <p>Sunrise : </p>
+                </div>
+                <div class="sunset-sunrise-description-container">
+                    <p class="sunrise-sunset-label">Sunrise : {{ sunrise }}</p>
+                    <p class="sunrise-sunset-label">Sunset : {{ sunset }}</p>
+                </div>
             </div>
         </div>
     </main>

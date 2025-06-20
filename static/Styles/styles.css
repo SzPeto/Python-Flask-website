@@ -44,6 +44,8 @@ footer {
     background-color: rgb(255, 255, 255);
     box-shadow: 0px 2px 10px rgba(0,0,0,0.2);
     width: 80%;
+    align-items: center;
+    justify-content: center;
 }
 
 .v-box-left {
@@ -84,6 +86,20 @@ footer {
     font-size: 23px;
     color: rgb(0, 111, 111);
     padding: 4px;
+}
+
+.sunset-sunrise-icon-container {
+    flex: 1;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.sunset-sunrise-description-container {
+    flex: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /* Buttons ***************************************************************************************************** */
@@ -167,6 +183,13 @@ input[type="text"] {
     font-family: Bahnschrift;
     font-size: 25px;
     color: rgb(0, 111, 111);
+}
+
+.sunrise-sunset-label {
+    font-family: Bahnschrift;
+    font-size: 18px;
+    color: rgb(0, 111, 111);
+    padding: 20px;
 }
 
 /* Other ***************************************************************************************************** */
