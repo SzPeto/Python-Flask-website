@@ -1,4 +1,3 @@
-# TODO - Make the new API call
 import os
 
 from flask import Flask, render_template, url_for, request
@@ -33,7 +32,8 @@ def weather_app():
                                    wind_symbol = weather_app_object.wind_symbol,
                                    wind_speed=weather_app_object.wind_speed,
                                    speed_unit = weather_app_object.speed_unit,
-                                   active_tab = "current")
+                                   active_tab = "current",
+                                   geo_data = weather_app_object.geo_data)
         else:
             return redirect("/weather-app")
 
@@ -45,7 +45,8 @@ def weather_app():
                            wind_symbol = weather_app_object.wind_symbol,
                            wind_speed = weather_app_object.wind_speed,
                            speed_unit = weather_app_object.speed_unit,
-                           active_tab = "current")
+                           active_tab = "current",
+                           geo_data = weather_app_object.geo_data)
 
 # Main *******************************************************************************************************
 if __name__ == "__main__":

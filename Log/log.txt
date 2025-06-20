@@ -239,3 +239,31 @@
 2025-06-19 22:01:32 - ******************************* Initial run *******************************************
 
 2025-06-19 22:01:36 - def get_weather response : 401 Client Error: Unauthorized for url: https://api.openweathermap.org/data/3.0/onecall?lat=48.6067917&lon=20.750338&appid=f0130aa9896b42e7eec767c74fbb474b
+
+2025-06-20 12:38:29 - ******************************* Initial run *******************************************
+
+2025-06-20 12:38:45 - def get_weather response : 401 Client Error: Unauthorized for url: https://api.openweathermap.org/data/3.0/onecall?lat=48.6067917&lon=20.750338&appid=f0130aa9896b42e7eec767c74fbb474b
+
+2025-06-20 12:39:06 - def get_weather response : 401 Client Error: Unauthorized for url: https://api.openweathermap.org/data/3.0/onecall?lat=48.6620675&lon=20.5328607&appid=f0130aa9896b42e7eec767c74fbb474b
+
+2025-06-20 12:39:56 - ******************************* Initial run *******************************************
+
+2025-06-20 12:39:57 - def get_weather response : 401 Client Error: Unauthorized for url: https://api.openweathermap.org/data/3.0/onecall?lat=48.6067917&lon=20.750338&appid=f0130aa9896b42e7eec767c74fbb474b
+
+2025-06-20 12:41:04 - ******************************* Initial run *******************************************
+
+2025-06-20 12:41:06 - def get_weather response : 401 Client Error: Unauthorized for url: https://api.openweathermap.org/data/3.0/onecall?lat=48.6067917&lon=20.750338&appid=f0130aa9896b42e7eec767c74fbb474b
+
+2025-06-20 12:43:14 - ******************************* Initial run *******************************************
+
+2025-06-20 12:43:19 - def get_weather response : 401 Client Error: Unauthorized for url: https://api.openweathermap.org/data/2.5/onecall?lat=48.6067917&lon=20.750338&appid=f0130aa9896b42e7eec767c74fbb474b
+
+2025-06-20 12:45:50 - ******************************* Initial run *******************************************
+
+2025-06-20 12:47:18 - ******************************* Initial run *******************************************
+
+2025-06-20 12:48:33 - ******************************* Initial run *******************************************
+
+2025-06-20 12:50:38 - ******************************* Initial run *******************************************
+
+2025-06-20 12:50:50 - def get_weather - geo_response : list index out of range

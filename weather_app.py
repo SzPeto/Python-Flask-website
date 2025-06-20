@@ -9,6 +9,7 @@ class WeatherApp:
         self.api_key = "f0130aa9896b42e7eec767c74fbb474b"
         self.city_name = "Hrhov"
         self.functions = Functions()
+        self.geo_data = None
         self.data = None
         self.local_time = None
         self.weather_icon_path = None
@@ -23,14 +24,17 @@ class WeatherApp:
     def get_weather(self):
         geo_url = f"http://api.openweathermap.org/geo/1.0/direct?q={self.city_name}&limit=1&appid={self.api_key}"
         try:
-            geo_response = requests.get(geo_url).json()
-            lat = geo_response[0].get("lat")
-            lon = geo_response[0].get("lon")
+            geo_response = requests.get(geo_url)
+            geo_response.raise_for_status()
+            if geo_response.status_code == 200:
+                self.geo_data = geo_response.json()
+                lat = self.geo_data[0].get("lat")
+                lon = self.geo_data[0].get("lon")
+                print(self.geo_data)
         except Exception as e:
             self.functions.write_log(f"def get_weather - geo_response : {e}")
 
-        url = f"https://api.openweathermap.org/data/2.5/weather?q={self.city_name}&appid={self.api_key}"
-        url_new = f"https://api.openweathermap.org/data/3.0/onecall?lat={lat}&lon={lon}&appid={self.api_key}"
+        url_new = f"https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={self.api_key}"
         try:
             response = requests.get(url_new)
             response.raise_for_status()
