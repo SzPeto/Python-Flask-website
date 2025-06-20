@@ -20,6 +20,8 @@ class WeatherApp:
         self.speed_unit = "km/h"
         self.wind_symbol = "⬆️"
         self.wind_speed = 0.0
+        self.sunrise = None
+        self.sunset = None
 
     def get_weather(self):
         geo_url = f"http://api.openweathermap.org/geo/1.0/direct?q={self.city_name}&limit=1&appid={self.api_key}"
@@ -48,17 +50,21 @@ class WeatherApp:
 
     def format_data(self):
 
+        # TODO - complete the sunrise and sunset data
         # Formatting time
-        unix_timestamp = int(self.data.get("dt"))
-        time_zone_correction = int(self.data.get("timezone"))
-        utc_time = datetime.datetime.fromtimestamp(unix_timestamp, datetime.UTC)
-        local_time_temp = utc_time + datetime.timedelta(seconds=time_zone_correction)
+        local_time_temp = self.calculate_temp_time(int(self.data.get("dt")))
         self.local_time = local_time_temp.strftime("%d.%m.%Y %H:%M:%S")
+            # Sunrise
+        local_time_temp = self.calculate_temp_time(int(self.data.get("dt")))
+        self.sunrise = local_time_temp.strftime("%d.%m.%Y %H:%M:%S")
+            # Sunset
+        local_time_temp = self.calculate_temp_time(int(self.data.get("dt")))
+        self.sunset = local_time_temp.strftime("%d.%m.%Y %H:%M:%S")
 
         # Formatting temperature
         temp_temperature = self.data.get("main").get("temp")
         if self.temp_unit == "c":
-            self.temperature = f"{float(temp_temperature - 273.15 + 1.5):.1f}"
+            self.temperature = f"{float(temp_temperature - 273.15 + 2):.1f}"
             self.temp_sign = "°C"
 
         # Getting the icon
@@ -93,3 +99,8 @@ class WeatherApp:
         temp_speed = float(self.data.get("wind").get("speed"))
         if self.speed_unit == "km/h":
             self.wind_speed = int(temp_speed * 3.6)
+
+    def calculate_temp_time(self, unix_timestamp):
+        time_zone_correction = int(self.data.get("timezone"))
+        utc_time = datetime.datetime.fromtimestamp(unix_timestamp, datetime.UTC)
+        return utc_time + datetime.timedelta(seconds=time_zone_correction)

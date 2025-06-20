@@ -4,12 +4,12 @@
 
     <main>
 
-        <div class="container">
+        <div class="v-box-container-main">
             <div class="switch-bar">
               <a href="/weather-app" class="switch-tab {% if active_tab == 'current' %}active{% endif %}">Current</a>
               <a href="/weather-app" class="switch-tab {% if active_tab == 'forecast' %}active{% endif %}">Forecast</a>
             </div>
-            <div class="h-box-main">
+            <div class="h-box-main-1">
 
                 <div class="v-box-left">
 
@@ -42,7 +42,8 @@
                     {% endif %}
 
                     {% if data %}
-                        <p id="description-label">{{ data.get("weather")[0].get("description") }}</p>
+                        <p id="description-label">{{ data.get("weather")[0].get("description").capitalize() }}</p>
+                        <p id="cloud-coverage-label">Cloud coverage : {{ data.get("clouds").get("all") }} %</p>
                     {% endif %}
                     
                     <div class="h-box-data">
@@ -92,6 +93,12 @@
                     
                 </div>
 
+            </div>
+            <div class="h-box-main-2">
+                <img src="{{url_for('static', filename='Images/sunrise - minimalist.png')}}" width="100"
+                     alt="sunrise">
+                <p>Sunrise : </p>
+                <p>Sunrise : </p>
             </div>
         </div>
     </main>
