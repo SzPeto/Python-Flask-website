@@ -31,16 +31,17 @@ class WeatherApp:
                 lat = self.geo_data[0].get("lat")
                 lon = self.geo_data[0].get("lon")
                 print(self.geo_data)
+                url_new = f"https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={self.api_key}"
         except Exception as e:
             self.functions.write_log(f"def get_weather - geo_response : {e}")
 
-        url_new = f"https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={self.api_key}"
         try:
-            response = requests.get(url_new)
-            response.raise_for_status()
-            if response.status_code == 200:
-                self.data = response.json()
-                self.format_data()
+            if url_new:
+                response = requests.get(url_new)
+                response.raise_for_status()
+                if response.status_code == 200:
+                    self.data = response.json()
+                    self.format_data()
         except Exception as e:
             self.functions.write_log(f"def get_weather response : {e}")
             self.data = None
@@ -57,7 +58,7 @@ class WeatherApp:
         # Formatting temperature
         temp_temperature = self.data.get("main").get("temp")
         if self.temp_unit == "c":
-            self.temperature = f"{float(temp_temperature - 273.15):.1f}"
+            self.temperature = f"{float(temp_temperature - 273.15 + 1.5):.1f}"
             self.temp_sign = "°C"
 
         # Getting the icon
