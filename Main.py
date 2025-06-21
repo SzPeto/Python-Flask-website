@@ -26,6 +26,9 @@ def weather_app():
         if weather_app_object.data:
             return render_template("weather-app.html", title = "Weather app by Peter Szepesi",
                                    data = weather_app_object.data, local_time = weather_app_object.local_time,
+                                   misc_data = weather_app_object.misc_data,
+                                   uv_index = weather_app_object.uv_index,
+                                   uv_desc = weather_app_object.uv_description,
                                    weather_icon = weather_app_object.weather_icon_path,
                                    temperature = weather_app_object.temperature,
                                    temp_sign = weather_app_object.temp_sign,
@@ -39,6 +42,9 @@ def weather_app():
 
     return render_template("weather-app.html", title = "Weather app by Peter Szepesi",
                            data = weather_app_object.data, local_time = weather_app_object.local_time,
+                           misc_data=weather_app_object.misc_data,
+                           uv_index=weather_app_object.uv_index,
+                           uv_desc=weather_app_object.uv_description,
                            weather_icon = weather_app_object.weather_icon_path,
                            temperature = weather_app_object.temperature,
                            temp_sign = weather_app_object.temp_sign,

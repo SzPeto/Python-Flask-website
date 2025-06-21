@@ -6,11 +6,15 @@ from functions import Functions
 
 class WeatherApp:
     def __init__(self):
-        self.api_key = "f0130aa9896b42e7eec767c74fbb474b"
+        self.api_key_owm = "f0130aa9896b42e7eec767c74fbb474b"
+        self.api_key_weatherapi = "e03f95ed4fba488682f141642252106"
         self.city_name = "Hrhov"
         self.functions = Functions()
         self.geo_data = None
         self.data = None
+        self.misc_data = None
+        self.uv_index = None
+        self.uv_description = None
         self.local_time = None
         self.weather_icon_path = None
         self.weather_code = None
@@ -22,9 +26,11 @@ class WeatherApp:
         self.wind_speed = 0.0
         self.sunrise = None
         self.sunset = None
+        self.days_forecast = 7
 
     def get_weather(self):
-        geo_url = f"http://api.openweathermap.org/geo/1.0/direct?q={self.city_name}&limit=1&appid={self.api_key}"
+        # Getting the longitude and latitude
+        geo_url = f"http://api.openweathermap.org/geo/1.0/direct?q={self.city_name}&limit=1&appid={self.api_key_owm}"
         try:
             geo_response = requests.get(geo_url)
             geo_response.raise_for_status()
@@ -32,22 +38,38 @@ class WeatherApp:
                 self.geo_data = geo_response.json()
                 lat = self.geo_data[0].get("lat")
                 lon = self.geo_data[0].get("lon")
-                print(self.geo_data)
-                url_new = f"https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={self.api_key}"
+                url_new = f"https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={self.api_key_owm}"
+                url_misc = f"http://api.weatherapi.com/v1/current.json?key={self.api_key_weatherapi}&q={lat},{lon}"
         except Exception as e:
             self.functions.write_log(f"def get_weather - geo_response : {e}")
 
+        # Getting the current weather
         try:
             if url_new:
                 response = requests.get(url_new)
                 response.raise_for_status()
                 if response.status_code == 200:
                     self.data = response.json()
-                    print(self.data)
-                    self.format_data()
         except Exception as e:
             self.functions.write_log(f"def get_weather response : {e}")
             self.data = None
+
+        #Getting miscellaneous info
+        try:
+            if url_misc:
+                response = requests.get(url_misc)
+                response.raise_for_status()
+                if response.status_code == 200:
+                    self.misc_data = response.json()
+                    print(f"weatherapi : {self.misc_data}")
+        except Exception as e:
+            self.functions.write_log(f"def get_weather response : {e}")
+            self.misc_data = None
+
+        try:
+            self.format_data()
+        except Exception as e:
+            self.functions.write_log(f"def format_data : {e}")
 
     def format_data(self):
 
@@ -57,12 +79,11 @@ class WeatherApp:
         self.sunrise = self.calculate_local_time(int(self.data.get("sys").get("sunrise")), with_date=False)
             # Sunset
         self.sunset = self.calculate_local_time(int(self.data.get("sys").get("sunset")), with_date=False)
-        print(f"{self.local_time}, {self.sunrise}, {self.sunset}")
 
         # Formatting temperature
         temp_temperature = self.data.get("main").get("temp")
         if self.temp_unit == "c":
-            self.temperature = f"{float(temp_temperature - 273.15 + 2):.1f}"
+            self.temperature = f"{float(temp_temperature - 273.15 + 1.5):.1f}"
             self.temp_sign = "°C"
 
         # Getting the icon
@@ -88,6 +109,21 @@ class WeatherApp:
 
         # Setting the wind
         self.set_wind()
+
+        # Setting UV index
+        if self.misc_data:
+            self.uv_index = float(self.misc_data.get("current").get("uv"))
+            if 0 <= self.uv_index <= 2:
+                self.uv_description = "Low"
+            elif 3 <= self.uv_index <= 5:
+                self.uv_description = "Moderate"
+            elif 6 <= self.uv_index <= 7:
+                self.uv_description = "High"
+            elif 8 <= self.uv_index <= 10:
+                self.uv_description = "Very high"
+            elif self.uv_index > 10:
+                self.uv_description = "Extreme"
+            print(self.uv_description)
 
     def set_wind(self):
         wind_degree = int(self.data.get("wind").get("deg"))

@@ -5,7 +5,7 @@
     <main>
 
         <div class="v-box-container-main">
-            <div class="switch-bar">
+            <div class="switch-bar" hidden>
               <a href="/weather-app" class="switch-tab {% if active_tab == 'current' %}active{% endif %}">Current</a>
               <a href="/weather-app" class="switch-tab {% if active_tab == 'forecast' %}active{% endif %}">Forecast</a>
             </div>
@@ -38,7 +38,7 @@
 
                     {% if weather_icon %}
                         <img src="{{ url_for('static', filename=weather_icon) }}" alt="{{ weather_icon }}"
-                            width="80">
+                            width="80" class="weather-icon-animated">
                     {% endif %}
 
                     {% if data %}
@@ -97,11 +97,22 @@
             <div class="h-box-main-2">
                 <div class="sunset-sunrise-icon-container">
                     <img src="{{url_for('static', filename='Images/sunrise - minimalist.png')}}" width="100"
-                     alt="sunrise">
+                     alt="sunrise" class="animated-sunrise">
                 </div>
-                <div class="sunset-sunrise-description-container">
+                <div class="sunset-sunrise-description-container-sunrise">
                     <p class="sunrise-sunset-label">Sunrise : {{ sunrise }}</p>
+                </div>
+                <div class="sunset-sunrise-description-container-sunset">
                     <p class="sunrise-sunset-label">Sunset : {{ sunset }}</p>
+                </div>
+            </div>
+            <div class="h-box-main-3">
+                <div class="uv-icon-container">
+                    <img src="{{url_for('static', filename='Images/uv - minimalist.png')}}" width="80"
+                     alt="uv index" class="animated-uv">
+                </div>
+                <div class="uv-description-container">
+                    <p class="uv-label">UV index : {{ uv_desc }} ({{ uv_index }})</p>
                 </div>
             </div>
         </div>
