@@ -1,16 +1,18 @@
 import os
-
 from flask import Flask, render_template, url_for, request
 from werkzeug.utils import redirect
-
 from functions import Functions
+from validators import RegistrationForm, LoginForm
 from weather_app import WeatherApp
+import secrets
 
 # Master *****************************************************************************************************
 app = Flask(__name__)
 weather_app_object = WeatherApp()
 functions = Functions()
 is_first_log = True
+# Get it like : secrets.token_hex(16)
+app.config.update({"SECRET_KEY":"a458918b381a3ee2a83cebfca2320ac0"})
 
 # Routes *****************************************************************************************************
 @app.route("/")
@@ -55,6 +57,16 @@ def weather_app():
                            speed_unit = weather_app_object.speed_unit,
                            active_tab = "current", geo_data = weather_app_object.geo_data,
                            sunrise = weather_app_object.sunrise, sunset = weather_app_object.sunset)
+
+@app.route("/register", methods=["GET", "POST"])
+def register():
+    form = RegistrationForm()
+    return render_template("register.html", title="Register", form=form)
+
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    form = LoginForm()
+    return render_template("login.html", title="Login", form=form)
 
 # Main *******************************************************************************************************
 if __name__ == "__main__":

@@ -104,6 +104,10 @@ footer {
 }
 
 /* Containers ************************************************************************************************** */
+.base-container {
+    margin: 10px 80px 10px 80px;
+}
+
 .data-content {
     flex: 1; /* takes up remaining space */
     display: flex;
@@ -267,6 +271,20 @@ input[type="text"] {
 }
 
 .uv-label {
+    font-family: Bahnschrift;
+    font-size: 18px;
+    color: rgb(0, 111, 111);
+    padding: 20px;
+}
+
+.moonrise-moonset-label {
+    font-family: Bahnschrift;
+    font-size: 18px;
+    color: rgb(0, 111, 111);
+    padding: 20px;
+}
+
+.moonphase-label {
     font-family: Bahnschrift;
     font-size: 18px;
     color: rgb(0, 111, 111);

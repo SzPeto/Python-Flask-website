@@ -112,7 +112,7 @@
                      alt="uv index" class="animated-uv">
                 </div>
                 <div class="uv-description-container">
-                    <p class="uv-label">UV index : {{ uv_desc }} ({{ uv_index }})</p>
+                    <p class="uv-label">UV index : {{ uv_index }} - {{ uv_desc }}</p>
                 </div>
             </div>
             <div class="h-box-main-4">
@@ -122,14 +122,18 @@
                 </div>
                 <div class="moonrise-moonset-container">
                     <p class="moonrise-moonset-label">
-                        Moonrise : {{ astro_data.get("astronomy").get("astro").get("moonrise") }}<br>
-                        Moonset : {{ astro_data.get("astronomy").get("astro").get("moonset") }}
+                        {% if astro_data %}
+                            Moonrise : {{ astro_data.get("astronomy").get("astro").get("moonrise") }}<br>
+                            Moonset : {{ astro_data.get("astronomy").get("astro").get("moonset") }}
+                        {% endif %}
                     </p>
                 </div>
                 <div class="moonphase-illumination-container">
                     <p class="moonphase-label">
-                        Moon phase : {{ astro_data.get("astronomy").get("astro").get("moon_phase") }}<br>
-                        Moon illumination : {{ astro_data.get("astronomy").get("astro").get("moon_illumination") }} %
+                        {% if astro_data %}
+                            Moon phase : {{ astro_data.get("astronomy").get("astro").get("moon_phase") }}<br>
+                            Moon illumination : {{ astro_data.get("astronomy").get("astro").get("moon_illumination") }} %
+                        {% endif %}
                     </p>
                 </div>
             </div>

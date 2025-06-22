@@ -127,16 +127,24 @@ class WeatherApp:
         # Setting UV index
         if self.misc_data:
             self.uv_index = float(self.misc_data.get("current").get("uv"))
-            if 0 <= self.uv_index < 3:
-                self.uv_description = "Low"
+
+            if 0 <= self.uv_index < 1:
+                self.uv_description = "No UV risk - Safe to be outdoors without any special precautions."
+            elif 1 <= self.uv_index < 3:
+                self.uv_description = ("Low - Minimal UV exposure. You can be outside safely, but it's wise to wear "
+                                       "sunscreen if you're staying in direct sun for long.")
             elif 3 <= self.uv_index < 6:
-                self.uv_description = "Moderate"
+                self.uv_description = ("Moderate - Midday sun can cause damage. Limit time outdoors during peak hours, "
+                                       "and consider using sunscreen.")
             elif 6 <= self.uv_index < 8:
-                self.uv_description = "High"
+                self.uv_description = ("High - Strong UV radiation. Stay in the shade around noon, and wear protective "
+                                       "clothing and sunscreen.")
             elif 8 <= self.uv_index < 11:
-                self.uv_description = "Very high"
+                self.uv_description = ("Very high - UV exposure is intense. Avoid direct sun between 11 AM and 3 PM. "
+                                       "A shirt, hat, and sunscreen are essential.")
             elif self.uv_index >= 11:
-                self.uv_description = "Extreme"
+                self.uv_description = ("Extreme - Dangerous UV levels. Stay indoors during midday sun. "
+                                       "Full sun protection (hat, sunscreen, long sleeves) is essential.")
 
     def set_wind(self):
         wind_degree = int(self.data.get("wind").get("deg"))
