@@ -1,6 +1,7 @@
 /* Main **************************************************************************************************** */
 .navbar {
-    background: linear-gradient(to top, rgb(205, 255, 255), rgb(235, 255, 255)) !important;
+    background: rgb(205, 255, 255) !important;/*linear-gradient(to top, rgb(205, 255, 255), rgb(235, 255, 255)) !important;*/
+    color: rgb(33, 37, 41) !important;
 }
 
 .navbar .nav-link {
@@ -9,6 +10,7 @@
 
 .navbar-brand {
     color: rgb(0, 148, 148) !important;
+    font-weight: 600;
 }
 
 footer {
@@ -16,7 +18,7 @@ footer {
     font-family: Segoe UI;
     color: rgb(0, 144, 144);
     padding: 0px 12px;
-    background: linear-gradient(to top, rgb(205, 255, 255), rgb(235, 255, 255));
+    background: rgb(205, 255, 255) !important;/*linear-gradient(to top, rgb(205, 255, 255), rgb(235, 255, 255));*/
 }
 
 /* Layout **************************************************************************************************** */
@@ -49,6 +51,18 @@ footer {
 }
 
 .h-box-main-3 {
+    display: flex;
+    flex-direction: row;
+    border-radius: 20px;
+    margin: 10px;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0px 2px 10px rgba(0,0,0,0.2);
+    width: 80%;
+    align-items: center;
+    justify-content: center;
+}
+
+.h-box-main-4 {
     display: flex;
     flex-direction: row;
     border-radius: 20px;
@@ -136,6 +150,30 @@ footer {
     justify-content: flex-start;
     align-items: center;
     border-left: 1px solid rgb(188, 222, 222);
+}
+
+.moon-icon-container {
+    flex: 1;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px;
+}
+
+
+.moonrise-moonset-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-right: 1px solid rgb(188, 222, 222);
+}
+
+.moonphase-illumination-container {
+    flex: 4;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
 }
 
 /* Buttons ***************************************************************************************************** */
@@ -235,6 +273,15 @@ input[type="text"] {
     padding: 20px;
 }
 
+/* Animations ************************************************************************************************ */
+
+    /* Animation templates */
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+  100% { transform: translateY(0); }
+}
+
 .animated-sunrise {
   animation: float 2.5s ease-in-out infinite;
 }
@@ -247,17 +294,16 @@ input[type="text"] {
     animation: float 3s ease-in-out infinite;
 }
 
+.animated-moon {
+    animation: float 2.5s ease-in-out infinite;
+}
+
 /* Other ***************************************************************************************************** */
 #divider-h-box-data {
     color: red;
 }
 
-/* Animations */
-@keyframes float {
-  0% { transform: translateY(0); }
-  50% { transform: translateY(-4px); }
-  100% { transform: translateY(0); }
-}
+
 
 /* Unsorted ************************************************************************************************** */
 .switch-bar {

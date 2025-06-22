@@ -22,11 +22,12 @@ def weather_app():
     if request.method == "POST":
         weather_app_object.city_name = request.form.get("city-input").lower()
         weather_app_object.get_weather()
-        print(weather_app_object.data)
+        #print(f"def weather_app - weather_app_object.data : {weather_app_object.data}")
         if weather_app_object.data:
             return render_template("weather-app.html", title = "Weather app by Peter Szepesi",
                                    data = weather_app_object.data, local_time = weather_app_object.local_time,
                                    misc_data = weather_app_object.misc_data,
+                                   astro_data=weather_app_object.astro_data,
                                    uv_index = weather_app_object.uv_index,
                                    uv_desc = weather_app_object.uv_description,
                                    weather_icon = weather_app_object.weather_icon_path,
@@ -43,6 +44,7 @@ def weather_app():
     return render_template("weather-app.html", title = "Weather app by Peter Szepesi",
                            data = weather_app_object.data, local_time = weather_app_object.local_time,
                            misc_data=weather_app_object.misc_data,
+                           astro_data=weather_app_object.astro_data,
                            uv_index=weather_app_object.uv_index,
                            uv_desc=weather_app_object.uv_description,
                            weather_icon = weather_app_object.weather_icon_path,

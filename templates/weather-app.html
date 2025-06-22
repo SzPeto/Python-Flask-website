@@ -115,6 +115,24 @@
                     <p class="uv-label">UV index : {{ uv_desc }} ({{ uv_index }})</p>
                 </div>
             </div>
+            <div class="h-box-main-4">
+                <div class="moon-icon-container">
+                    <img src="{{ url_for('static', filename='Images/moon - minimalist.png') }}" width="70"
+                     alt="moon" class="animated-moon">
+                </div>
+                <div class="moonrise-moonset-container">
+                    <p class="moonrise-moonset-label">
+                        Moonrise : {{ astro_data.get("astronomy").get("astro").get("moonrise") }}<br>
+                        Moonset : {{ astro_data.get("astronomy").get("astro").get("moonset") }}
+                    </p>
+                </div>
+                <div class="moonphase-illumination-container">
+                    <p class="moonphase-label">
+                        Moon phase : {{ astro_data.get("astronomy").get("astro").get("moon_phase") }}<br>
+                        Moon illumination : {{ astro_data.get("astronomy").get("astro").get("moon_illumination") }} %
+                    </p>
+                </div>
+            </div>
         </div>
     </main>
 

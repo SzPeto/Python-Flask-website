@@ -13,6 +13,7 @@ class WeatherApp:
         self.geo_data = None
         self.data = None
         self.misc_data = None
+        self.astro_data = None
         self.uv_index = None
         self.uv_description = None
         self.local_time = None
@@ -39,7 +40,8 @@ class WeatherApp:
                 lat = self.geo_data[0].get("lat")
                 lon = self.geo_data[0].get("lon")
                 url_new = f"https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={self.api_key_owm}"
-                url_misc = f"http://api.weatherapi.com/v1/current.json?key={self.api_key_weatherapi}&q={lat},{lon}"
+                url_misc = f"https://api.weatherapi.com/v1/current.json?key={self.api_key_weatherapi}&q={lat},{lon}"
+                url_astro = f"https://api.weatherapi.com/v1/astronomy.json?key={self.api_key_weatherapi}&q={lat},{lon}"
         except Exception as e:
             self.functions.write_log(f"def get_weather - geo_response : {e}")
 
@@ -51,20 +53,32 @@ class WeatherApp:
                 if response.status_code == 200:
                     self.data = response.json()
         except Exception as e:
-            self.functions.write_log(f"def get_weather response : {e}")
+            self.functions.write_log(f"def get_weather - current weather response : {e}")
             self.data = None
 
-        #Getting miscellaneous info
+        # Getting miscellaneous info
         try:
             if url_misc:
                 response = requests.get(url_misc)
                 response.raise_for_status()
                 if response.status_code == 200:
                     self.misc_data = response.json()
-                    print(f"weatherapi : {self.misc_data}")
+                    #print(f"def get_weather - weatherapi : {self.misc_data}")
         except Exception as e:
-            self.functions.write_log(f"def get_weather response : {e}")
+            self.functions.write_log(f"def get_weather - misc info response : {e}")
             self.misc_data = None
+
+        # Getting astronomy info
+        try:
+            if url_astro:
+                response = requests.get(url_astro)
+                response.raise_for_status()
+                if response.status_code == 200:
+                    self.astro_data = response.json()
+                    print(f"def get_weather - weatherapi - astro : {self.astro_data}")
+        except Exception as e:
+            self.functions.write_log(f"def get_weather - astro info response : {e}")
+            self.astro_data = None
 
         try:
             self.format_data()
@@ -83,7 +97,7 @@ class WeatherApp:
         # Formatting temperature
         temp_temperature = self.data.get("main").get("temp")
         if self.temp_unit == "c":
-            self.temperature = f"{float(temp_temperature - 273.15 + 1.5):.1f}"
+            self.temperature = f"{float(temp_temperature - 273.15 + 1):.1f}"
             self.temp_sign = "°C"
 
         # Getting the icon
@@ -113,17 +127,16 @@ class WeatherApp:
         # Setting UV index
         if self.misc_data:
             self.uv_index = float(self.misc_data.get("current").get("uv"))
-            if 0 <= self.uv_index <= 2:
+            if 0 <= self.uv_index < 3:
                 self.uv_description = "Low"
-            elif 3 <= self.uv_index <= 5:
+            elif 3 <= self.uv_index < 6:
                 self.uv_description = "Moderate"
-            elif 6 <= self.uv_index <= 7:
+            elif 6 <= self.uv_index < 8:
                 self.uv_description = "High"
-            elif 8 <= self.uv_index <= 10:
+            elif 8 <= self.uv_index < 11:
                 self.uv_description = "Very high"
-            elif self.uv_index > 10:
+            elif self.uv_index >= 11:
                 self.uv_description = "Extreme"
-            print(self.uv_description)
 
     def set_wind(self):
         wind_degree = int(self.data.get("wind").get("deg"))
