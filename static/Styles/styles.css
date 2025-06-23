@@ -220,7 +220,7 @@ footer {
   text-decoration: none;
   border-radius: 4px;
   cursor: pointer;
-  margin: 25px;;
+  margin: 40px 10px 10px 10px;
 }
 
 .register-button:hover {
@@ -284,6 +284,13 @@ footer {
     font-size: 18px;
     font-family: Bahnschrift;
     color: rgb(122, 122, 122);
+}
+
+.register-title-label {
+    font-size: 25px;
+    font-family: Bahnschrift;
+    color: rgb(122, 122, 122);
+    margin-left: 25%;
 }
 
 .register-label {
