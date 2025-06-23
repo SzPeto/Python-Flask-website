@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template, url_for, request
+from flask import Flask, render_template, url_for, request, flash
 from werkzeug.utils import redirect
 from functions import Functions
 from validators import RegistrationForm, LoginForm
@@ -61,9 +61,10 @@ def weather_app():
 @app.route("/register", methods=["GET", "POST"])
 def register():
     form = RegistrationForm()
-
     if request.method == "POST":
-        print(f"def register : test")
+        if form.validate_on_submit():
+            flash(f"Account created : {form.email_username.data}")
+            print(f"Account created : {form.email_username.data}")
 
     return render_template("register.html", title="Register", form=form)
 

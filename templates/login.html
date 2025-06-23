@@ -3,7 +3,17 @@
 {% block body %}
     <main>
         <div class="base-container">
-            <p>Login page</p>
+            <p class="login-title-label">Login to your account</p>
+            <form method="POST" action="/login">
+                {{ form.hidden_tag() }} <!-- This line is needed for security reasons -->
+                <div class="register-grid">
+                    {{ form.email_username.label(class="login-label") }}
+                    {{ form.email_username(class="login-input") }}
+                    {{ form.password.label(class="login-label") }}
+                    {{ form.password(class="login-input") }}
+                    {{ form.submit(class="register-login-button") }}
+                </div>
+            </form>
         </div>
     </main>
 {% endblock %}

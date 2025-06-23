@@ -1,4 +1,8 @@
 /* Main **************************************************************************************************** */
+body {
+    background-color: rgb(248, 255, 255);
+}
+
 .navbar {
     background: rgb(205, 255, 255) !important;/*linear-gradient(to top, rgb(205, 255, 255), rgb(235, 255, 255)) !important;*/
     color: rgb(33, 37, 41) !important;
@@ -211,8 +215,15 @@ footer {
     align-items: center;
 }
 
+.account-already-container {
+    margin: 20px 20px 20px 20%;
+    font-family: Bahnschrift;
+    font-size: 14px;
+    font-weight: 200;
+}
+
 /* Buttons ***************************************************************************************************** */
-.register-button {
+.register-login-button {
   padding: 5px 10px;
   background-color: rgb(76, 175, 80);
   border: 1px solid green;
@@ -223,11 +234,11 @@ footer {
   margin: 40px 10px 10px 10px;
 }
 
-.register-button:hover {
+.register-login-button:hover {
     background-color: rgb(69, 160, 73);
 }
 
-.register-button:active {
+.register-login-button:active {
     background-color: rgb(51, 144, 58);
     border: 1px inset green;
 }
@@ -252,6 +263,17 @@ footer {
     border: 1px inset green;
 }
 
+.account-already-button {
+    padding: 5px 10px;
+    background-color: rgb(76, 144, 255);
+    border: 1px solid blue;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 0px 10px 25px 10px;
+}
+
 /* Input fields ******************************************************************************************** */
 .weather-input {
     font-size: 18px;
@@ -263,7 +285,7 @@ footer {
     margin: 15px;
 }
 
-.register-input {
+.login-input {
     font-size: 14px;
     border-radius: 8px;
     padding: 6px 12px;
@@ -286,14 +308,14 @@ footer {
     color: rgb(122, 122, 122);
 }
 
-.register-title-label {
+.login-title-label {
     font-size: 25px;
     font-family: Bahnschrift;
     color: rgb(122, 122, 122);
     margin-left: 25%;
 }
 
-.register-label {
+.login-label {
     font-size: 18px;
     font-family: Bahnschrift;
     color: rgb(122, 122, 122);
@@ -429,8 +451,4 @@ footer {
 
 .switch-tab.active {
     background-color: rgb(188, 247, 250);
-}
-
-body {
-    background-color: rgb(248, 255, 255);
 }

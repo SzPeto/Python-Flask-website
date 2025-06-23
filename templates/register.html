@@ -3,22 +3,23 @@
 {% block body %}
     <main>
         <div class="base-container">
-            <p class="register-title-label">Register new user</p>
+            <p class="login-title-label">Register new user</p>
             <form method="POST" action="/register">
                 {{ form.hidden_tag() }} <!-- This line is needed for security reasons -->
                 <div class="register-grid">
-                    {{ form.email_username.label(class="register-label") }}
-                    {{ form.email_username(class="register-input") }}
-                    {{ form.password.label(class="register-label") }}
-                    {{ form.password(class="register-input") }}
-                    {{ form.confirm_password.label(class="register-label") }}
-                    {{ form.confirm_password(class="register-input") }}
-                    <button type="submit" class="register-button">Register</button>
-                </div>
-                <div class="register-button-container">
-
+                    {{ form.email_username.label(class="login-label") }}
+                    {{ form.email_username(class="login-input") }}
+                    {{ form.password.label(class="login-label") }}
+                    {{ form.password(class="login-input") }}
+                    {{ form.confirm_password.label(class="login-label") }}
+                    {{ form.confirm_password(class="login-input") }}
+                    {{ form.submit(class="register-login-button") }}
                 </div>
             </form>
+            <div class="account-already-container">
+                <p>Already have an account?</p>
+                <a href="{{ url_for('login') }}" class="account-already-button">Login</a>
+            </div>
         </div>
     </main>
 {% endblock %}
