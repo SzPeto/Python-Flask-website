@@ -61,11 +61,17 @@ def weather_app():
 @app.route("/register", methods=["GET", "POST"])
 def register():
     form = RegistrationForm()
+
+    if request.method == "POST":
+        print(f"def register : test")
+
     return render_template("register.html", title="Register", form=form)
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
     form = LoginForm()
+    if request.method == "POST":
+        print(f"def login : test")
     return render_template("login.html", title="Login", form=form)
 
 # Main *******************************************************************************************************

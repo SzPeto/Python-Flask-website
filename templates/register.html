@@ -5,7 +5,18 @@
         <div class="base-container">
             <form method="POST" action="/register">
                 {{ form.hidden_tag() }} <!-- This line is needed for security reasons -->
+                <div class="register-grid">
+                    {{ form.email_username.label(class="register-label") }}
+                    {{ form.email_username(class="register-input") }}
+                    {{ form.password.label(class="register-label") }}
+                    {{ form.password(class="register-input") }}
+                    {{ form.confirm_password.label(class="register-label") }}
+                    {{ form.confirm_password(class="register-input") }}
+                    <button type="submit" class="register-button">Register</button>
+                </div>
+                <div class="register-button-container">
 
+                </div>
             </form>
         </div>
     </main>

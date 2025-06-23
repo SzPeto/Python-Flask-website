@@ -22,6 +22,18 @@ footer {
 }
 
 /* Layout **************************************************************************************************** */
+.base-h-box {
+    display: flex;
+    flex-direction: row;
+    margin: 10px;
+}
+
+.base-v-box {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+}
+
 .v-box-container-main {
     display: flex;
     flex-direction: column;
@@ -103,9 +115,24 @@ footer {
     border-bottom: 1px solid rgb(188, 222, 222);
 }
 
+.register-grid {
+    display: grid;
+    grid-template-columns: 150px 1fr; /*First column is 150px wide Second column takes up all the remaining space (fr stands for fraction of available space)*/
+    gap: 15px 20px; /* row gap, column gap */
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 20%;
+    text-align: left;
+}
+
 /* Containers ************************************************************************************************** */
 .base-container {
-    margin: 10px 10px 10px 10px;
+    margin: 10px 40px 10px 40px;
+}
+
+.register-button-container {
+    padding: 40px;
 }
 
 .footer-container {
@@ -185,6 +212,26 @@ footer {
 }
 
 /* Buttons ***************************************************************************************************** */
+.register-button {
+  padding: 5px 10px;
+  background-color: rgb(76, 175, 80);
+  border: 1px solid green;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 25px;;
+}
+
+.register-button:hover {
+    background-color: rgb(69, 160, 73);
+}
+
+.register-button:active {
+    background-color: rgb(51, 144, 58);
+    border: 1px inset green;
+}
+
 #city-submit {
   padding: 5px 10px;
   background-color: rgb(76, 175, 80);
@@ -206,11 +253,21 @@ footer {
 }
 
 /* Input fields ******************************************************************************************** */
-input[type="text"] {
+.weather-input {
     font-size: 18px;
     border-radius: 8px;
     padding: 6px 12px;
     width: 80%;        /* preferred width (usually fills container) */
+    max-width: 300px;   /* maximum width */
+    min-width: 80px;   /* minimal width */
+    margin: 15px;
+}
+
+.register-input {
+    font-size: 14px;
+    border-radius: 8px;
+    padding: 6px 12px;
+    width: 250px;        /* preferred width (usually fills container) */
     max-width: 300px;   /* maximum width */
     min-width: 80px;   /* minimal width */
     margin: 15px;
@@ -224,6 +281,12 @@ input[type="text"] {
 }
 
 .current-time-label {
+    font-size: 18px;
+    font-family: Bahnschrift;
+    color: rgb(122, 122, 122);
+}
+
+.register-label {
     font-size: 18px;
     font-family: Bahnschrift;
     color: rgb(122, 122, 122);
