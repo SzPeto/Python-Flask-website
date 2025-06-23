@@ -3,7 +3,10 @@
 {% block body %}
     <main>
         <div class="base-container">
-            <p>Register page</p>
+            <form method="POST" action="/register">
+                {{ form.hidden_tag() }} <!-- This line is needed for security reasons -->
+
+            </form>
         </div>
     </main>
 {% endblock %}

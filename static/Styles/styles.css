@@ -15,10 +15,10 @@
 
 footer {
     text-align: left;
-    font-family: Segoe UI;
+    font-family: Bahnschrift;
     color: rgb(0, 144, 144);
-    padding: 0px 12px;
     background: rgb(205, 255, 255) !important;/*linear-gradient(to top, rgb(205, 255, 255), rgb(235, 255, 255));*/
+    padding: 0px 10px 20px 10px;
 }
 
 /* Layout **************************************************************************************************** */
@@ -105,7 +105,11 @@ footer {
 
 /* Containers ************************************************************************************************** */
 .base-container {
-    margin: 10px 80px 10px 80px;
+    margin: 10px 10px 10px 10px;
+}
+
+.footer-container {
+    margin: 4px 10px 10px 10px;
 }
 
 .data-content {
