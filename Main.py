@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template, url_for, request, flash
+from flask import Flask, render_template, url_for, request, flash, get_flashed_messages
 from werkzeug.utils import redirect
 from functions import Functions
 from validators import RegistrationForm, LoginForm
@@ -63,8 +63,7 @@ def register():
     form = RegistrationForm()
     if request.method == "POST":
         if form.validate_on_submit():
-            flash(f"Account created : {form.email_username.data}")
-            print(f"Account created : {form.email_username.data}")
+            flash(f"Account successfully created : {form.email_username.data}", "success")
 
     return render_template("register.html", title="Register", form=form)
 

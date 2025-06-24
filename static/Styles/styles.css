@@ -222,6 +222,21 @@ footer {
     font-weight: 200;
 }
 
+.flash-message-success-container {
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    margin: 20px auto;
+    border-radius: 8px;
+    background-color: white;
+    padding: 15px;
+    font-family: Bahnschrift;
+    font-size: 16px;
+    font-weight: 300;
+    box-shadow: 0px 2px 10px rgba(0,0,0,0.2);
+    color: rgb(111, 111, 111)
+}
+
 /* Buttons ***************************************************************************************************** */
 .register-login-button {
   padding: 5px 10px;
