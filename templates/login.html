@@ -11,9 +11,25 @@
                     {{ form.email_username(class="login-input") }}
                     {{ form.password.label(class="login-label") }}
                     {{ form.password(class="login-input") }}
+                </div>
+                <div class="remember-login-container">
+                    {{ form.remember(class="remember-login-label") }}
+                    {{ form.remember.label(class="remember-login-label") }}
+                </div>
+                <div class="register-grid">
                     {{ form.submit(class="register-login-button") }}
                 </div>
+                <div class>
+
+                </div>
             </form>
+            <small class="forgot-password-container">
+                <a href="#">Forgot password?</a>
+            </small>
+            <div class="account-already-container">
+                <p>Need an account?</p>
+                <a href="{{ url_for('register') }}" class="account-already-button">Register now!</a>
+            </div>
         </div>
     </main>
 {% endblock %}

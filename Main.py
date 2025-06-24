@@ -64,6 +64,16 @@ def register():
     if request.method == "POST":
         if form.validate_on_submit():
             flash(f"Account successfully created : {form.email_username.data}", "success")
+        else:
+            if form.email_username.errors:
+                for error in form.email_username.errors:
+                    flash(f"Email - username : {error}", "warning")
+            if form.password.errors:
+                for error in form.password.errors:
+                    flash(f"Password : {error}", "warning")
+            if form.confirm_password.errors:
+                for error in form.confirm_password.errors:
+                    flash(f"Confirm password : {error}", "warning")
 
     return render_template("register.html", title="Register", form=form)
 
@@ -71,7 +81,16 @@ def register():
 def login():
     form = LoginForm()
     if request.method == "POST":
-        print(f"def login : test")
+        if form.validate_on_submit():
+            flash(f"Login successful! {form.email_username.data}", "success")
+        else:
+            if form.email_username.errors:
+                for error in form.email_username.errors:
+                    flash(f"Email - username : {error}", "warning")
+            if form.password.errors:
+                for error in form.password.errors:
+                    flash(f"Password : {error}", "warning")
+
     return render_template("login.html", title="Login", form=form)
 
 # Main *******************************************************************************************************
