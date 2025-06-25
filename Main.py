@@ -20,13 +20,13 @@ posts = [
     {
         'author': 'Peter Szepesi',
         'title': 'Blog Post 1',
-        'content': 'First post content',
+        'content': 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, accusantium consequuntur delectus ducimus, earum enim et exercitationem, id illo iste maiores molestias natus obcaecati quasi rerum saepe sed suscipit voluptate.',
         'date_posted': '2025-06-25'
     },
     {
         'author': 'Jana Szepesiova',
         'title': 'Blog Post 2',
-        'content': 'Second post content',
+        'content': 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, accusantium consequuntur delectus ducimus, earum enim et exercitationem, id illo iste maiores molestias natus obcaecati quasi rerum saepe sed suscipit voluptate.',
         'date_posted': '2025-06-25'
     }
 ]
@@ -120,5 +120,5 @@ if __name__ == "__main__":
         functions.write_log("******************************* Initial run *******************************************")
         is_first_log = False
 
-    from db_models import User  # Just to avoid circular import
+    from db_models import User, Post  # Just to avoid circular import
     app.run(host = "0.0.0.0", debug=True)
