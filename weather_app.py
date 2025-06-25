@@ -118,8 +118,14 @@ class WeatherApp:
             self.weather_icon_path = "Images/fog - minimalist.png"
         elif self.weather_code == 800:
             self.weather_icon_path = "Images/sun - minimalist.png"
-        elif 801 <= self.weather_code <= 804:
-            self.weather_icon_path = "Images/cloud - minimalist.png"
+        elif self.weather_code == 801:
+            self.weather_icon_path = "Images/cloud - sun - 1 - minimalist.png"
+        elif self.weather_code == 802:
+            self.weather_icon_path = "Images/cloud - sun - 2 - minimalist.png"
+        elif self.weather_code == 803:
+            self.weather_icon_path = "Images/cloud - sun - 3 - minimalist.png"
+        elif self.weather_code == 804:
+            self.weather_icon_path = "Images/cloud - sun - 4 - minimalist.png"
 
         # Setting the wind
         self.set_wind()
