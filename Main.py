@@ -1,5 +1,6 @@
 import os
 from flask import Flask, render_template, url_for, request, flash, get_flashed_messages
+from flask_sqlalchemy import SQLAlchemy
 from werkzeug.utils import redirect
 from functions import Functions
 from validators import RegistrationForm, LoginForm
@@ -13,6 +14,22 @@ functions = Functions()
 is_first_log = True
 # Get it like : secrets.token_hex(16)
 app.config.update({"SECRET_KEY":"a458918b381a3ee2a83cebfca2320ac0"})
+app.config.update({"SQLALCHEMY_DATABASE_URI":"sqlite:///database.db"})
+db = SQLAlchemy(app)
+posts = [
+    {
+        'author': 'Peter Szepesi',
+        'title': 'Blog Post 1',
+        'content': 'First post content',
+        'date_posted': '2025-06-25'
+    },
+    {
+        'author': 'Jana Szepesiova',
+        'title': 'Blog Post 2',
+        'content': 'Second post content',
+        'date_posted': '2025-06-25'
+    }
+]
 
 # Routes *****************************************************************************************************
 @app.route("/")
@@ -93,10 +110,15 @@ def login():
 
     return render_template("login.html", title="Login", form=form)
 
+@app.route("/blog", methods=["GET", "POST"])
+def blog():
+    return render_template("blog.html", title="Blog", posts=posts)
+
 # Main *******************************************************************************************************
 if __name__ == "__main__":
     if os.environ.get("WERKZEUG_RUN_MAIN") == "true":
         functions.write_log("******************************* Initial run *******************************************")
         is_first_log = False
 
+    from db_models import User  # Just to avoid circular import
     app.run(host = "0.0.0.0", debug=True)

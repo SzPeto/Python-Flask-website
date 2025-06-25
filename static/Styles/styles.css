@@ -261,6 +261,11 @@ footer {
     margin-left: 20%;
 }
 
+.blog-container {
+    margin: 20px 20%;
+
+}
+
 /* Buttons ***************************************************************************************************** */
 .register-login-button {
   padding: 5px 10px;
