@@ -7,6 +7,8 @@ from validators import RegistrationForm, LoginForm
 from weather_app import WeatherApp
 import secrets
 
+from db_models import db, User, Post
+
 # Master *****************************************************************************************************
 app = Flask(__name__)
 weather_app_object = WeatherApp()
@@ -15,7 +17,7 @@ is_first_log = True
 # Get it like : secrets.token_hex(16)
 app.config.update({"SECRET_KEY":"a458918b381a3ee2a83cebfca2320ac0"})
 app.config.update({"SQLALCHEMY_DATABASE_URI":"sqlite:///database.db"})
-db = SQLAlchemy(app)
+db.init_app(app)
 posts = [
     {
         'author': 'Peter Szepesi',
@@ -78,9 +80,19 @@ def weather_app():
 @app.route("/register", methods=["GET", "POST"])
 def register():
     form = RegistrationForm()
+    print(form.email_username())
     if request.method == "POST":
         if form.validate_on_submit():
             flash(f"Account successfully created : {form.email_username.data}", "success")
+            email_username = request.form.get("email_username")
+            password = request.form.get("password")
+            entry = User(email_username=email_username, password=password)
+            db.session.add(entry)
+            db.session.commit()
+            entries = User.query.all()
+            for i in range(0, len(entries)):
+                print(f"{entries[i].id}, {entries[i].email_username}, "
+                      f"{entries[i].password}, {entries[i].image_file}, ")
         else:
             if form.email_username.errors:
                 for error in form.email_username.errors:
@@ -120,5 +132,6 @@ if __name__ == "__main__":
         functions.write_log("******************************* Initial run *******************************************")
         is_first_log = False
 
-    from db_models import User, Post  # Just to avoid circular import
+    with app.app_context():
+        db.create_all()
     app.run(host = "0.0.0.0", debug=True)

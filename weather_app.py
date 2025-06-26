@@ -97,7 +97,7 @@ class WeatherApp:
         # Formatting temperature
         temp_temperature = self.data.get("main").get("temp")
         if self.temp_unit == "c":
-            self.temperature = f"{float(temp_temperature - 273.15):.1f}"
+            self.temperature = f"{float(temp_temperature - 273.15 + 1):.1f}"
             self.temp_sign = "°C"
 
         # Getting the icon
