@@ -4,10 +4,10 @@
     {% if posts %}
         {% for post in posts %}
             <div class="blog-container">
-                <p style="font-weight: bold; font-size: 25px;">{{ post.get("title") }}</p>
-                <p>Author : {{ post.get("author") }}</p>
-                <p>{{ post.get("content") }}</p>
-                <p style="font-weight: 200; font-size: 14px;">Date submitted : {{ post.get("date_posted") }}</p>
+                <p style="font-weight: bold; font-size: 25px;">{{ post.title }}</p>
+                <p>Author : {{ post.user.email_username }}</p>
+                <p>{{ post.content }}</p>
+                <p style="font-weight: 200; font-size: 14px;">Date submitted : {{ post.date_posted }}</p>
             </div>
         {% endfor %}
     {% else %}

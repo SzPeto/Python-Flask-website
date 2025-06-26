@@ -18,20 +18,6 @@ is_first_log = True
 app.config.update({"SECRET_KEY":"a458918b381a3ee2a83cebfca2320ac0"})
 app.config.update({"SQLALCHEMY_DATABASE_URI":"sqlite:///database.db"})
 db.init_app(app)
-posts = [
-    {
-        'author': 'Peter Szepesi',
-        'title': 'Blog Post 1',
-        'content': 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, accusantium consequuntur delectus ducimus, earum enim et exercitationem, id illo iste maiores molestias natus obcaecati quasi rerum saepe sed suscipit voluptate.',
-        'date_posted': '2025-06-25'
-    },
-    {
-        'author': 'Jana Szepesiova',
-        'title': 'Blog Post 2',
-        'content': 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, accusantium consequuntur delectus ducimus, earum enim et exercitationem, id illo iste maiores molestias natus obcaecati quasi rerum saepe sed suscipit voluptate.',
-        'date_posted': '2025-06-25'
-    }
-]
 
 # Routes *****************************************************************************************************
 @app.route("/")
@@ -80,7 +66,6 @@ def weather_app():
 @app.route("/register", methods=["GET", "POST"])
 def register():
     form = RegistrationForm()
-    print(form.email_username())
     if request.method == "POST":
         if form.validate_on_submit():
             flash(f"Account successfully created : {form.email_username.data}", "success")
@@ -89,10 +74,6 @@ def register():
             entry = User(email_username=email_username, password=password)
             db.session.add(entry)
             db.session.commit()
-            entries = User.query.all()
-            for i in range(0, len(entries)):
-                print(f"{entries[i].id}, {entries[i].email_username}, "
-                      f"{entries[i].password}, {entries[i].image_file}, ")
         else:
             if form.email_username.errors:
                 for error in form.email_username.errors:
@@ -104,6 +85,14 @@ def register():
                 for error in form.confirm_password.errors:
                     flash(f"Confirm password : {error}", "warning")
 
+    # For debugging purposes only
+    entries = User.query.all()
+    for i in range(0, len(entries)):
+        print(entries[i]) # Since we have defined __repr__ of class, we can print the string representation of object
+        for j in range(0, len(entries[i].posts)):
+            print(entries[i].posts[j])
+
+    # Rendering the page
     return render_template("register.html", title="Register", form=form)
 
 @app.route("/login", methods=["GET", "POST"])
@@ -124,6 +113,14 @@ def login():
 
 @app.route("/blog", methods=["GET", "POST"])
 def blog():
+    # Dummy post
+    Post.query.delete()
+    entry = Post(title="Title 1", content="This is a test post to test the functionality", user_id=1)
+    db.session.add(entry)
+    db.session.commit()
+
+    # Getting all posts
+    posts = Post.query.all()
     return render_template("blog.html", title="Blog", posts=posts)
 
 # Main *******************************************************************************************************
