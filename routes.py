@@ -2,7 +2,7 @@ from flask import render_template, url_for, request, flash
 from werkzeug.utils import redirect
 from validators import RegistrationForm, LoginForm
 
-from Main import app, db, weather_app_object, functions
+from Main import app, db, weather_app_object, functions, bcrypt, login_manager
 from db_models import User, Post
 
 
@@ -54,12 +54,15 @@ def register():
     form = RegistrationForm()
     if request.method == "POST":
         if form.validate_on_submit():
-            flash(f"Account successfully created : {form.email_username.data}", "success")
-            email_username = request.form.get("email_username")
-            password = request.form.get("password")
-            entry = User(email_username=email_username, password=password)
+            email_username = form.email_username.data
+            password = form.password.data
+            encrypted_pw = bcrypt.generate_password_hash(password).decode("utf-8")
+            entry = User(email_username=email_username, password=encrypted_pw)
             db.session.add(entry)
             db.session.commit()
+            flash(f"Account successfully created : {form.email_username.data}, now you can log in",
+                  "success")
+            return redirect(url_for("login"))
         else:
             if form.email_username.errors:
                 for error in form.email_username.errors:

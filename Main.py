@@ -1,5 +1,8 @@
 import os
 from flask import Flask
+from flask_bcrypt import Bcrypt
+from flask_login import LoginManager
+
 from functions import Functions
 from weather_app import WeatherApp
 import secrets
@@ -15,6 +18,8 @@ is_first_log = True
 app.config.update({"SECRET_KEY":"a458918b381a3ee2a83cebfca2320ac0"})
 app.config.update({"SQLALCHEMY_DATABASE_URI":"sqlite:///database.db"})
 db.init_app(app)
+bcrypt = Bcrypt(app)
+login_manager = LoginManager(app)
 
 # Main *******************************************************************************************************
 if __name__ == "__main__":
