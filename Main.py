@@ -15,7 +15,6 @@ is_first_log = True
 app.config.update({"SECRET_KEY":"a458918b381a3ee2a83cebfca2320ac0"})
 app.config.update({"SQLALCHEMY_DATABASE_URI":"sqlite:///database.db"})
 db.init_app(app)
-from routes import *
 
 # Main *******************************************************************************************************
 if __name__ == "__main__":
@@ -25,4 +24,6 @@ if __name__ == "__main__":
 
     with app.app_context():
         db.create_all()
+
+    from routes import *
     app.run(host = "0.0.0.0", debug=True)

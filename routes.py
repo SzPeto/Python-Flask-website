@@ -1,4 +1,4 @@
-from flask import Flask, render_template, url_for, request, flash, get_flashed_messages
+from flask import render_template, url_for, request, flash
 from werkzeug.utils import redirect
 from validators import RegistrationForm, LoginForm
 
@@ -99,12 +99,6 @@ def login():
 
 @app.route("/blog", methods=["GET", "POST"])
 def blog():
-    # Dummy post
-    Post.query.delete()
-    entry = Post(title="Title 1", content="This is a test post to test the functionality", user_id=1)
-    db.session.add(entry)
-    db.session.commit()
-
     # Getting all posts
     posts = Post.query.all()
     return render_template("blog.html", title="Blog", posts=posts)
