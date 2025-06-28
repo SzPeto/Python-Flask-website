@@ -1,15 +1,14 @@
 from flask import render_template, url_for, request, flash
-from flask_login import login_user
+from flask_login import login_user, current_user, logout_user
 from werkzeug.utils import redirect
 from validators import RegistrationForm, LoginForm
 
 from Main import app, db, weather_app_object, functions, bcrypt
 from db_models import User, Post
 
-
 @app.route("/")
 def index():
-    return render_template("index.html", title = "Home")
+    return render_template("index.html", title = "Home", current_user=current_user)
 
 @app.route("/weather-app", methods = ["GET", "POST"])
 def weather_app():
@@ -31,7 +30,8 @@ def weather_app():
                                    wind_speed=weather_app_object.wind_speed,
                                    speed_unit = weather_app_object.speed_unit,
                                    active_tab = "current", geo_data = weather_app_object.geo_data,
-                                   sunrise = weather_app_object.sunrise, sunset = weather_app_object.sunset)
+                                   sunrise = weather_app_object.sunrise, sunset = weather_app_object.sunset,
+                                   current_user=current_user)
         else:
             return redirect("/weather-app")
 
@@ -48,10 +48,13 @@ def weather_app():
                            wind_speed = weather_app_object.wind_speed,
                            speed_unit = weather_app_object.speed_unit,
                            active_tab = "current", geo_data = weather_app_object.geo_data,
-                           sunrise = weather_app_object.sunrise, sunset = weather_app_object.sunset)
+                           sunrise = weather_app_object.sunrise, sunset = weather_app_object.sunset,
+                           current_user=current_user)
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
+    if current_user.is_authenticated:
+        return redirect(url_for("index"))
     form = RegistrationForm()
     if request.method == "POST":
         if form.validate_on_submit():
@@ -83,10 +86,13 @@ def register():
             print(entries[i].posts[j])
 
     # Rendering the page
-    return render_template("register.html", title="Register", form=form)
+    return render_template("register.html", title="Register", form=form,
+                           current_user=current_user)
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
+    if current_user.is_authenticated:
+        return redirect(url_for("index"))
     form = LoginForm()
     if request.method == "POST":
         if form.validate_on_submit():
@@ -110,10 +116,18 @@ def login():
                 for error in form.password.errors:
                     flash(f"Password : {error}", "warning")
 
-    return render_template("login.html", title="Login", form=form)
+    return render_template("login.html", title="Login", form=form,
+                           current_user=current_user)
 
 @app.route("/blog", methods=["GET", "POST"])
 def blog():
     # Getting all posts
     posts = Post.query.all()
-    return render_template("blog.html", title="Blog", posts=posts)
+    return render_template("blog.html", title="Blog", posts=posts,
+                           current_user=current_user)
+
+@app.route("/logout.html")
+def logout():
+    logout_user()
+    flash("You have been logged out!", "success")
+    return redirect(url_for("login"))
