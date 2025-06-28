@@ -131,3 +131,7 @@ def logout():
     logout_user()
     flash("You have been logged out!", "success")
     return redirect(url_for("login"))
+
+@app.route("/user")
+def user():
+    return render_template("user.html", title="User account", current_user=current_user)

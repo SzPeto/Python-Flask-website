@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+
+{% block body %}
+    <div class="base-container">
+        <p>User : {{ current_user.email_username }}</p>
+        <img src="{{ current_user.image_file }}" width="100">
+    </div>
+{% endblock %}
