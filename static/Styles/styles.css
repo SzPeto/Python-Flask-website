@@ -6,6 +6,7 @@ body {
 .navbar {
     background: rgb(205, 255, 255) !important;/*linear-gradient(to top, rgb(205, 255, 255), rgb(235, 255, 255)) !important;*/
     color: rgb(33, 37, 41) !important;
+    padding: 0px 10% 0px 4% !important;
 }
 
 .navbar .nav-link {
@@ -133,7 +134,7 @@ footer {
 
 /* Containers ************************************************************************************************** */
 .base-container {
-    margin: 10px 40px 10px 40px;
+    margin: 10px 10% 10px 10%;
 }
 
 .register-button-container {
@@ -257,6 +258,21 @@ footer {
     color: rgb(188, 0, 0)
 }
 
+.flash-message-info-container {
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    margin: 20px auto;
+    border-radius: 8px;
+    background-color: rgb(232, 247, 255);
+    padding: 15px;
+    font-family: Bahnschrift;
+    font-size: 16px;
+    font-weight: 300;
+    box-shadow: 0px 2px 10px rgba(0,0,0,0.2);
+    color: rgb(0, 0, 222)
+}
+
 .remember-login-container {
     margin-left: 20%;
 }
@@ -276,6 +292,26 @@ footer {
 }
 
 /* Buttons ***************************************************************************************************** */
+button {
+  padding: 5px 10px;
+  background-color: rgb(76, 175, 80);
+  border: 1px solid green;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 40px 10px 10px 10px;
+}
+
+button:hover {
+    background-color: rgb(69, 160, 73);
+}
+
+button:active {
+    background-color: rgb(51, 144, 58);
+    border: 1px inset green;
+}
+
 .register-login-button {
   padding: 5px 10px;
   background-color: rgb(76, 175, 80);
@@ -328,6 +364,16 @@ footer {
 }
 
 /* Input fields ******************************************************************************************** */
+input[type="text"] {
+    font-size: 14px;
+    border-radius: 8px;
+    padding: 6px 12px;
+    width: 250px;        /* preferred width (usually fills container) */
+    max-width: 300px;   /* maximum width */
+    min-width: 80px;   /* minimal width */
+    margin: 15px;
+}
+
 .weather-input {
     font-size: 18px;
     border-radius: 8px;

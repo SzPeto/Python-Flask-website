@@ -1,5 +1,5 @@
 from flask import render_template, url_for, request, flash
-from flask_login import login_user, current_user, logout_user
+from flask_login import login_user, current_user, logout_user, login_required
 from werkzeug.utils import redirect
 from validators import RegistrationForm, LoginForm
 
@@ -100,8 +100,8 @@ def login():
             user = User.query.filter_by(email_username=form.email_username.data).first()
             if user:
                 if bcrypt.check_password_hash(user.password, form.password.data):
-                    flash(f"Login successful! {form.email_username.data}", "success")
                     login_user(user, remember=form.remember.data)
+                    flash(f"Login successful! {form.email_username.data}", "success")
                     return redirect(url_for("index"))
                 else:
                     flash("Invalid password!", "warning")
@@ -132,6 +132,11 @@ def logout():
     flash("You have been logged out!", "success")
     return redirect(url_for("login"))
 
-@app.route("/user")
+@app.route("/user", methods=["GET", "POST"])
+@login_required # It means we can access this route only if a user is logged in
 def user():
+    if request.method == "POST":
+        new_img = f"static/Images/{request.form.get("new-image")}"
+        current_user.image_file = new_img
+        db.session.commit()
     return render_template("user.html", title="User account", current_user=current_user)

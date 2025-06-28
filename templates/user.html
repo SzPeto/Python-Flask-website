@@ -5,4 +5,9 @@
         <p>User : {{ current_user.email_username }}</p>
         <img src="{{ current_user.image_file }}" width="100">
     </div>
+
+    <form method="POST" action="{{ url_for('user') }}">
+        <input type="text" name="new-image" placeholder="Enter a new image name">
+        <button type="submit">Submit</button>
+    </form>
 {% endblock %}
