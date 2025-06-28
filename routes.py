@@ -126,7 +126,7 @@ def blog():
     return render_template("blog.html", title="Blog", posts=posts,
                            current_user=current_user)
 
-@app.route("/logout.html")
+@app.route("/logout")
 def logout():
     logout_user()
     flash("You have been logged out!", "success")
