@@ -7,7 +7,7 @@ from functions import Functions
 from weather_app import WeatherApp
 import secrets
 
-from db_models import db
+from db_models import db, login_manager
 
 # Master *****************************************************************************************************
 app = Flask(__name__)
@@ -19,7 +19,7 @@ app.config.update({"SECRET_KEY":"a458918b381a3ee2a83cebfca2320ac0"})
 app.config.update({"SQLALCHEMY_DATABASE_URI":"sqlite:///database.db"})
 db.init_app(app)
 bcrypt = Bcrypt(app)
-login_manager = LoginManager(app)
+login_manager.init_app(app)
 
 # Main *******************************************************************************************************
 if __name__ == "__main__":

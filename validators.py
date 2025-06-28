@@ -11,6 +11,8 @@ class RegistrationForm(FlaskForm):
     submit = SubmitField("Register")
 
     # The name after validate_ must match the field name in order for the function to be called email_username
+    # It raises an error, so it won't validate on submit, this way a flash message will display the message
+    # we specify here inside parentheses after ValidationError
     def validate_email_username(self, email_username):
         existing_user = User.query.filter_by(email_username=email_username.data).first()
         if existing_user:

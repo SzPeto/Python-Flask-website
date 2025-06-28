@@ -2,7 +2,7 @@ from flask import render_template, url_for, request, flash
 from werkzeug.utils import redirect
 from validators import RegistrationForm, LoginForm
 
-from Main import app, db, weather_app_object, functions, bcrypt, login_manager
+from Main import app, db, weather_app_object, functions, bcrypt
 from db_models import User, Post
 
 
@@ -89,7 +89,11 @@ def login():
     form = LoginForm()
     if request.method == "POST":
         if form.validate_on_submit():
-            flash(f"Login successful! {form.email_username.data}", "success")
+            # Getting the user based on entered email_username
+            user = User.query.filter_by(email_username=form.email_username.data).first()
+            entered_pw = form.password.data
+            if bcrypt.check_password_hash(user.password, entered_pw):
+                flash(f"Login successful! {form.email_username.data}", "success")
         else:
             if form.email_username.errors:
                 for error in form.email_username.errors:

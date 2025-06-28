@@ -1,9 +1,19 @@
 import datetime
 from flask_sqlalchemy import SQLAlchemy
 
-db = SQLAlchemy()
+from flask_login import UserMixin, LoginManager
 
-class User(db.Model):
+db = SQLAlchemy()
+login_manager = LoginManager()
+
+# Setting up the login_manager
+@login_manager.user_loader
+def load_user(user_id):
+    return db.session.get(User, int(user_id))
+
+# We have to inherit from class UserMixin, to get the user attributes :
+# is_authenticated, is_active, is_anonymous and the get_id method
+class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     email_username = db.Column(db.String(50), nullable=False, unique=True)
     password = db.Column(db.String(60), nullable=False)
