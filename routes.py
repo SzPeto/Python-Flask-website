@@ -1,4 +1,5 @@
 from flask import render_template, url_for, request, flash
+from flask_login import login_user
 from werkzeug.utils import redirect
 from validators import RegistrationForm, LoginForm
 
@@ -91,9 +92,16 @@ def login():
         if form.validate_on_submit():
             # Getting the user based on entered email_username
             user = User.query.filter_by(email_username=form.email_username.data).first()
-            entered_pw = form.password.data
-            if bcrypt.check_password_hash(user.password, entered_pw):
-                flash(f"Login successful! {form.email_username.data}", "success")
+            if user:
+                if bcrypt.check_password_hash(user.password, form.password.data):
+                    flash(f"Login successful! {form.email_username.data}", "success")
+                    login_user(user, remember=form.remember.data)
+                    return redirect(url_for("index"))
+                else:
+                    flash("Invalid password!", "warning")
+            else:
+                flash(f"{form.email_username.data} : account doesn't exist!", "warning")
+
         else:
             if form.email_username.errors:
                 for error in form.email_username.errors:
