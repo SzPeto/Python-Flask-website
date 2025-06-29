@@ -7,13 +7,13 @@
         <hr>
         <p>Edit user info : </p>
         <form method="POST" action="{{ url_for('user') }}">
+            {{ form.hidden_tag() }}
             <div class="base-v-box">
                 <div class="base-h-box">
-                    <label for="edit-email-username" class="edit-input-label">Email - username : </label>
-                    <input type="text" name="new-image" id="edit-email-username" class="edit-input"
-                           value="{{ current_user.email_username }}">
+                    {{ form.email_username.label(class="edit-input-label") }}
+                    {{ form.email_username(class="edit-input") }}
                 </div>
-                <button type="submit" class="update-user-button">Update</button>
+                {{ form.submit(class="update-user-button") }}
             </div>
         </form>
     </div>

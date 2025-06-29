@@ -1,7 +1,7 @@
 from flask import render_template, url_for, request, flash
 from flask_login import login_user, current_user, logout_user, login_required
 from werkzeug.utils import redirect
-from validators import RegistrationForm, LoginForm
+from validators import RegistrationForm, LoginForm, UpdateForm
 
 from Main import app, db, weather_app_object, functions, bcrypt
 from db_models import User, Post
@@ -135,8 +135,18 @@ def logout():
 @app.route("/user", methods=["GET", "POST"])
 @login_required # It means we can access this route only if a user is logged in
 def user():
+    form = UpdateForm()
     if request.method == "POST":
-        new_img = f"static/Images/{request.form.get("new-image")}"
-        current_user.image_file = new_img
-        db.session.commit()
-    return render_template("user.html", title="User account", current_user=current_user)
+        if form.validate_on_submit():
+            current_user.email_username = form.email_username.data
+            db.session.commit()
+        else:
+            print("step - not validated")
+            if form.email_username.errors:
+                for error in form.email_username.errors:
+                    flash(f"Email - username : {error}", "warning")
+
+    # Setting the value of input field to be the user name
+    form.email_username.data = current_user.email_username
+    return render_template("user.html", title="User account", current_user=current_user,
+                           form=form)
