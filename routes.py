@@ -139,12 +139,16 @@ def user():
     if request.method == "POST":
         if form.validate_on_submit():
             current_user.email_username = form.email_username.data
+            print(f"{form.picture_file.data}")
             db.session.commit()
             flash("Account successfully updated!", "success")
         else:
             if form.email_username.errors:
                 for error in form.email_username.errors:
                     flash(f"Email - username : {error}", "warning")
+            if form.picture_file.errors:
+                for error in form.picture_file.errors:
+                    flash(f"Profile picture : {error}", "warning")
 
     # Setting the value of input field to be the current_user.email_username
     form.email_username.data = current_user.email_username

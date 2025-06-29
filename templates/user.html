@@ -6,12 +6,16 @@
         <img src="{{ current_user.image_file }}" width="100">
         <hr>
         <p>Edit user info : </p>
-        <form method="POST" action="{{ url_for('user') }}">
+        <form method="POST" action="{{ url_for('user') }}" enctype="multipart/form-data">
             {{ form.hidden_tag() }}
             <div class="base-v-box">
                 <div class="base-h-box">
                     {{ form.email_username.label(class="edit-input-label") }}
                     {{ form.email_username(class="edit-input") }}
+                </div>
+                <div class="base-h-box">
+                    {{ form.picture_file.label(class="picture-file-input-label") }}
+                    {{ form.picture_file(class="picture-file-input") }}
                 </div>
                 {{ form.submit(class="update-user-button") }}
             </div>

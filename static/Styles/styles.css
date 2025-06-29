@@ -439,6 +439,17 @@ input[type="text"] {
     margin: 15px;
 }
 
+.picture-file-input {
+    font-size: 14px;
+    font-weight: 300;
+    border-radius: 8px;
+    padding: 6px 12px;
+    width: 250px;        /* preferred width (usually fills container) */
+    max-width: 300px;   /* maximum width */
+    min-width: 80px;   /* minimal width */
+    margin: 15px;
+}
+
 /* Labels and icons ****************************************************************************************** */
 .current-weather-label {
     font-size: 25px;
@@ -543,7 +554,14 @@ input[type="text"] {
     font-weight: bold;
 }
 
-.edit-input-label{
+.edit-input-label {
+    margin: auto 5px;
+    font-size: 14px;
+    font-weight: 200;
+    color: rgb(88, 88, 88);
+}
+
+.picture-file-input-label {
     margin: auto 5px;
     font-size: 14px;
     font-weight: 200;
