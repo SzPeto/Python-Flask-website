@@ -146,7 +146,7 @@ def user():
                 for error in form.email_username.errors:
                     flash(f"Email - username : {error}", "warning")
 
-    # Setting the value of input field to be the user name
+    # Setting the value of input field to be the current_user.email_username
     form.email_username.data = current_user.email_username
     return render_template("user.html", title="User account", current_user=current_user,
                            form=form)
