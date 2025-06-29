@@ -1,12 +1,14 @@
 /* Main **************************************************************************************************** */
 body {
     background-color: rgb(248, 255, 255);
+    font-family: Bahnschrift;
+    color: rgb(111, 111, 111);
 }
 
 .navbar {
     background: rgb(205, 255, 255) !important;/*linear-gradient(to top, rgb(205, 255, 255), rgb(235, 255, 255)) !important;*/
     color: rgb(33, 37, 41) !important;
-    padding: 0px 10% 0px 4% !important;
+    padding: 8px 10% 8px 4% !important;
 }
 
 .navbar .nav-link {
@@ -32,6 +34,7 @@ footer {
     display: flex;
     flex-direction: row;
     margin: 10px;
+    padding: 10px;
 }
 
 .base-v-box {
@@ -135,6 +138,23 @@ footer {
 /* Containers ************************************************************************************************** */
 .base-container {
     margin: 10px 10% 10px 10%;
+    font-family: Bahnschrift;
+    color: rgb(0, 111, 111);
+    font-size: 18px;
+}
+
+.base-container-pop-up {
+    display: flex;
+    flex-direction: column;
+    min-width: 150px;
+    width: fit-content;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: white;
+    color: rgb(111, 111, 111);
+    box-shadow: 0px 2px 10px rgba(0,0,0,0.2);
+    font-family: Bahnschrift;
 }
 
 .register-button-container {
@@ -363,6 +383,10 @@ button:active {
     margin: 0px 10px 25px 10px;
 }
 
+.update-user-button {
+    max-width: 150px;
+}
+
 /* Input fields ******************************************************************************************** */
 input[type="text"] {
     font-size: 14px;
@@ -372,6 +396,10 @@ input[type="text"] {
     max-width: 300px;   /* maximum width */
     min-width: 80px;   /* minimal width */
     margin: 15px;
+}
+
+.edit-input{
+    margin: 5px;
 }
 
 .weather-input {
@@ -491,6 +519,18 @@ input[type="text"] {
     font-size: 18px;
     color: rgb(0, 111, 111);
     padding: 20px;
+}
+
+.email-username-label {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.edit-input-label{
+    margin: auto 5px;
+    font-size: 14px;
+    font-weight: 200;
+    color: rgb(88, 88, 88);
 }
 
 /* Animations ************************************************************************************************ */
