@@ -140,8 +140,8 @@ def user():
         if form.validate_on_submit():
             current_user.email_username = form.email_username.data
             db.session.commit()
+            flash("Account successfully updated!", "success")
         else:
-            print("step - not validated")
             if form.email_username.errors:
                 for error in form.email_username.errors:
                     flash(f"Email - username : {error}", "warning")

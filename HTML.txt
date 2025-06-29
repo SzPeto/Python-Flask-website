@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <h1> Tnis is the title in head, it isn't visible to user </h1>
+    </head>
+    <body>
+        <!-- Headers *********************************************************************************** -->
+        <h1> This is a header, it can be up to h6 </h1>
+
+        <!-- Paragraph and preformatted text *********************************************************** -->
+        <p> This is a paragraph, regular text, with line break at the end </p><br>
+
+        <pre>
+            This is a pre formatted text, it responds to the style you write
+            This is a new line(without line break)
+
+            And this is a new line with empty line in front of it
+        </pre>
+
+        <!-- Images and URL anchors ******************************************************************* -->
+        <a href="URL comes here"> <!-- This is an anchor, for links, etc. -->
+            <img src="Here comes the relative or absolute path, or URL" <!-- you can add gifs too -->
+            alt="This is an alternative task for image, if the image doesn't show up, recommended to fill"
+            height="200"> <!-- The adjusted height of image, the width adjusts proportionally -->
+        </a>
+
+        <!-- Audio and video ************************************************************************** -->
+        <audio controls>
+            <source src="*.mp3" type="audio/mpeg"><!-- it can be different type -->
+        </audio>
+
+        <video width="750px" controls>
+            <source src="*.mp4" type="video/mp4"><!-- it can be different type -->
+        </video>
+
+        <!-- Favicons ********************************************************************************* -->
+        <!-- Creating a favicon - the link creates a relation of this code to an external source -->
+        <link rel="icon" type="image/jpg" href="path to icon">
+
+        <!-- Text formatting ************************************************************************** -->
+        <p>This is normal text</p>
+        <p>This is <b>bold</b> text</p>
+        <p>This is <i>italic</i> text</p>
+        <p>This is <u>underlined</u> text</p>
+        <p>This is <del>deleted</del> text</p>
+        <p>This is <big>big</big> text</p>
+        <p>This is <small>small</small> text</p>
+        <p>This is <sub>subscript</sub> text</p>
+        <p>This is <sup>superscript</sup> text</p>
+        <p>This is <tt>monospaced</tt> text</p>
+        <p>This is <mark style="background-color:lightgreen">marked</mark> text</p>
+
+        <!-- Div and span **************************************************************************** -->
+        <!-- <div> and <span> are generic containers used for grouping content mainly for styling purposes-->
+        <!-- <div> is a block-level container used to group larger sections or layout parts -->
+        <!-- <span> is an inline container used to style or mark small parts of text -->
+        <!-- Use <div> for structure, and <span> for styling inside lines of content -->
+        <!-- Span can be inside p, div must be outside -->
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. <span style="background-color:tomato;">Autem
+        libero illo quos sunt molestias quis ab exercitationem, aliquid dicta omnis. Veniam vero odit,
+        ipsam labore nobis adipisci quidem vel at?</span></p>
+
+        <div style="background-color:cyan;"><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem
+        libero illo quos sunt molestias quis ab exercitationem, aliquid dicta omnis. Veniam vero odit,
+        ipsam labore nobis adipisci quidem vel at?</p></div>
+
+        <!-- Lists *********************************************************************************** -->
+        <!-- Unordered List -->
+        <h4>Groceries</h4>
+        <ul><!-- ul - unordered list -->
+            <li>milk</li>
+            <li>eggs</li>
+            <li>bread</li>
+            <li>coffee supplies</li>
+            <ul>
+                <li>coffee beans</li>
+                <li>creamer</li>
+                <li>sugar</li>
+            </ul>
+        </ul>
+
+        <!-- Ordered List -->
+        <h4>To do list</h4>
+        <ol><!-- ol - ordered list -->
+            <li>eat breakfast</li>
+            <li>go to class</li>
+            <li>work</li>
+            <li><mark>WATCH THIS VIDEO</mark></li>
+        </ol>
+
+
+        <!-- Description List -->
+        <h4>Mythical creatures</h4>
+        <dl style="background-color:lightgreen; border:2px solid"><!-- dl - description list -->
+            <dt>dragon</dt><!-- dt - definition term -->
+            <dd>a mythical monster resembling a giant reptile, sometimes shown as having wings.</dd><!-- dd - definition description -->
+
+            <dt>phoenix</dt>
+            <dd>an immortal bird associated with Greek mythology that cyclically regenerates or is otherwise born again.</dd>
+
+            <dt>vampire</dt>
+            <dd>a mythical creature that subsists by feeding on the vital essence (generally in the form of blood) of the living.</dd>
+
+            <dt>werewolf</dt>
+            <dd>an individual that can shapeshift into a wolf.</dd>
+        </dl>
+
+        <!-- Forms *****************************************************************************************-->
+        <!-- Username, password, email -->
+        <label for="username">username:</label>
+        <input type="text" id="username" placeholder="Spongebob" minlength="6"  maxlength="15" required><br>
+
+        <label for="password">password:</label>
+        <input type="password" id="password"><br>
+
+        <label for="email">email:</label>
+        <input type="email" id="email" placeholder="SSquarepants@gmail.com"><br>
+
+        <!-- Radio buttons - the name should be the same in order to put them in a group -->
+        <label for="Mr.">Mr.</label>
+        <input type="radio" id="Mr." value="Mr." name="title">
+        <label for="Ms.">Ms.</label>
+        <input type="radio" id="Ms." value="Ms." name="title">
+        <label for="PhD.">PhD.</label>
+        <input type="radio" id="PhD." value="PhD." name="title"><br>
+
+        <!-- Comments, text area -->
+        <label for="comment">comment:</label>
+        <textarea id="comment" rows="3" cols="25"></textarea><br>
+
+        <!-- File input -->
+        <label for="file">file:</label>
+        <input type="file" id="file" accept="image/png, image/jpeg"><br>
+
+        <!--  Semantics - HTML5  ************************************************************************-->
+        <header>	Top section of a page or section (logo, nav, title)
+        <nav>	Contains main site navigation links
+        <main>	The main unique content of a page (only one per page!)
+        <section>	Groups related content within a page (like a chapter)
+        <article>	Standalone content like a blog post, news story, or forum post
+        <aside>	Extra info like sidebars, ads, or tips — related but not core content
+        <footer>	Bottom part of page (author info, links, copyright)
+        <form>	For submitting user input
+        <figure> + <figcaption>	For images with captions
+        <time>	For marking up dates and times (helps with machine readability)
+    </body>
+</html>
+
+MOST COMMON HTML ATTRIBUTES — What They Do
+
+    1. id=
+        - Uniquely identifies an element on the page.
+        - Useful for CSS styling, JavaScript, or linking to a section.
+        Example:
+            <div id="header">
+
+    2. class=
+        - Groups elements together for shared CSS styling or JS behavior.
+        Example:
+            <p class="error-text">
+
+    3. href=
+        - Used in <a> (anchor) tags to define the destination URL.
+        Example:
+            <a href="https://example.com">Visit</a>
+
+    4. src=
+        - Used in <img>, <script>, <iframe> to set the source file or URL.
+        Example:
+            <img src="image.jpg">
+
+    5. alt=
+        - Used in <img> to describe the image if it can’t be displayed (important for accessibility).
+        Example:
+            <img src="cat.jpg" alt="A sleeping cat">
+
+    6. title=
+        - Adds a tooltip (text that appears on hover).
+        Example:
+            <button title="Click to submit">Submit</button>
+
+    7. name=
+        - Used in form inputs to identify the field name (key sent to backend).
+        Example:
+            <input name="email">
+
+    8. value=
+        - Sets the default or submitted value for form elements.
+        - Sent as the value of the name= key to the backend, so as a dict : name/value pair
+        Example:
+            <input name="username" value="Peter">
+
+    9. placeholder=
+        - Shows grayed-out text inside input fields as a hint.
+        Example:
+            <input placeholder="Enter your name">
+
+    10. type=
+        - Defines the input type (text, password, email, submit, etc.).
+        Example:
+            <input type="password">
+
+    11. action=
+        - Tells a <form> where to send submitted data.
+        Example:
+            <form action="/submit">
+
+    12. method=
+        - Specifies how form data is sent: "GET" or "POST".
+        Example:
+            <form method="POST">
+
+    13. disabled=
+        - Disables a form field or button (can't be clicked or typed into).
+        Example:
+            <button disabled>Loading...</button>
+
+    14. readonly=
+        - Makes input visible but uneditable by the user.
+        Example:
+            <input value="123" readonly>
+
+    15. required=
+        - Forces user to fill in the input before submitting the form.
+        Example:
+            <input required>
+
+    16. checked=
+        - Sets a checkbox or radio input to be pre-selected.
+        Example:
+            <input type="checkbox" checked>
+
+    17. style=
+        - Adds inline CSS directly to the element.
+        Example:
+            <div style="color:red; background:black">
+
+    18. for=
+        - Used in <label> to connect to a specific input by its id.
+        Example:
+            <label for="email">Email:</label>
+
+    19. maxlength=
+        - Limits how many characters a user can type into an input.
+        Example:
+            <input maxlength="20">
+
+    20. tabindex=
+        - Sets keyboard tab order.
+        Example:
+            <input tabindex="1">
+
+    21. autocomplete=
+        - Controls browser autofill behavior.
+        Example:
+            <input autocomplete="off">
