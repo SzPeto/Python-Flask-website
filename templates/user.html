@@ -6,6 +6,7 @@
         <img src="{{ current_user.image_file }}" width="100">
         <hr>
         <p>Edit user info : </p>
+        <!-- Use enctype="multipart/form-data" when sending files with form, otherwise it will fail -->
         <form method="POST" action="{{ url_for('user') }}" enctype="multipart/form-data">
             {{ form.hidden_tag() }}
             <div class="base-v-box">

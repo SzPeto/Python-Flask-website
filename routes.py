@@ -1,3 +1,6 @@
+import datetime
+import os.path
+
 from flask import render_template, url_for, request, flash
 from flask_login import login_user, current_user, logout_user, login_required
 from werkzeug.utils import redirect
@@ -132,14 +135,30 @@ def logout():
     flash("You have been logged out!", "success")
     return redirect(url_for("login"))
 
+def save_profile_image(profile_image):
+    picture_file = os.path.splitext(profile_image.filename) # This returns a tuple of file name and the extension
+    new_file_name = (f"{current_user.email_username}_{picture_file[0]}_"
+                     f"{datetime.datetime.now().strftime('%Y%m%d%H%M%S')}"
+                     f"{picture_file[1]}")
+    safe_file_name = ""
+    for i in range(0, len(new_file_name)):
+        if new_file_name[i].isspace():
+            safe_file_name += "_"
+        else:
+            safe_file_name += new_file_name[i]
+    picture_path = os.path.join(app.root_path, "static/Images/profile_images", safe_file_name)
+    profile_image.save(picture_path) # TODO - complete the picture updating
+
 @app.route("/user", methods=["GET", "POST"])
 @login_required # It means we can access this route only if a user is logged in
 def user():
     form = UpdateForm()
     if request.method == "POST":
         if form.validate_on_submit():
+            if form.picture_file.data:
+                save_profile_image(form.picture_file.data)
             current_user.email_username = form.email_username.data
-            print(f"{form.picture_file.data}")
+            print(f"def user : {current_user.image_file}")
             db.session.commit()
             flash("Account successfully updated!", "success")
         else:

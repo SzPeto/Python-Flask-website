@@ -30,7 +30,7 @@ class LoginForm(FlaskForm):
 
 class UpdateForm(FlaskForm):
     email_username = StringField("Email - username", validators=[DataRequired(), Email()])
-    picture_file = FileField("Choose profile picture", validators=[FileAllowed(["jpg", "png"])])
+    picture_file = FileField("Change profile picture", validators=[FileAllowed(["jpg", "png"])])
     submit = SubmitField("Update")
 
     def validate_email_username(self, email_username):
