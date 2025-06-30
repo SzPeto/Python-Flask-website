@@ -147,7 +147,8 @@ def save_profile_image(profile_image):
         else:
             safe_file_name += new_file_name[i]
     picture_path = os.path.join(app.root_path, "static/Images/profile_images", safe_file_name)
-    profile_image.save(picture_path) # TODO - complete the picture updating
+    profile_image.save(picture_path)
+    return safe_file_name
 
 @app.route("/user", methods=["GET", "POST"])
 @login_required # It means we can access this route only if a user is logged in
@@ -156,7 +157,8 @@ def user():
     if request.method == "POST":
         if form.validate_on_submit():
             if form.picture_file.data:
-                save_profile_image(form.picture_file.data)
+                picture_file_name = save_profile_image(form.picture_file.data)
+                current_user.image_file = f"static/Images/profile_images/{picture_file_name}"
             current_user.email_username = form.email_username.data
             print(f"def user : {current_user.image_file}")
             db.session.commit()
