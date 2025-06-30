@@ -443,7 +443,7 @@ input[type="text"] {
     font-size: 14px;
     font-weight: 300;
     border-radius: 8px;
-    padding: 6px 12px;
+    padding: 8px 14px;
     width: 250px;        /* preferred width (usually fills container) */
     max-width: 300px;   /* maximum width */
     min-width: 80px;   /* minimal width */
@@ -596,6 +596,11 @@ input[type="text"] {
 /* Other ***************************************************************************************************** */
 #divider-h-box-data {
     color: red;
+}
+
+.profile-picture {
+    border-radius: 8px;
+    box-shadow: 4px 4px 10px rgba(0,0,0,0.7);
 }
 
 

@@ -158,7 +158,7 @@ def user():
         if form.validate_on_submit():
             if form.picture_file.data:
                 picture_file_name = save_profile_image(form.picture_file.data)
-                current_user.image_file = f"static/Images/profile_images/{picture_file_name}"
+                current_user.image_file = picture_file_name
             current_user.email_username = form.email_username.data
             print(f"def user : {current_user.image_file}")
             db.session.commit()

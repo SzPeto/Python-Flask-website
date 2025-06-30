@@ -3,7 +3,8 @@
 {% block body %}
     <div class="base-container-pop-up">
         <p class="email-username-label">{{ current_user.email_username }}</p>
-        <img src="{{ current_user.image_file }}" width="100">
+        <img src="{{ url_for('static', filename='Images/profile_images/' + current_user.image_file) }}"
+             width="100" class="profile-picture">
         <hr>
         <p>Edit user info : </p>
         <!-- Use enctype="multipart/form-data" when sending files with form, otherwise it will fail -->
