@@ -130,6 +130,11 @@ def blog():
     return render_template("blog.html", title="Blog", posts=posts,
                            current_user=current_user)
 
+@app.route("/insert-post", methods=["GET", "POST"])
+def insert_post():
+
+    return render_template("insert-post.html", title="Insert post", current_user=current_user)
+
 @app.route("/logout")
 def logout():
     logout_user()
@@ -150,7 +155,7 @@ def save_profile_image(profile_image):
     picture_path = os.path.join(app.root_path, "static/Images/profile_images", safe_file_name)
     # Resizing the image
     new_image = Image.open(profile_image)
-    new_image_size = (150, 150)
+    new_image_size = (240, 240)
     new_image.thumbnail(new_image_size)
     new_image.save(picture_path)
     return safe_file_name

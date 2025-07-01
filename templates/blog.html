@@ -1,6 +1,11 @@
 {% extends "base.html" %}
 
 {% block body %}
+    {% if current_user.email_username %}
+        <div class="base-container-centered-content">
+            <button class="create-post-button">Create a new post</button>
+        </div>
+    {% endif %}
     {% if posts %}
         {% for post in posts %}
             <div class="blog-container">

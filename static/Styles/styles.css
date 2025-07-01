@@ -143,6 +143,15 @@ footer {
     font-size: 18px;
 }
 
+.base-container-centered-content {
+    display: flex;
+    flex-direction: column;
+    margin: 10px auto;
+    font-family: Bahnschrift;
+    color: rgb(0, 111, 111);
+    font-size: 18px;
+}
+
 .base-container-pop-up {
     display: flex;
     flex-direction: column;
@@ -402,6 +411,12 @@ button:active {
 .update-user-button:active {
     background-color: rgb(51, 144, 58);
     border: 1px inset green;
+}
+
+.create-post-button {
+    font-size: 18px;
+    margin: auto;
+    padding: 10px;
 }
 
 /* Input fields ******************************************************************************************** */

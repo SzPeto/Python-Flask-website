@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block body %}
+    <div class="base-container">
+        <form method="POST" action="{{ url_for('insert_post') }}">
+            <p style="font-size: 24px;">Create a new post as : {{ current_user.email_username }}</p>
+            <div class="register-grid">
+
+            </div>
+        </form>
+    </div>
+{% endblock %}

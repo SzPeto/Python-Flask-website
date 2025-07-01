@@ -4,7 +4,7 @@
     <main>
         <div class="base-container">
             <p class="login-title-label">Register new user</p>
-            <form method="POST" action="/register">
+            <form method="POST" action="{{ url_for('register') }}">
                 {{ form.hidden_tag() }} <!-- This line is needed for security reasons -->
                 <div class="register-grid">
                     {{ form.email_username.label(class="login-label") }}
