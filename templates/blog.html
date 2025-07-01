@@ -1,13 +1,13 @@
 {% extends "base.html" %}
 
 {% block body %}
-    {% if current_user.email_username %}
+    {% if current_user.is_authenticated %}
         <div class="base-container-centered-content">
             <a class="create-post-button" href="{{ url_for('insert_post') }}">Create a new post</a>
         </div>
     {% else %}
         <div class="base-container-centered-content">
-            <p>Please login to create a new post</p>
+            <p>Please log in to create a new post</p>
         </div>
     {% endif %}
     {% if posts %}
