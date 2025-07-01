@@ -1,6 +1,7 @@
 import datetime
 import os.path
 
+from PIL import Image
 from flask import render_template, url_for, request, flash
 from flask_login import login_user, current_user, logout_user, login_required
 from werkzeug.utils import redirect
@@ -147,8 +148,18 @@ def save_profile_image(profile_image):
         else:
             safe_file_name += new_file_name[i]
     picture_path = os.path.join(app.root_path, "static/Images/profile_images", safe_file_name)
-    profile_image.save(picture_path)
+    # Resizing the image
+    new_image = Image.open(profile_image)
+    new_image_size = (150, 150)
+    new_image.thumbnail(new_image_size)
+    new_image.save(picture_path)
     return safe_file_name
+
+def delete_old_image():
+    old_image_path = f"static/Images/profile_images/{current_user.image_file}"
+    if os.path.exists(old_image_path):
+        if current_user.image_file != "Default - user.jpg" and current_user.image_file != "Default - user.png":
+            os.remove(old_image_path)
 
 @app.route("/user", methods=["GET", "POST"])
 @login_required # It means we can access this route only if a user is logged in
@@ -158,9 +169,9 @@ def user():
         if form.validate_on_submit():
             if form.picture_file.data:
                 picture_file_name = save_profile_image(form.picture_file.data)
+                delete_old_image()
                 current_user.image_file = picture_file_name
             current_user.email_username = form.email_username.data
-            print(f"def user : {current_user.image_file}")
             db.session.commit()
             flash("Account successfully updated!", "success")
         else:
