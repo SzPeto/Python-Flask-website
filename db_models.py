@@ -25,7 +25,8 @@ class User(db.Model, UserMixin):
 
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    date_posted = db.Column(db.String(12), nullable=False, default=datetime.datetime.now().strftime("%Y-%m-%d"))
+    date_posted = db.Column(db.String(22), nullable=False,
+                            default=datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
     content = db.Column(db.Text, nullable=False)
     title = db.Column(db.String(100), nullable=False)
     # Here user.id is with lower, since SQLAlchemy converts automatically the class name to lower table name

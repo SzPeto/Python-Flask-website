@@ -5,7 +5,7 @@ from PIL import Image
 from flask import render_template, url_for, request, flash
 from flask_login import login_user, current_user, logout_user, login_required
 from werkzeug.utils import redirect
-from validators import RegistrationForm, LoginForm, UpdateForm
+from validators import RegistrationForm, LoginForm, UpdateForm, PostForm
 
 from Main import app, db, weather_app_object, functions, bcrypt
 from db_models import User, Post
@@ -131,9 +131,29 @@ def blog():
                            current_user=current_user)
 
 @app.route("/insert-post", methods=["GET", "POST"])
+@login_required
 def insert_post():
+    form = PostForm()
+    if request.method == "POST":
+        if form.validate_on_submit():
+            title = form.post_title.data
+            content = form.post_content.data
+            user_id = current_user.id
+            entry = Post(content=content, title=title, user_id=user_id)
+            db.session.add(entry)
+            db.session.commit()
+            flash("Post added", "success")
+            return redirect(url_for("blog"))
+        else:
+            if form.post_title.errors:
+                for error in form.post_title.errors:
+                    flash(error, "warning")
+            if form.post_content.errors:
+                for error in form.post_content.errors:
+                    flash(error, "warning")
 
-    return render_template("insert-post.html", title="Insert post", current_user=current_user)
+    return render_template("insert-post.html", title="Insert post", current_user=current_user,
+                           form=form)
 
 @app.route("/logout")
 def logout():

@@ -150,6 +150,9 @@ footer {
     font-family: Bahnschrift;
     color: rgb(0, 111, 111);
     font-size: 18px;
+    padding: 10px auto;
+    align-items: center;
+    justify-content: center;
 }
 
 .base-container-pop-up {
@@ -341,6 +344,26 @@ button:active {
     border: 1px inset green;
 }
 
+.form-button {
+  padding: 5px 10px;
+  background-color: rgb(76, 175, 80);
+  border: 1px solid green;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 40px 10px 10px 10px;
+}
+
+.form-button:hover {
+    background-color: rgb(69, 160, 73);
+}
+
+.form-button:active {
+    background-color: rgb(51, 144, 58);
+    border: 1px inset green;
+}
+
 .register-login-button {
   padding: 5px 10px;
   background-color: rgb(76, 175, 80);
@@ -415,8 +438,22 @@ button:active {
 
 .create-post-button {
     font-size: 18px;
-    margin: auto;
     padding: 10px;
+    background-color: rgb(76, 175, 80);
+    border: 1px solid green;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.create-post-button:hover {
+    background-color: rgb(69, 160, 73);
+}
+
+.create-post-button:active {
+    background-color: rgb(51, 144, 58);
+    border: 1px inset green;
 }
 
 /* Input fields ******************************************************************************************** */
@@ -439,6 +476,17 @@ input[type="text"] {
     border-radius: 8px;
     padding: 6px 12px;
     width: 80%;        /* preferred width (usually fills container) */
+    max-width: 300px;   /* maximum width */
+    min-width: 80px;   /* minimal width */
+    margin: 15px;
+}
+
+.form-input {
+    font-size: 16px;
+    font-weight: 300;
+    border-radius: 8px;
+    padding: 6px 12px;
+    width: 250px;        /* preferred width (usually fills container) */
     max-width: 300px;   /* maximum width */
     min-width: 80px;   /* minimal width */
     margin: 15px;
@@ -564,9 +612,16 @@ input[type="text"] {
     padding: 20px;
 }
 
+.form-label {
+    font-size: 16px;
+    font-weight: 300;
+    margin: auto 5px;
+}
+
 .email-username-label {
     font-size: 24px;
     font-weight: bold;
+    color: rgb(88, 88, 88);
 }
 
 .edit-input-label {

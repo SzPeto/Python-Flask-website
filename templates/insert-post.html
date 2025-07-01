@@ -3,9 +3,16 @@
 {% block body %}
     <div class="base-container">
         <form method="POST" action="{{ url_for('insert_post') }}">
-            <p style="font-size: 24px;">Create a new post as : {{ current_user.email_username }}</p>
+            {{ form.hidden_tag() }}
+            <div class="base-container-centered-content">
+                <p style="font-size: 18px;">Create a new post as : {{ current_user.email_username }}</p>
+            </div>
             <div class="register-grid">
-
+                {{ form.post_title.label(class="form-label") }}
+                {{ form.post_title(class="form-input") }}
+                {{ form.post_content.label(class="form-label") }}
+                {{ form.post_content(class="form-input") }}
+                {{ form.submit(class="form-button") }}
             </div>
         </form>
     </div>

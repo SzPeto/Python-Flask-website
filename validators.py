@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileAllowed
-from wtforms import StringField, PasswordField, SubmitField, BooleanField, ValidationError
+from wtforms import StringField, PasswordField, SubmitField, BooleanField, ValidationError, TextAreaField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, length
 from flask_login import current_user
 
@@ -39,3 +39,8 @@ class UpdateForm(FlaskForm):
             existing_user = User.query.filter_by(email_username=email_username.data).first()
             if existing_user:
                 raise ValidationError(f"{existing_user.email_username} is already taken, please choose another!")
+
+class PostForm(FlaskForm):
+    post_title = StringField("Post title", validators=[DataRequired()])
+    post_content = TextAreaField("Content", validators=[DataRequired()])
+    submit = SubmitField("Post")
