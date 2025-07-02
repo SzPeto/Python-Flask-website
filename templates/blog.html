@@ -18,6 +18,12 @@
                 <p style="font-weight: 300;">{{ post.content }}</p>
                 <hr>
                 <p style="font-weight: 200; font-size: 14px;">Date submitted : {{ post.date_posted }}</p>
+                {% if current_user == post.user %}
+                    <div class="delete-edit-container">
+                        <a href="#" class="delete-update-button">Delete</a>
+                        <a href="#" class="delete-update-button">Edit</a>
+                    </div>
+                {% endif %}
             </div>
         {% endfor %}
     {% else %}
