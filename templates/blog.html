@@ -24,11 +24,8 @@
                             <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                             <button type="submit" class="delete-update-post-button">Delete</button>
                         </form>
-                        <form method="POST" action="{{ url_for('edit_post', post_id=post.id) }}">
-                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-                            <input type="text" hidden name="event" value="edit-post">
-                            <button type="submit" class="delete-update-post-button">Edit</button>
-                        </form>
+                        <a href="{{ url_for('edit_post', post_id=post.id) }}"
+                           class="delete-update-post-button">Edit</a>
                     </div>
                 {% elif current_user == post.user %}
                     <div class="delete-edit-container">

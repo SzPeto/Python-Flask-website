@@ -172,16 +172,27 @@ def delete_post(post_id):
 @app.route("/blog/edit-post/<int:post_id>", methods=["GET", "POST"])
 @login_required
 def edit_post(post_id):
-    # TODO - complete the error flash messages, validations etc.
     form = PostForm()
     entry = db.session.get(Post, post_id)
-    if request.form.get("event") == "submit-changes":
+    if not entry:
+        abort(404)
+    if current_user.id != entry.user_id and current_user.id != 1:
+        abort(403)
+    if request.method == "POST":
         if form.validate_on_submit():
             entry.title = form.post_title.data
             entry.content = form.post_content.data
             db.session.commit()
             flash("Post successfully updated", "success")
             return redirect(url_for("blog"))
+        else:
+            if form.post_title.errors:
+                for error in form.post_title.errors:
+                    flash(error, "warning")
+            if form.post_content.errors:
+                for error in form.post_content.errors:
+                    flash(error, "warning")
+
 
     form.post_title.data = entry.title
     form.post_content.data = entry.content

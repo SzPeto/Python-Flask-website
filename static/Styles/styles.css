@@ -470,6 +470,30 @@ button:active {
     font-size: 14px;
     font-weight: 200;
     margin: 1px 20px 1px 0px;
+    padding: 3px 8px;
+}
+
+.delete-update-post-button {
+    background-color: rgb(76, 175, 80);
+    border: 1px solid green;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: inline;
+    font-size: 14px;
+    font-weight: 200;
+    margin: 1px 20px 1px 0px;
+    padding: 3px 8px;
+}
+
+.delete-update-post-button:hover {
+    background-color: rgb(69, 160, 73);
+}
+
+.delete-update-post-button:active {
+    background-color: rgb(51, 144, 58);
+    border: 1px inset green;
 }
 
 /* Input fields ******************************************************************************************** */
