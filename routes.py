@@ -1,8 +1,8 @@
 import datetime
-import os.path
+import os
 
 from PIL import Image
-from flask import render_template, url_for, request, flash
+from flask import render_template, url_for, request, flash, abort
 from flask_login import login_user, current_user, logout_user, login_required
 from werkzeug.utils import redirect
 from validators import RegistrationForm, LoginForm, UpdateForm, PostForm
@@ -154,6 +154,34 @@ def insert_post():
 
     return render_template("insert-post.html", title="Insert post", current_user=current_user,
                            form=form)
+
+@app.route("/blog/delete-post/<int:post_id>", methods=["POST"])
+@login_required
+def delete_post(post_id):
+    entry = db.session.get(Post, post_id)
+    if not entry:
+        abort(404)
+    if current_user.id != entry.user.id and current_user.id != 1:
+        abort(403)
+    db.session.delete(entry)
+    db.session.commit()
+    flash("The post has been successfully deleted!", "success")
+
+    return redirect(url_for("blog"))
+
+@app.route("/blog/edit-post/<int:post_id>", methods=["GET", "POST"])
+@login_required
+def edit_post(post_id):
+    form = PostForm()
+    entry = db.session.get(Post, post_id)
+    if request.method == "POST":
+        return redirect(url_for("blog"))
+
+    form.post_title.data = entry.title
+    form.post_content.data = entry.content
+
+    return render_template("edit-post.html", title="Edit post", current_user=current_user,
+                           form=form, entry=entry)
 
 @app.route("/logout")
 def logout():
