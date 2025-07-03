@@ -1,7 +1,31 @@
 {% extends "base.html" %}
 
 {% block body %}
-  <div class="container">
-    <p>Something here</p>
+  <div class="v-box-index">
+
+    <div class="base-h-box">
+      <div class="base-v-box">
+        <img src="{{ url_for('static', filename='Images/profile_picture.jpg') }}" width="70%">
+      </div>
+      <div class="base-v-box">
+        <p style="font-size: 24px;">About me</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. At blanditiis fugiat illo modi pariatur.
+          Aliquid consectetur corporis deleniti eius recusandae temporibus voluptates.
+          Asperiores est in inventore odit officia, provident veniam?</p>
+      </div>
+    </div>
+
+    <div class="base-h-box">
+      <div class="base-v-box">
+        <p style="font-size: 24px;">Try out my first project - weather app</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. At blanditiis fugiat illo modi pariatur.
+          Aliquid consectetur corporis deleniti eius recusandae temporibus voluptates.
+          Asperiores est in inventore odit officia, provident veniam?</p>
+      </div>
+      <div class="base-v-box">
+        <img src="{{ url_for('static', filename='Images/cloud - sun - 2 - normal.png') }}" width="100%">
+      </div>
+    </div>
+
   </div>
 {% endblock %}
