@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block body %}
+    <div class="base-container">
+        <form action="{{ url_for('edit_post', post_id=entry.id) }}" method="POST">
+            {{ form.hidden_tag() }}
+            <input type="text" hidden name="event" value="submit-changes">
+            <div class="base-container-centered-content">
+                Edit the post
+            </div>
+            <div class="register-grid">
+                {{ form.post_title.label(class="form-label") }}
+                {{ form.post_title(class="form-input") }}
+                {{ form.post_content.label(class="form-label") }}
+                {{ form.post_content(class="form-input") }}
+                {{ form.submit(class="form-button") }}
+            </div>
+        </form>
+    </div>
+{% endblock %}
