@@ -126,7 +126,7 @@ def login():
 @app.route("/blog", methods=["GET", "POST"])
 def blog():
     # Getting all posts
-    posts = Post.query.all()
+    posts = Post.query.order_by(Post.date_posted).all()
     return render_template("blog.html", title="Blog", posts=posts,
                            current_user=current_user)
 

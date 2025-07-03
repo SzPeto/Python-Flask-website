@@ -138,12 +138,12 @@ footer {
 .base-h-box-blog {
     display: flex;
     flex-direction: row;
-    width: 100%;
 }
 
 .base-v-box-blog {
     display: flex;
     flex-direction: column;
+    margin-right: 20px;
 }
 
 .base-v-box-blog-image {
