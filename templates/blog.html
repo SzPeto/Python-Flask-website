@@ -13,9 +13,18 @@
     {% if posts %}
         {% for post in posts %}
             <div class="blog-container">
-                <p style="font-weight: bold; font-size: 25px;">{{ post.title }}</p>
-                <p style="font-size: 14px;">Author : {{ post.user.email_username }}</p><!-- here user is the backref -->
-                <p style="font-weight: 300;">{{ post.content }}</p>
+                <div class="base-h-box-blog">
+                    <div class="base-v-box-blog">
+                        <p style="font-weight: bold; font-size: 25px;">{{ post.title }}</p>
+                        <p style="font-size: 14px;">Author : {{ post.user.email_username }}</p><!-- here user is the backref -->
+                        <p style="font-weight: 300;">{{ post.content }}</p>
+                    </div>
+                    <div class="base-v-box-blog-image">
+                        <!-- In Jinja2 we use ~ for string concatenation instead of + -->
+                        <img src="{{ url_for('static', filename='Images/profile_images/' ~ current_user.image_file) }}"
+                        width="100" style="border-radius: 18px;">
+                    </div>
+                </div>
                 <hr>
                 <p style="font-weight: 200; font-size: 14px;">Date submitted : {{ post.date_posted }}</p>
                 {% if current_user.id == 1 %}
