@@ -3,29 +3,37 @@
 {% block body %}
   <div class="v-box-index">
 
-    <div class="base-h-box">
-      <div class="base-v-box">
+    <div class="base-h-box-index-1" style="background-color: white; margin: 10px 0px;">
+      <div class="base-v-box" style="flex: 1;">
         <img src="{{ url_for('static', filename='Images/profile_picture.jpg') }}" width="70%">
       </div>
-      <div class="base-v-box">
+      <div class="base-v-box" style="flex: 2;">
         <p style="font-size: 24px;">About me</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. At blanditiis fugiat illo modi pariatur.
-          Aliquid consectetur corporis deleniti eius recusandae temporibus voluptates.
-          Asperiores est in inventore odit officia, provident veniam?</p>
+        <p>My name is Peter, a self-taught junior developer based in Hrhov(Košice), Slovakia, with a strong foundation
+          in Python and Java. Since october 2024, I’ve built several real-world projects, including this website
+          from scratch, with use of Python/Flask/HTML/CSS and SQLAlchemy. My further projects include a weather app (Flask + API),
+          a timer, a PyQt5-based Snake game, and a full-featured expense tracker. I’m passionate about clean code,
+          learning modern tools, and building useful, user-friendly software. Currently, I’m expanding into JavaScript
+          to become a full-stack developer.
+          I’m actively looking for a junior developer role, remote or local, where I can contribute, grow, and keep
+          leveling up every day. I would gladly learn either new frameworks or even programming languages accorging to
+          the needs of my employer</p>
       </div>
     </div>
 
-    <div class="base-h-box">
-      <div class="base-v-box">
-        <p style="font-size: 24px;">Try out my first project - weather app</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. At blanditiis fugiat illo modi pariatur.
-          Aliquid consectetur corporis deleniti eius recusandae temporibus voluptates.
-          Asperiores est in inventore odit officia, provident veniam?</p>
+    <a href="{{ url_for('weather_app') }}" class="clickable-weather" target="_blank">
+      <div class="base-h-box-index-2">
+        <div class="base-v-box">
+          <p style="font-size: 24px;">Try out my first project - weather app</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. At blanditiis fugiat illo modi pariatur.
+            Aliquid consectetur corporis deleniti eius recusandae temporibus voluptates.
+            Asperiores est in inventore odit officia, provident veniam?</p>
+        </div>
+        <div class="base-v-box">
+          <img src="{{ url_for('static', filename='Images/cloud - sun - 2 - normal.png') }}" width="100%">
+        </div>
       </div>
-      <div class="base-v-box">
-        <img src="{{ url_for('static', filename='Images/cloud - sun - 2 - normal.png') }}" width="100%">
-      </div>
-    </div>
+    </a>
 
   </div>
 {% endblock %}

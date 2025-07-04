@@ -22,7 +22,7 @@ db.init_app(app)
 bcrypt = Bcrypt(app)
 csrf = CSRFProtect(app)
 login_manager.init_app(app)
-login_manager.login_view = "login" # if someone tries to access the /user route
+login_manager.login_view = "login" # if someone tries to access a @login_required route
 login_manager.login_message_category = "info"
 
 # Main *******************************************************************************************************

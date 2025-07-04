@@ -36,6 +36,24 @@ footer {
     margin: 10px;
 }
 
+.base-h-box-index-1 {
+    display: flex;
+    flex-direction: row;
+    margin: 20px 0px;
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0px 2px 10px rgba(0,0,0,0.2);
+}
+
+.base-h-box-index-2 {
+    display: flex;
+    flex-direction: row;
+    margin: 20px 0px;
+    background-color: rgb(220, 248, 255);
+    padding: 20px;
+    box-shadow: 0px 2px 10px rgba(0,0,0,0.2);
+}
+
 .base-v-box {
     display: flex;
     flex-direction: column;
@@ -46,6 +64,7 @@ footer {
     display: flex;
     flex-direction: column;
     margin: 20px 10%;
+    color: rgb(88, 88, 88)
 }
 
 .v-box-container-main {
@@ -487,15 +506,7 @@ button:active {
     border: 1px inset green;
 }
 
-.delete-update-post-button {
-    display: inline;
-    font-size: 14px;
-    font-weight: 200;
-    margin: 1px 20px 1px 0px;
-    padding: 3px 8px;
-}
-
-.delete-update-post-button {
+.edit-post-button {
     background-color: rgb(76, 175, 80);
     border: 1px solid green;
     color: white;
@@ -509,12 +520,35 @@ button:active {
     padding: 3px 8px;
 }
 
-.delete-update-post-button:hover {
+.edit-post-button:hover {
     background-color: rgb(69, 160, 73);
 }
 
-.delete-update-post-button:active {
+.edit-post-button:active {
     background-color: rgb(51, 144, 58);
+    border: 1px inset green;
+}
+
+.delete-post-button {
+    background-color: rgb(200, 76, 80);
+    border: 1px solid green;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: inline;
+    font-size: 14px;
+    font-weight: 200;
+    margin: 1px 20px 1px 0px;
+    padding: 3px 8px;
+}
+
+.delete-post-button:hover {
+    background-color: rgb(180, 66, 73);
+}
+
+.delete-post-button:active {
+    background-color: rgb(160, 58, 58);
     border: 1px inset green;
 }
 
@@ -735,6 +769,16 @@ input[type="text"] {
     box-shadow: 4px 4px 10px rgba(0,0,0,0.7);
 }
 
+.clickable-weather {
+    text-decoration: none;
+    color: inherit;
+}
+
+.clickable-weather:hover {
+    opacity: 0.8;
+    transition: 0.1s;
+}
+
 
 
 /* Unsorted ************************************************************************************************** */
@@ -773,6 +817,8 @@ input[type="text"] {
 
 @media screen and (max-width: 768px) {
     .base-h-box,
+    .base-h-box-index-1,
+    .base-h-box-index-2,
     .h-box-main-1,
     .h-box-main-2,
     .h-box-main-3,
