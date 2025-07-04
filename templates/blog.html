@@ -13,7 +13,7 @@
     {% if posts %}
         {% for post in posts %}
             <div class="blog-container">
-                <div class="base-h-box-blog">
+                <div class="base-h-box-blog" data-post="{{ post.user.email_username }}">
                     <div class="base-v-box-blog">
                         <p style="font-weight: bold; font-size: 25px;">{{ post.title }}</p>
                         <p style="font-size: 14px;">Author : {{ post.user.email_username }}</p><!-- here user is the backref -->
@@ -61,10 +61,11 @@
     <script>
 
         // This is the preferred and modern way of communicating with html trough event listeners
+        // We can pass data into html lines with data-name - it will be called as : dataset.name
         const testScripts = document.querySelectorAll(".base-h-box-blog");
         for(let i = 0; i < testScripts.length; i++) {
             testScripts[i].addEventListener("click", () => {
-                //alert("{{ current_user.email_username }}");
+                //alert(testScripts[i].dataset.post);
             });
         }
 

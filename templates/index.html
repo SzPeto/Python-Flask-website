@@ -4,10 +4,10 @@
   <div class="v-box-index">
 
     <div class="base-h-box-index-1" style="background-color: white; margin: 10px 0px;">
-      <div class="base-v-box" style="flex: 1;">
-        <img src="{{ url_for('static', filename='Images/profile_picture.jpg') }}" width="70%">
+      <div class="base-v-box" style="flex: 3;">
+        <img src="{{ url_for('static', filename='Images/profile_picture.jpg') }}" width="60%">
       </div>
-      <div class="base-v-box" style="flex: 2;">
+      <div class="base-v-box" style="flex: 4;">
         <p style="font-size: 24px;">About me</p>
         <p>My name is Peter, a self-taught junior developer based in Hrhov(Košice), Slovakia, with a strong foundation
           in Python and Java. Since october 2024, I’ve built several real-world projects, including this website
@@ -23,15 +23,15 @@
 
     <a href="{{ url_for('weather_app') }}" class="clickable-weather" target="_blank">
       <div class="base-h-box-index-2">
-        <div class="base-v-box">
+        <div class="base-v-box" style="flex: 3;">
           <p style="font-size: 24px;">Try out my first project - weather app</p>
           <p>This weather app was built using Python, Flask, and the OpenWeatherMap API.
              It fetches real-time weather data and displays city name, temperature, humidity, wind speed and
              direction, uv-index, sunset-sunrise time and moon phases — with visual icons for clarity.
              Click anywhere on this section to open the live version and explore it yourself!</p>
         </div>
-        <div class="base-v-box">
-          <img src="{{ url_for('static', filename='Images/cloud - sun - 2 - normal.png') }}" width="100%">
+        <div class="base-v-box" style="flex: 1; align-items: flex-end;">
+          <img src="{{ url_for('static', filename='Images/cloud - sun - 2 - normal.png') }}" width="70%">
         </div>
       </div>
     </a>
