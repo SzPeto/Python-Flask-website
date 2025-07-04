@@ -777,6 +777,7 @@ input[type="text"] {
 .clickable-weather:hover {
     opacity: 0.8;
     transition: 0.1s;
+    animation: float 1.5s ease-in-out infinite;
 }
 
 

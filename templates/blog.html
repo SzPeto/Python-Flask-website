@@ -40,7 +40,7 @@
                 {% elif current_user == post.user %}
                     <div class="delete-edit-container">
                         <form method="POST" action="{{ url_for('delete_post', post_id=post.id) }}"
-                        onsubmit="return confirm('Are you sure you want to delete this post?');">
+                              onsubmit="return confirm('Are you sure you want to delete this post?');">
                             <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                             <button type="submit" class="delete-update-post-button">Delete</button>
                         </form>
@@ -58,4 +58,20 @@
             <p>There are no posts to show</p>
         </div>
     {% endif %}
+    <script>
+
+        // This is the preferred and modern way of communicating with html trough event listeners
+        const testScripts = document.querySelectorAll(".base-h-box-blog");
+        for(let i = 0; i < testScripts.length; i++) {
+            testScripts[i].addEventListener("click", () => {
+                //alert("{{ current_user.email_username }}");
+            });
+        }
+
+        // This is the less preferred way of communicating with html, you can use onclick, onsubmit etc. inside
+        // html tags, like : <div onclick="testFunction('It is working!')"></div>
+        function testFunction(text) {
+            alert(text);
+        }
+    </script>
 {% endblock %}

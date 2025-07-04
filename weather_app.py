@@ -63,7 +63,6 @@ class WeatherApp:
                 response.raise_for_status()
                 if response.status_code == 200:
                     self.misc_data = response.json()
-                    #print(f"def get_weather - weatherapi : {self.misc_data}")
         except Exception as e:
             self.functions.write_log(f"def get_weather - misc info response : {e}")
             self.misc_data = None
@@ -75,7 +74,6 @@ class WeatherApp:
                 response.raise_for_status()
                 if response.status_code == 200:
                     self.astro_data = response.json()
-                    print(f"def get_weather - weatherapi - astro : {self.astro_data}")
         except Exception as e:
             self.functions.write_log(f"def get_weather - astro info response : {e}")
             self.astro_data = None
