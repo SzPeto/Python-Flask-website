@@ -1,0 +1,116 @@
+Steps to Customize Syntax Colors
+    • Open Command Palette: Press Ctrl+Shift+P.
+    • Type and select “Preferences: Open User Settings (JSON)”.
+
+settings.JSON
+{
+  "workbench.colorTheme": "Default Light Modern",
+  "git.openRepositoryInParentFolders": "never",
+  "editor.semanticHighlighting.enabled": true,
+  "editor.tokenColorCustomizations": {
+    "textMateRules": [
+      {
+        "scope": "entity.name.function",
+        "settings": {
+          "foreground": "#ac8100"
+        }
+      },
+      {
+        "scope": "variable.language",
+        "settings": {
+          "foreground": "#ff5e00"
+        }
+      },
+      {
+        "scope": "variable.parameter",
+        "settings": {
+          "foreground": "#b00376"
+        }
+      },
+      {
+        "scope": "string",
+        "settings": {
+          "foreground": "#00ae00"
+        }
+      },
+      {
+        "scope": "comment",
+        "settings": {
+          "foreground": "#888888",
+          "fontStyle": "italic"
+        }
+      },
+      {
+        "scope": "constant.numeric",
+        "settings": {
+          "foreground": "#AA00AA"
+        }
+      },
+      {
+        "scope": "keyword.control",
+        "settings": {
+          "foreground": "#0000b8",
+          "fontStyle": "bold"
+        }
+      },
+      {
+        "scope": "string.quoted.double.html",
+        "settings": {
+          "foreground": "#008000"
+        }
+      },
+      {
+        "scope": "string.quoted.single.html",
+        "settings": {
+          "foreground": "#008000"
+        }
+      },
+      {
+        "scope": "entity.name.tag.html",
+        "settings": {
+          "foreground": "#0101d3",
+          "fontStyle": "bold"
+        }
+      },
+      {
+        "scope": "entity.other.attribute-name.html",
+        "settings": {
+          "foreground": "#005fad"
+        }
+      }
+    ]
+  },
+  "editor.semanticTokenColorCustomizations": {
+    "rules": {
+      "variable": {
+        "foreground": "#e95500"
+      },
+      "parameter": {
+        "foreground": "#b00376"
+      },
+      "property": {
+        "foreground": "#4f1400"
+      },
+      "function": {
+        "foreground": "#624a00"
+      },
+      "class": {
+        "foreground": "#002046",
+      },
+      "comment": {
+        "foreground": "#888888",
+        "fontStyle": "italic"
+      },
+      "string": {
+        "foreground": "#00c600"
+      },
+      "number": {
+        "foreground": "#bd00bd"
+      },
+      "keyword": {
+        "foreground": "#0000b8",
+        "fontStyle": "bold"
+      }
+    }
+  }
+}
