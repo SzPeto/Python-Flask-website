@@ -1,0 +1,177 @@
+/*======================================
+  ✅ LAYOUT & BOX MODEL
+======================================*/
+  /* Display Types */
+  display: block;           /* Element takes full width, starts on new line */
+  display: inline-block;    /* Like inline, but can have width/height */
+  display: flex;            /* Enables Flexbox layout for children */
+  display: grid;            /* Enables Grid layout for children */
+  display: none;            /* Hides element from layout and view */
+
+  /* Flexbox */
+  display: flex;
+    flex-direction: row;       /* Arrange children horizontally */
+    justify-content: center;   /* Align children in the direction of flex inside container */
+    align-items: center;       /* Align children cross-flex direction inside container */
+    gap: 1rem;                 /* Space between flex items */
+
+  /* Grid */
+  display: grid;
+    grid-template-columns: repeat(3, 1fr);  /* 3 equal columns */
+    grid-gap: 20px;                         /* Space between grid items */
+    grid-template-columns: 150px 1fr; /*First column is 150px wide Second column takes up all the remaining space (fr stands for fraction of available space)*/
+    gap: 15px 20px; /* row gap, column gap */
+
+  /* Positioning */
+  position: static;     /* Default, element flows normally */
+  position: relative;   /* Position relative to normal spot (for offsets) */
+  position: absolute;   /* Position relative to nearest positioned ancestor */
+  position: fixed;      /* Position relative to viewport (stays on screen) */
+  position: sticky;     /* Acts relative until scrolling reaches a point */
+    top: 0;             /* Offset from top (used with relative, absolute, fixed, sticky) */
+    left: 0;            /* Offset from left */
+    z-index: 10;        /* Stacking order for overlapping elements */
+
+  /* Box Model */
+  box-sizing: border-box; /* Includes padding and border inside width/height */
+  width: 100%;            /* Full width of parent container */
+  max-width: 1200px;      /* Limits max width (useful for responsiveness) */
+  height: auto;           /* Height adjusts based on content */
+  padding: 1rem;          /* Inner spacing inside the element */
+  margin: 1rem;           /* Outer spacing outside the element */
+
+  /* Overflow */
+  overflow: hidden;       /* Hides overflowing content */
+  overflow: auto;         /* Adds scrollbar if content overflows */
+
+  /* Float (legacy, rarely used) */
+  float: left;            /* Moves element to the left, lets text wrap */
+  clear: both;            /* Prevents element from wrapping next to floats */
+
+/*======================================
+  ✅ TEXT & FONTS
+======================================*/
+  font-family: Arial, sans-serif;  /* Font style and fallback fonts */
+  font-size: 16px;                 /* Size of text */
+  font-weight: bold;               /* Thickness of text */
+  line-height: 1.5;                /* Vertical spacing between lines */
+  text-align: center;              /* Horizontal alignment of text */
+  text-decoration: none;           /* Removes underline etc. */
+  text-transform: uppercase;       /* Makes text uppercase */
+  letter-spacing: 0.05em;          /* Space between letters */
+  word-break: break-word;          /* Break long words to avoid overflow */
+
+/*======================================
+  ✅ COLORS & BACKGROUND
+======================================*/
+  color: #333333;                  /* Text color */
+  background-color: #f0f0f0;       /* Background color */
+  background-image: url("image.jpg");  /* Background image */
+  background-size: cover;          /* Image covers entire area */
+  background-position: center;     /* Center the background image */
+  background-repeat: no-repeat;    /* Don’t repeat background */
+  opacity: 0.9;                    /* Transparency */
+
+/*======================================
+  ✅ BORDERS & RADIUS
+======================================*/
+  border: 1px solid #ccc;          /* Border with color */
+  border-radius: 8px;              /* Rounded corners */
+  border-top: none;                /* No top border */
+
+/*======================================
+  ✅ SHADOWS & EFFECTS
+======================================*/
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);  /* Shadow around box */
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);/* Shadow behind text */
+  filter: grayscale(100%);                     /* Make element grayscale */
+  backdrop-filter: blur(5px);                   /* Blur background behind element */
+
+/*======================================
+  ✅ TRANSITIONS & ANIMATION
+======================================*/
+  transition: all 0.3s ease-in-out;       /* Smooth change of all properties */
+    /* or specific */
+  /* transition: background-color 0.3s ease; */
+
+  animation: fadeIn 1s ease-out forwards; /* Runs fadeIn animation once */
+
+  /* Keyframes */
+  @keyframes fadeIn {
+    from { opacity: 0; }      /* Start transparent */
+    to   { opacity: 1; }      /* End fully visible */
+  }
+
+/*======================================
+  ✅ RESPONSIVE DESIGN
+======================================*/
+  @media (max-width: 768px) {     /* CSS applied on narrow screens */
+    body {
+      font-size: 14px;            /* Smaller font on mobile */
+    }
+    .container {
+      flex-direction: column;     /* Stack items vertically */
+    }
+  }
+
+/*======================================
+  ✅ INTERACTION / PSEUDO-CLASSES
+======================================*/
+  a:hover {                       /* When hovering over links */
+    color: blue;
+  }
+
+  button:active {                 /* When button is pressed */
+    transform: scale(0.95);       /* Slightly smaller */
+  }
+
+  input:focus {                   /* When input is focused */
+    outline: 2px solid royalblue; /* Highlight input */
+  }
+
+  li:first-child {                /* Style first list item */
+    font-weight: bold;
+  }
+
+  li:last-child {                 /* Style last list item */
+    color: red;
+  }
+
+/*======================================
+  ✅ COMMON COMPONENT STYLES
+======================================*/
+  /* Buttons */
+  .btn {
+    padding: 0.5rem 1rem;           /* Space inside button */
+    background-color: royalblue;    /* Button color */
+    color: white;                   /* Text color */
+    border: none;                   /* No border */
+    border-radius: 6px;             /* Rounded corners */
+    cursor: pointer;                /* Pointer cursor on hover */
+  }
+
+  .btn:hover {                     /* Button hover effect */
+    background-color: midnightblue;
+  }
+
+  /* Cards */
+  .card {
+    background: white;              /* Card background */
+    padding: 1.5rem;                /* Inner spacing */
+    border-radius: 12px;            /* Rounded corners */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1); /* Subtle shadow */
+  }
+
+  /* Images */
+  img {
+    max-width: 100%;    /* Responsive image max width */
+    height: auto;       /* Maintain aspect ratio */
+    display: block;     /* Remove inline spacing below */
+  }
+
+  /* Centering */
+  .center {
+    display: flex;
+    justify-content: center;    /* Center horizontally */
+    align-items: center;        /* Center vertically */
+  }

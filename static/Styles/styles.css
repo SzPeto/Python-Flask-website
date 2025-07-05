@@ -1,8 +1,19 @@
 /* Main **************************************************************************************************** */
+*,
+*::before,
+*::after {
+  box-sizing: border-box; /* Use is to have all boxes the defined dimension, paddings and margins included */
+}
+
 body {
     background-color: rgb(248, 255, 255);
     font-family: Bahnschrift;
     color: rgb(111, 111, 111);
+}
+
+header {
+    position: sticky;
+    top: 0;
 }
 
 .navbar {
