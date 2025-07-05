@@ -11,7 +11,7 @@
         </div>
     {% endif %}
     {% if posts %}
-        {% for post in posts %}
+        {% for post in posts.items %}
             <div class="blog-container">
                 <div class="base-h-box-blog" data-post="{{ post.user.email_username }}">
                     <div class="base-v-box-blog">
@@ -53,6 +53,18 @@
                 {% endif %}
             </div>
         {% endfor %}
+        <div class="base-h-box" style="justify-content: center;">
+            {% for page_id in posts.iter_pages() %}
+                {% if page_id %}
+                    <a href="{{ url_for('blog', page=page_id) }}" class="page-number">{{ page_id }}</a>
+                {% else %}
+                    ...
+                {% endif %}
+            {% endfor %}
+        </div>
+        <div style="min-height: 30vh;">
+            <!-- to push the footer to the bottom -->
+        </div>
     {% else %}
         <div class="blog-container">
             <p>There are no posts to show</p>

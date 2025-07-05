@@ -803,7 +803,10 @@ input[type="text"] {
     animation: float 1.5s ease-in-out infinite;
 }
 
-
+.page-number {
+    margin: 0px 8px;
+    text-decoration: none;
+}
 
 /* Unsorted ************************************************************************************************** */
 .switch-bar {

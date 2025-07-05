@@ -128,7 +128,7 @@ def blog():
     # get the page number from args - after ? in url, access the multidict value of "page", if no value, default it
     # to 1 and automatically convert the value to int
     page = request.args.get("page", 1, type=int)
-    posts = Post.query.paginate(page=page, per_page=5)
+    posts = Post.query.paginate(page=page, per_page=2)
     return render_template("blog.html", title="Blog", posts=posts,
                            current_user=current_user)
 
