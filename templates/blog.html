@@ -56,9 +56,21 @@
         <div class="base-h-box" style="justify-content: center;">
             {% for page_id in posts.iter_pages() %}
                 {% if page_id %}
-                    <a href="{{ url_for('blog', page=page_id) }}" class="page-number">{{ page_id }}</a>
+                    <!-- Alternatively you can put instead of passed variable current_page, posts.page -->
+                    {% if page_id == current_page %}
+                        <a href="{{ url_for('blog', page=page_id) }}" class="page-number" 
+                           style="color: white; background-color: rgb(31, 117, 255); ">
+                           {{ page_id }}
+                        </a>
+                    {% else %}
+                        <a href="{{ url_for('blog', page=page_id) }}" class="page-number" 
+                           style="color: rgb(31, 117, 255);">
+                           {{ page_id }}
+                        </a>
+                    {% endif %}
+                    
                 {% else %}
-                    ...
+                    <p style="margin: 4px 8px;">...</p>
                 {% endif %}
             {% endfor %}
         </div>

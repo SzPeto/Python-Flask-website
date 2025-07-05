@@ -804,8 +804,14 @@ input[type="text"] {
 }
 
 .page-number {
-    margin: 0px 8px;
+    margin: 4px 8px;
+    padding: 0px 7px;
     text-decoration: none;
+    width: 28px;
+    height: 28px;
+    text-align: center;
+    border: 1px solid rgb(31, 117, 255);
+    border-radius: 4px;
 }
 
 /* Unsorted ************************************************************************************************** */
