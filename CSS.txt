@@ -24,10 +24,10 @@
 
   /* Positioning */
   position: static;     /* Default, element flows normally */
-  position: relative;   /* Position relative to normal spot (for offsets) */
+  position: relative;   /* Positioned relative to where it normally is */
   position: absolute;   /* Position relative to nearest positioned ancestor */
   position: fixed;      /* Position relative to viewport (stays on screen) */
-  position: sticky;     /* Acts relative until scrolling reaches a point */
+  position: sticky;     /* Acts relative until scrolling reaches a point, positioned based on scroll position */
     top: 0;             /* Offset from top (used with relative, absolute, fixed, sticky) */
     left: 0;            /* Offset from left */
     z-index: 10;        /* Stacking order for overlapping elements */

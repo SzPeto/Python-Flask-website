@@ -7,6 +7,17 @@
 
 body {
     background-color: rgb(248, 255, 255);
+    background-image: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)),
+                      url(/static/Images/background-image-4.png);
+    background-repeat: no-repeat; /* 🔹 Prevents the background image from repeating (default is repeat). */
+    background-position-x: center;
+    background-position-y: center; /* 🔹 Positions the background image in the center of the element
+                                       (both horizontally and vertically). */
+    background-attachment: fixed; /* 🔹 Makes the background image stay fixed when scrolling (parallax effect).
+                                     ⚠️ Note: On mobile this may not work well or be disabled by the browser. */
+    background-size: cover; /* 🔹 Scales the background image to fully cover the element.
+                                  Keeps aspect ratio — some parts may be cropped to fill space. */
+
     font-family: Bahnschrift;
     color: rgb(111, 111, 111);
 }
@@ -193,6 +204,7 @@ footer {
     font-family: Bahnschrift;
     color: rgb(0, 111, 111);
     font-size: 18px;
+    min-height: 95vh;
 }
 
 .base-container-centered-content {

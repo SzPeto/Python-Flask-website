@@ -2,7 +2,7 @@
 
 {% block body %}
     <main>
-        <div class="base-container">
+        <div class="base-container" style="margin-top: 35px;">
             <p class="login-title-label">Register new user</p>
             <form method="POST" action="{{ url_for('register') }}">
                 {{ form.hidden_tag() }} <!-- This line is needed for security reasons -->
