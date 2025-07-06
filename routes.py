@@ -127,11 +127,18 @@ def login():
 def blog():
     # get the page number from args - after ? in url, access the multidict value of "page", if no value, default it
     # to 1 and automatically convert the value to int
+    user_id = request.args.get("user_id", None, type=int)
     page = request.args.get("page", 1, type=int)
-    ordered_posts = Post.query.order_by(Post.date_posted.desc())
-    posts = ordered_posts.paginate(page=page, per_page=5)
+    if user_id:
+        user_posts = Post.query.filter_by(user_id=user_id)
+        ordered_posts = user_posts.order_by(Post.date_posted.desc())
+        posts = ordered_posts.paginate(page=page, per_page=5)
+    else:
+        ordered_posts = Post.query.order_by(Post.date_posted.desc())
+        posts = ordered_posts.paginate(page=page, per_page=5)
+
     return render_template("blog.html", title="Blog", posts=posts,
-                           current_user=current_user, current_page=page)
+                           current_user=current_user, current_page=page, user_id=user_id)
 
 @app.route("/insert-post", methods=["GET", "POST"])
 @login_required

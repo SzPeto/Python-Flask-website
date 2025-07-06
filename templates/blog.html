@@ -10,13 +10,20 @@
             <p>Please log in to create a new post</p>
         </div>
     {% endif %}
+    {% if user_id %}
+        <div class="base-container-centered-content">
+            <p>Showing posts of user : {{ posts.items[0].user.email_username }}</p>
+            <a href="{{ url_for('blog') }}">Back</a>
+        </div>
+    {% endif %}
     {% if posts %}
         {% for post in posts.items %}
             <div class="blog-container">
                 <div class="base-h-box-blog" data-post="{{ post.user.email_username }}">
                     <div class="base-v-box-blog">
                         <p style="font-weight: bold; font-size: 25px;">{{ post.title }}</p>
-                        <p style="font-size: 14px;">Author : {{ post.user.email_username }}</p><!-- here user is the backref -->
+                        <p style="font-size: 14px;">Author : <a href="/blog?user_id={{ post.user.id }}">{{ post.user.email_username }}</a>
+                        </p><!-- here user is the backref -->
                         <p style="font-weight: 300;">{{ post.content }}</p>
                     </div>
                     <div class="base-v-box-blog-image">
@@ -39,16 +46,15 @@
                     </div>
                 {% elif current_user == post.user %}
                     <div class="delete-edit-container">
-                        <form method="POST" action="{{ url_for('delete_post', post_id=post.id) }}"
-                              onsubmit="return confirm('Are you sure you want to delete this post?');">
-                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-                            <button type="submit" class="delete-update-post-button">Delete</button>
-                        </form>
-                        <form method="POST" action="{{ url_for('edit_post', post_id=post.id) }}">
-                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-                            <input type="text" hidden name="event" value="edit-post">
-                            <button type="submit" class="delete-update-post-button">Edit</button>
-                        </form>
+                        <div class="delete-edit-container">
+                            <form method="POST" action="{{ url_for('delete_post', post_id=post.id) }}"
+                                onsubmit="return confirm('Are you sure you want to delete this post?');">
+                                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                                <button type="submit" class="delete-post-button">Delete</button>
+                            </form>
+                            <a href="{{ url_for('edit_post', post_id=post.id) }}"
+                               class="edit-post-button">Edit</a>
+                        </div>
                     </div>
                 {% endif %}
             </div>
@@ -59,17 +65,14 @@
                 {% if page_id %}
                     <!-- Alternatively you can put instead of passed variable current_page, posts.page -->
                     {% if page_id == current_page %}
-                        <a href="{{ url_for('blog', page=page_id) }}" class="page-number" 
-                           style="color: white; background-color: rgb(31, 117, 255); ">
+                        <a href="{{ url_for('blog', page=page_id) }}" class="page-number-active">
                            {{ page_id }}
                         </a>
                     {% else %}
-                        <a href="{{ url_for('blog', page=page_id) }}" class="page-number" 
-                           style="color: rgb(31, 117, 255);">
+                        <a href="{{ url_for('blog', page=page_id) }}" class="page-number-inactive">
                            {{ page_id }}
                         </a>
                     {% endif %}
-                    
                 {% else %}
                     <p style="margin: 4px 8px;">...</p>
                 {% endif %}
@@ -90,7 +93,7 @@
         const testScripts = document.querySelectorAll(".base-h-box-blog");
         for(let i = 0; i < testScripts.length; i++) {
             testScripts[i].addEventListener("click", () => {
-                alert(testScripts[i].dataset.post);
+                //alert(testScripts[i].dataset.post);
             });
         }
 
