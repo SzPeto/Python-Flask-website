@@ -12,19 +12,19 @@ settings.JSON
       {
         "scope": "entity.name.function",
         "settings": {
-          "foreground": "#ac8100"
+          "foreground": "#a48600"
         }
       },
       {
         "scope": "variable.language",
         "settings": {
-          "foreground": "#ff5e00"
+          "foreground": "#e52e00"
         }
       },
       {
         "scope": "variable.parameter",
         "settings": {
-          "foreground": "#b00376"
+          "foreground": "#c80085"
         }
       },
       {
@@ -43,11 +43,18 @@ settings.JSON
       {
         "scope": "constant.numeric",
         "settings": {
-          "foreground": "#AA00AA"
+          "foreground": "#000000"
         }
       },
       {
         "scope": "keyword.control",
+        "settings": {
+          "foreground": "#0000b8",
+          "fontStyle": "bold"
+        }
+      },
+      {
+        "scope": "storage.type.function.python",
         "settings": {
           "foreground": "#0000b8",
           "fontStyle": "bold"
@@ -68,14 +75,27 @@ settings.JSON
       {
         "scope": "entity.name.tag.html",
         "settings": {
-          "foreground": "#0101d3",
+          "foreground": "#00008f",
           "fontStyle": "bold"
         }
       },
       {
         "scope": "entity.other.attribute-name.html",
         "settings": {
-          "foreground": "#005fad"
+          "foreground": "#0000ff"
+        }
+      },
+      {
+        "scope": "constant.language.boolean",
+        "settings": {
+          "foreground": "#0000b8",
+          "fontStyle": "bold",
+        }
+      },
+      {
+        "scope": "storage.type",
+        "settings": {
+          "foreground": "#0000b8"
         }
       }
     ]
@@ -83,7 +103,7 @@ settings.JSON
   "editor.semanticTokenColorCustomizations": {
     "rules": {
       "variable": {
-        "foreground": "#e95500"
+        "foreground": "#e52e00"
       },
       "parameter": {
         "foreground": "#b00376"
@@ -92,7 +112,7 @@ settings.JSON
         "foreground": "#4f1400"
       },
       "function": {
-        "foreground": "#624a00"
+        "foreground": "#a48600"
       },
       "class": {
         "foreground": "#002046",
@@ -105,12 +125,21 @@ settings.JSON
         "foreground": "#00c600"
       },
       "number": {
-        "foreground": "#bd00bd"
+        "foreground": "#7d004f"
       },
       "keyword": {
         "foreground": "#0000b8",
         "fontStyle": "bold"
+      },
+      "boolean": {
+        "foreground": "#0000b8",
+        "fontStyle": "bold"
       }
     }
-  }
+  },
+  "editor.fontFamily": "JetBrains Mono, Fira Code, monospace",
+  "editor.fontLigatures": false,
+  "editor.fontSize": 12.9,
+  "editor.fontWeight": "600",
+  "editor.lineHeight": 22
 }

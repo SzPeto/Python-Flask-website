@@ -814,6 +814,11 @@ input[type="text"] {
     border-radius: 4px;
 }
 
+.page-number:hover {
+    color: white; 
+    background-color: rgb(31, 117, 255);
+}
+
 /* Unsorted ************************************************************************************************** */
 .switch-bar {
     display: flex;

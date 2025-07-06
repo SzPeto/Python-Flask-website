@@ -54,7 +54,8 @@
             </div>
         {% endfor %}
         <div class="base-h-box" style="justify-content: center;">
-            {% for page_id in posts.iter_pages() %}
+            <!-- edge = how many pages on edges, current = how many near current page -->
+            {% for page_id in posts.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
                 {% if page_id %}
                     <!-- Alternatively you can put instead of passed variable current_page, posts.page -->
                     {% if page_id == current_page %}
@@ -89,7 +90,7 @@
         const testScripts = document.querySelectorAll(".base-h-box-blog");
         for(let i = 0; i < testScripts.length; i++) {
             testScripts[i].addEventListener("click", () => {
-                //alert(testScripts[i].dataset.post);
+                alert(testScripts[i].dataset.post);
             });
         }
 
