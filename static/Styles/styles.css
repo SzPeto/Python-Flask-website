@@ -488,6 +488,28 @@ button:active {
     margin: 0px 10px 25px 10px;
 }
 
+.login-blog-button {
+    padding: 8px 10px;
+    background-color: rgb(76, 144, 255);
+    border: 1px solid blue;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 0px 10px 25px 10px;
+}
+
+.login-blog-button:hover {
+    background-color: rgb(67, 128, 226);
+    border: 1px solid rgb(0, 0, 214);
+}
+
+.login-blog-button:active {
+    padding: 10px 8px 6px 12px;
+    background-color: rgb(46, 88, 156);
+    border: 1px inset rgb(0, 0, 143);
+}
+
 .update-user-button {
     max-width: 150px;
     padding: 5px 10px;
