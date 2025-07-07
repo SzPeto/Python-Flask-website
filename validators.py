@@ -6,6 +6,7 @@ from flask_login import current_user
 
 from db_models import User
 
+# TODO - complete the reset and change password
 
 class RegistrationForm(FlaskForm):
     email_username = StringField("Email - username", validators=[DataRequired(), Email()])
@@ -43,4 +44,18 @@ class UpdateForm(FlaskForm):
 class PostForm(FlaskForm):
     post_title = StringField("Post title", validators=[DataRequired()])
     post_content = TextAreaField("Content", validators=[DataRequired()])
+    submit = SubmitField("Submit")
+
+class PasswordResetForm(FlaskForm):
+    email = StringField("Email", validators=[DataRequired(), Email()])
+    submit = SubmitField("Request password")
+
+    def validate_email(self, email):
+        email = User.query.filter_by(email_username=self.email.data).first()
+        if email is None:
+            raise ValidationError(f"Error, the email {email} isn't registered")
+
+class PasswordUpdateForm(FlaskForm):
+    current_password = PasswordField("Current password", validators=[DataRequired(), Length(min=6)])
+    new_password = PasswordField("New password", validators=[DataRequired()])
     submit = SubmitField("Submit")

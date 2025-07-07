@@ -417,6 +417,28 @@ button:active {
     border: 1px inset green;
 }
 
+.base-button {
+    padding: 8px 10px;
+    background-color: rgb(76, 144, 255);
+    border: 1px solid blue;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 0px 10px 25px 10px;
+}
+
+.base-button:hover {
+    background-color: rgb(67, 128, 226);
+    border: 1px solid rgb(0, 0, 214);
+}
+
+.base-button:active {
+    padding: 9px 9px 7px 11px;
+    background-color: rgb(46, 88, 156);
+    border: 1px inset rgb(0, 0, 143);
+}
+
 .form-button {
   padding: 5px 10px;
   background-color: rgb(76, 175, 80);

@@ -7,6 +7,11 @@ settings.JSON
   "workbench.colorTheme": "Default Light Modern",
   "git.openRepositoryInParentFolders": "never",
   "editor.semanticHighlighting.enabled": true,
+  "files.associations": {
+    //"*.html": "jinja-html",
+    "*.jinja": "jinja-html",
+    "*.jinja2": "jinja-html"
+  },
   "editor.tokenColorCustomizations": {
     "textMateRules": [
       {
@@ -18,19 +23,19 @@ settings.JSON
       {
         "scope": "variable.language",
         "settings": {
-          "foreground": "#e52e00"
+          "foreground": "#cf2900"
         }
       },
       {
         "scope": "variable.parameter",
         "settings": {
-          "foreground": "#c80085"
+          "foreground": "#cc0088"
         }
       },
       {
         "scope": "string",
         "settings": {
-          "foreground": "#00ae00"
+          "foreground": "#008e00"
         }
       },
       {
@@ -43,7 +48,7 @@ settings.JSON
       {
         "scope": "constant.numeric",
         "settings": {
-          "foreground": "#000000"
+          "foreground": "#0000ff"
         }
       },
       {
@@ -63,13 +68,13 @@ settings.JSON
       {
         "scope": "string.quoted.double.html",
         "settings": {
-          "foreground": "#008000"
+          "foreground": "#008e00"
         }
       },
       {
         "scope": "string.quoted.single.html",
         "settings": {
-          "foreground": "#008000"
+          "foreground": "#008e00"
         }
       },
       {
@@ -89,7 +94,7 @@ settings.JSON
         "scope": "constant.language.boolean",
         "settings": {
           "foreground": "#0000b8",
-          "fontStyle": "bold",
+          "fontStyle": "bold"
         }
       },
       {
@@ -97,32 +102,52 @@ settings.JSON
         "settings": {
           "foreground": "#0000b8"
         }
+      },
+      {
+        "scope": "meta.embedded.block.jinja",  // {% ... %}
+        "settings": {
+          "foreground": "#D2691E", // chocolate
+          "fontStyle": "italic"
+        }
+      },
+      {
+        "scope": "meta.embedded.line.jinja",  // {{ ... }}
+        "settings": {
+          "foreground": "#00B7C3", // bright cyan
+          "fontStyle": "bold"
+        }
+      },
+      {
+      "scope": "source.jinja",
+      "settings": {
+        "foreground": "#6F42C1"  // violet
       }
+    }
     ]
   },
   "editor.semanticTokenColorCustomizations": {
     "rules": {
       "variable": {
-        "foreground": "#e52e00"
+        "foreground": "#cf2900"
       },
       "parameter": {
-        "foreground": "#b00376"
+        "foreground": "#cc0088"
       },
       "property": {
-        "foreground": "#4f1400"
+        "foreground": "#cf2900",
       },
       "function": {
         "foreground": "#a48600"
       },
       "class": {
-        "foreground": "#002046",
+        "foreground": "#002046"
       },
       "comment": {
         "foreground": "#888888",
         "fontStyle": "italic"
       },
       "string": {
-        "foreground": "#00c600"
+        "foreground": "#008e00"
       },
       "number": {
         "foreground": "#7d004f"

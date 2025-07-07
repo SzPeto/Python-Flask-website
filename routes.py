@@ -10,6 +10,8 @@ from validators import RegistrationForm, LoginForm, UpdateForm, PostForm
 from Main import app, db, weather_app_object, functions, bcrypt
 from db_models import User, Post
 
+# TODO - Complete the routes for reset and change password
+
 @app.route("/")
 def index():
     return render_template("index.html", title = "Home", current_user=current_user)

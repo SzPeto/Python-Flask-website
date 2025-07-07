@@ -12,7 +12,7 @@
     {% endif %}
     {% if user_id %}
         <div class="base-container-centered-content"">
-            <div style="background-color: rgba(0, 4, 255, 0.038); text-align: center; padding: 4px; border-radius: 4px;">
+            <div style="background-color: rgba(0, 4, 255, 0.038); text-align: center; padding: 11px; border-radius: 4px;">
                 <p style="font-size: 16px;">Posts by user : {{ posts.items[0].user.email_username }}</p>
                 <a href="{{ url_for('blog') }}" style="font-size: 16px;">Clear filter</a>
             </div>

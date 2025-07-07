@@ -1,7 +1,10 @@
 import datetime
 from flask_sqlalchemy import SQLAlchemy
+from itsdangerous import URLSafeTimedSerializer as Serializer
 
 from flask_login import UserMixin, LoginManager
+
+# TODO - complete the reset and change password
 
 db = SQLAlchemy()
 login_manager = LoginManager()
@@ -19,6 +22,22 @@ class User(db.Model, UserMixin):
     password = db.Column(db.String(60), nullable=False)
     image_file = db.Column(db.String(20), nullable=False, default="Default - user.jpg")
     posts = db.relationship("Post", backref="user", lazy=True)
+
+    def reset_token(self):
+        from Main import app
+        s = Serializer(app.config.get("SECRET_KEY"))
+        return s.dumps({"user_id": self.id})
+
+    @staticmethod
+    def verify_reset_token(token, max_age=1800):
+        from Main import app
+        s = Serializer(app.config.get("SECRET_KEY"))
+        try:
+            data = s.loads(token, max_age=max_age)
+            user_id = data.get("user_id")
+            return db.session.get(User, user_id)
+        except Exception:
+            return None
 
     def __repr__(self) -> str:
         return f"User : {self.id}, {self.email_username}, {self.image_file}"
