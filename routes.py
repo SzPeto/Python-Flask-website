@@ -5,7 +5,7 @@ from PIL import Image
 from flask import render_template, url_for, request, flash, abort
 from flask_login import login_user, current_user, logout_user, login_required
 from werkzeug.utils import redirect
-from validators import RegistrationForm, LoginForm, UpdateForm, PostForm
+from validators import PasswordUpdateForm, RegistrationForm, LoginForm, UpdateForm, PostForm
 
 from Main import app, db, weather_app_object, functions, bcrypt
 from db_models import User, Post
@@ -124,6 +124,12 @@ def login():
 
     return render_template("login.html", title="Login", form=form,
                            current_user=current_user)
+
+@app.route("/change-password", methods=["GET", "POST"])
+@login_required
+def change_password():
+    form = PasswordUpdateForm()
+    return render_template("change-password.html", title="Password change", current_user=current_user, form=form)
 
 @app.route("/blog", methods=["GET", "POST"])
 def blog():
