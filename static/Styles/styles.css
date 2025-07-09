@@ -219,6 +219,11 @@ footer {
     justify-content: center;
 }
 
+.base-paragraph-centered-content {
+    text-align: center;
+    margin: 35px;
+}
+
 .base-container-pop-up {
     display: flex;
     flex-direction: column;
@@ -419,6 +424,27 @@ button:active {
 
 .base-button {
     padding: 8px 10px;
+    background-color: rgb(76, 175, 80);
+    border: 1px solid green;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 0px 10px 25px 10px;
+}
+
+.base-button:hover {
+    background-color: rgb(69, 160, 73);
+}
+
+.base-button:active {
+    padding: 9px 9px 7px 11px;
+    background-color: rgb(51, 144, 58);
+    border: 1px inset rgb(0, 0, 143);
+}
+
+.base-button-blue {
+    padding: 8px 10px;
     background-color: rgb(76, 144, 255);
     border: 1px solid blue;
     color: white;
@@ -428,12 +454,12 @@ button:active {
     margin: 0px 10px 25px 10px;
 }
 
-.base-button:hover {
+.base-button-blue:hover {
     background-color: rgb(67, 128, 226);
     border: 1px solid rgb(0, 0, 214);
 }
 
-.base-button:active {
+.base-button-blue:active {
     padding: 9px 9px 7px 11px;
     background-color: rgb(46, 88, 156);
     border: 1px inset rgb(0, 0, 143);

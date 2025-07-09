@@ -129,6 +129,26 @@ def login():
 @login_required
 def change_password():
     form = PasswordUpdateForm()
+    if form.validate_on_submit():
+        if bcrypt.check_password_hash(current_user.password, form.current_password.data):
+            new_hashed_pw = bcrypt.generate_password_hash(form.new_password.data).decode("utf-8")
+            current_user.password = new_hashed_pw
+            db.session.commit()
+            flash("Password successfully updated", "success")
+            return redirect(url_for("index"))
+        else:
+            flash("You've entered a wrong current password", "warning")
+    else:
+        if form.current_password.errors:
+            for error in form.current_password.errors:
+                flash(f"Current password : {error}", "warning")
+        if form.new_password.errors:
+            for error in form.new_password.errors:
+                flash(f"New password : {error}", "warning")
+        if form.new_password_confirm.errors:
+            for error in form.new_password_confirm.errors:
+                flash(f"New password confirm : {error}", "warning")
+            
     return render_template("change-password.html", title="Password change", current_user=current_user, form=form)
 
 @app.route("/blog", methods=["GET", "POST"])

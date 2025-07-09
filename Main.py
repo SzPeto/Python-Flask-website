@@ -21,7 +21,7 @@ weather_app_object = WeatherApp()
 functions = Functions()
 is_first_log = True
 # Get it like : secrets.token_hex(16)
-app.config.update({"SECRET_KEY":"a458918b381a3ee2a83cebfca2320ac0"})
+app.config.update({"SECRET_KEY":"a458918b381a3ee2a83cebfca2320ac0"}) # TODO - make it environment variable
 app.config.update({"SQLALCHEMY_DATABASE_URI":"sqlite:///database.db"})
 db.init_app(app)
 bcrypt = Bcrypt(app)
@@ -30,11 +30,13 @@ login_manager.init_app(app)
 login_manager.login_view = "login" # if someone tries to access a @login_required route
 login_manager.login_message_category = "info"
 # Mailing
-app.config.update({"MAIL_SERVER":"smtp.googlemail.com"})
-app.config.update({"MAIL_PORT":587})
-app.config.update({"MAIL_USE_TLS":True})
-app.config.update({"MAIL_USERNAME":os.getenv("EMAIL_USERNAME")})
-app.config.update({"MAIL_PASSWORD":os.getenv("EMAIL_PASSWORD")})
+app.config.update({
+    "MAIL_SERVER": "smtp.googlemail.com",
+    "MAIL_PORT": 587,
+    "MAIL_USE_TLS": True,
+    "MAIL_USERNAME": os.getenv("EMAIL_USERNAME"),
+    "MAIL_PASSWORD": os.getenv("EMAIL_PASSWORD"),
+})
 mail = Mail(app)
 
 # Main *******************************************************************************************************
