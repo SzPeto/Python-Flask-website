@@ -35,6 +35,7 @@ app.config.update({"MAIL_PORT":587})
 app.config.update({"MAIL_USE_TLS":True})
 app.config.update({"MAIL_USERNAME":os.getenv("EMAIL_USERNAME")})
 app.config.update({"MAIL_PASSWORD":os.getenv("EMAIL_PASSWORD")})
+mail = Mail(app)
 
 # Main *******************************************************************************************************
 if __name__ == "__main__":
