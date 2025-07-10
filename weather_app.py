@@ -4,11 +4,10 @@ import datetime
 import requests
 from functions import Functions
 
-
 class WeatherApp:
     def __init__(self):
-        self.api_key_owm = os.getenv("API_KEY_OWM")
-        self.api_key_weatherapi = os.getenv("API_KEY_WEATHERAPI")
+        self.api_key_owm = os.environ.get("API_KEY_OWM")
+        self.api_key_weatherapi = os.environ.get("API_KEY_WEATHERAPI")
         self.city_name = "Hrhov"
         self.functions = Functions()
         self.geo_data = None

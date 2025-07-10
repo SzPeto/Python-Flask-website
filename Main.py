@@ -34,8 +34,8 @@ app.config.update({
     "MAIL_SERVER": "smtp.googlemail.com",
     "MAIL_PORT": 587,
     "MAIL_USE_TLS": True,
-    "MAIL_USERNAME": os.getenv("EMAIL_USERNAME"),
-    "MAIL_PASSWORD": os.getenv("EMAIL_PASSWORD"),
+    "MAIL_USERNAME": os.environ.get("EMAIL_USERNAME"),
+    "MAIL_PASSWORD": os.environ.get("EMAIL_PASSWORD"),
 })
 mail = Mail(app)
 

@@ -6,8 +6,9 @@ from flask import render_template, url_for, request, flash, abort
 from flask_login import login_user, current_user, logout_user, login_required
 from werkzeug.utils import redirect
 from validators import PasswordUpdateForm, RegistrationForm, LoginForm, UpdateForm, PostForm
+from flask_mail import Message
 
-from Main import app, db, weather_app_object, functions, bcrypt
+from Main import app, db, weather_app_object, functions, bcrypt, mail
 from db_models import User, Post
 
 # TODO - Complete the routes for reset and change password
@@ -150,6 +151,10 @@ def change_password():
                 flash(f"New password confirm : {error}", "warning")
             
     return render_template("change-password.html", title="Password change", current_user=current_user, form=form)
+
+@app.route("/password-reset")
+def password_reset():
+    pass
 
 @app.route("/blog", methods=["GET", "POST"])
 def blog():
