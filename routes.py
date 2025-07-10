@@ -152,9 +152,10 @@ def change_password():
             
     return render_template("change-password.html", title="Password change", current_user=current_user, form=form)
 
+# TODO
 @app.route("/password-reset")
 def password_reset():
-    pass
+    return render_template("")
 
 @app.route("/blog", methods=["GET", "POST"])
 def blog():
