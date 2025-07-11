@@ -82,6 +82,17 @@ footer {
     margin: 10px;
 }
 
+.base-grid {
+    display: grid;
+    grid-template-columns: 150px 1fr; /*First column is 150px wide Second column takes up all the remaining space (fr stands for fraction of available space)*/
+    gap: 15px 20px; /* row gap, column gap */
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 20%;
+    text-align: left;
+}
+
 .v-box-index {
     display: flex;
     flex-direction: column;
@@ -319,14 +330,16 @@ footer {
 }
 
 .account-already-container {
-    margin: 20px 20px 20px 20%;
+    margin: 50px 20px 20px 20%;
     font-family: Bahnschrift;
     font-size: 14px;
     font-weight: 200;
 }
 
 .forgot-password-container {
-    margin: 20px 20px 20px 20%;
+    margin: 20px 20px;
+    font-size: 14px;
+    font-weight: 400;
 }
 
 .flash-message-success-container {
@@ -376,6 +389,7 @@ footer {
 
 .remember-login-container {
     margin-left: 20%;
+    margin-top: 50px;
 }
 
 .blog-container {
@@ -494,6 +508,7 @@ button:active {
   border-radius: 4px;
   cursor: pointer;
   margin: 40px 10px 10px 10px;
+  min-width: 150px;
 }
 
 .register-login-button:hover {

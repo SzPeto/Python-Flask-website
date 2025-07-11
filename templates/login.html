@@ -16,16 +16,17 @@
                     {{ form.remember(class="remember-login-label") }}
                     {{ form.remember.label(class="remember-login-label") }}
                 </div>
-                <div class="register-grid">
+                <div class="base-h-box" style="margin-left: 20%; margin-right: auto;">
                     {{ form.submit(class="register-login-button") }}
+                    <small class="forgot-password-container" style="margin-top: 50px;">
+                        <a href="{{ url_for('password_reset') }}">Forgot password?</a>
+                    </small>
                 </div>
                 <div class>
 
                 </div>
             </form>
-            <small class="forgot-password-container">
-                <a href="#">Forgot password?</a>
-            </small>
+            <hr>
             <div class="account-already-container">
                 <p>Need an account? <a href="{{ url_for('register') }}" class="account-already-button">Register now!</a></p>
             </div>

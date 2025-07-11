@@ -4,7 +4,7 @@ from itsdangerous import URLSafeTimedSerializer as Serializer
 
 from flask_login import UserMixin, LoginManager
 
-# TODO - complete the reset and change password
+# TODO - complete the reset password
 
 db = SQLAlchemy()
 login_manager = LoginManager()
@@ -26,6 +26,7 @@ class User(db.Model, UserMixin):
     def reset_token(self):
         from Main import app
         s = Serializer(app.config.get("SECRET_KEY"))
+        s.dumps({"user_id": self.id})
         return s.dumps({"user_id": self.id})
 
     @staticmethod
