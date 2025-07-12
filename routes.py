@@ -5,7 +5,7 @@ from PIL import Image
 from flask import render_template, url_for, request, flash, abort
 from flask_login import login_user, current_user, logout_user, login_required
 from werkzeug.utils import redirect
-from validators import PasswordUpdateForm, RegistrationForm, LoginForm, UpdateForm, PostForm
+from validators import PasswordResetForm, PasswordUpdateForm, RegistrationForm, LoginForm, UpdateForm, PostForm
 from flask_mail import Message
 
 from Main import app, db, weather_app_object, functions, bcrypt, mail
@@ -152,10 +152,36 @@ def change_password():
             
     return render_template("change-password.html", title="Password change", current_user=current_user, form=form)
 
+def send_reset_mail(user):
+    token = user.get_reset_token()
+    msg = Message("Password reset requets", 
+                  sender="info.peterszepesi@gmail.com", 
+                  recipients=[user.email_username])
+    msg.body = f"""
+To reset your password, please go to the following link : {url_for('password_reset_verified', token=token)}
+If you didn't make this request, simply ignore this email and no changes will be done.
+"""
+    mail.send(msg)
+
 # TODO
-@app.route("/password-reset")
-def password_reset():
-    return render_template("")
+@app.route("/password-reset", methods=["GET", "POST"])
+def password_reset_initial():
+    form = PasswordResetForm()
+    if form.validate_on_submit():
+        email = form.email.data
+        user = User.query.filter_by(email_username=email).first()
+        send_reset_mail(user)
+
+    return render_template("password-reset-initial.html", title="Password reset", current_user=current_user,
+                           form=form)
+
+# In Flask you dont't have to explicitly define the string, by default a parameter is string
+@app.route("/password-reset/<token>")
+def password_reset_verified(token):
+    form = PasswordUpdateForm()
+
+    return render_template("password-reset-verified.html", title="Password reset", current_user=current_user,
+                           form=form)
 
 @app.route("/blog", methods=["GET", "POST"])
 def blog():

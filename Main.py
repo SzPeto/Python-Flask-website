@@ -12,8 +12,6 @@ import secrets
 
 from db_models import db, login_manager
 
-# TODO - set up the mail address and complete for it the environment variables
-
 # Master *****************************************************************************************************
 load_dotenv()
 app = Flask(__name__)
@@ -21,7 +19,7 @@ weather_app_object = WeatherApp()
 functions = Functions()
 is_first_log = True
 # Get it like : secrets.token_hex(16)
-app.config.update({"SECRET_KEY":"a458918b381a3ee2a83cebfca2320ac0"}) # TODO - make it environment variable
+app.config.update({"SECRET_KEY":os.environ.get("APP_SECRET_KEY")})
 app.config.update({"SQLALCHEMY_DATABASE_URI":"sqlite:///database.db"})
 db.init_app(app)
 bcrypt = Bcrypt(app)
@@ -37,6 +35,7 @@ app.config.update({
     "MAIL_USERNAME": os.environ.get("EMAIL_USERNAME"),
     "MAIL_PASSWORD": os.environ.get("EMAIL_PASSWORD"),
 })
+print(f"{os.environ.get("EMAIL_USERNAME")}, {os.environ.get("EMAIL_PASSWORD")}")
 mail = Mail(app)
 
 # Main *******************************************************************************************************

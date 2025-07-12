@@ -23,11 +23,11 @@ class User(db.Model, UserMixin):
     image_file = db.Column(db.String(20), nullable=False, default="Default - user.jpg")
     posts = db.relationship("Post", backref="user", lazy=True)
 
-    def reset_token(self):
+    def get_reset_token(self):
         from Main import app
         s = Serializer(app.config.get("SECRET_KEY"))
-        s.dumps({"user_id": self.id})
-        return s.dumps({"user_id": self.id})
+        token = s.dumps({"user_id": self.id})
+        return token
 
     @staticmethod
     def verify_reset_token(token, max_age=1800):
@@ -36,7 +36,10 @@ class User(db.Model, UserMixin):
         try:
             data = s.loads(token, max_age=max_age)
             user_id = data.get("user_id")
-            return db.session.get(User, user_id)
+            if user_id:
+                return db.session.get(User, user_id)
+            else:
+                return None
         except Exception:
             return None
 

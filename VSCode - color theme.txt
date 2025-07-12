@@ -35,7 +35,8 @@ settings.JSON
       {
         "scope": "string",
         "settings": {
-          "foreground": "#008e00"
+          "foreground": "#008e00",
+          "fontStyle": "bold"
         }
       },
       {
@@ -68,13 +69,15 @@ settings.JSON
       {
         "scope": "string.quoted.double.html",
         "settings": {
-          "foreground": "#008e00"
+          "foreground": "#008e00",
+          "fontStyle": "bold"
         }
       },
       {
         "scope": "string.quoted.single.html",
         "settings": {
-          "foreground": "#008e00"
+          "foreground": "#008e00",
+          "fontStyle": "bold"
         }
       },
       {
@@ -147,7 +150,8 @@ settings.JSON
         "fontStyle": "italic"
       },
       "string": {
-        "foreground": "#008e00"
+        "foreground": "#008e00",
+        "fontStyle": "bold"
       },
       "number": {
         "foreground": "#7d004f"
@@ -165,6 +169,9 @@ settings.JSON
   "editor.fontFamily": "JetBrains Mono, Fira Code, monospace",
   "editor.fontLigatures": false,
   "editor.fontSize": 12.9,
-  "editor.fontWeight": "600",
-  "editor.lineHeight": 22
+  "editor.fontWeight": "500",
+  "editor.lineHeight": 22,
+  "python.autoComplete.extraPaths": [],
+  "python.autoComplete.addBrackets": true,
+  "python.languageServer": "Pylance"
 }
