@@ -35,7 +35,6 @@ app.config.update({
     "MAIL_USERNAME": os.environ.get("EMAIL_USERNAME"),
     "MAIL_PASSWORD": os.environ.get("EMAIL_PASSWORD"),
 })
-print(f"{os.environ.get("EMAIL_USERNAME")}, {os.environ.get("EMAIL_PASSWORD")}")
 mail = Mail(app)
 
 # Main *******************************************************************************************************
