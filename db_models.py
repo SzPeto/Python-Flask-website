@@ -5,7 +5,7 @@ from itsdangerous import URLSafeTimedSerializer as Serializer
 from flask_login import UserMixin, LoginManager
 
 # TODO - complete the reset password
-
+print(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
 db = SQLAlchemy()
 login_manager = LoginManager()
 

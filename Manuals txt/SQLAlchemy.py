@@ -5,14 +5,13 @@ app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///database.db" # It has to be i
 db = SQLAlchemy(app)
 
 # Model class
-class DbData(db.Model):
+class Entry(db.Model):
     # You can't have the self parameter, since we are inheriting from SQLAlchemy model
     id = db.Column(db.Integer, primary_key = True, autoincrement = True)
     description = db.Column(db.String(100), nullable = False) # NULL in SQL
     category = db.Column(db.String(50))
     price = db.Column(db.Float)
     date = db.Column(db.String(20), default = today)
-    functions.write_log("Main.py - class DbData loaded")
 
     def __repr__(self) -> str: # Repr dunder method represents the string representation of object
                                # -> This symbol means type hinting, mostly for autocomplete purposes
@@ -20,40 +19,40 @@ class DbData(db.Model):
 
 # Most important commands
 # 1. Add a new entry
-     new_entry = DbData(
-         description="Coffee",
-         price=2.5,
-         category="Food",
-         date="2025-06-10"
-     )
-     db.session.add(new_entry)
-     db.session.commit()
+new_entry = Entry(
+     description="Coffee",
+     price=2.5,
+     category="Food",
+     date="2025-06-10"
+)
+db.session.add(new_entry)
+db.session.commit()
 
 # 2. Get all entries
-     entries = DbData.query.all()
+entries = Entry.query.all()
 
 # 3. Get one entry by ID (SQLAlchemy 2+)
-     entry = db.session.get(DbData, 1)
+entry = db.session.get(Entry, 1)
 
 # 4. Get one entry by ID (older way)
-     entry = DbData.query.get(1)
+entry = Entry.query.get(1)
 
 # 5. Filter entries by column
-     filtered = DbData.query.filter_by(category="Food").all()
+filtered = Entry.query.filter_by(category="Food").all()
 
 # 6. Order entries by a column (ascending)
-     ordered = DbData.query.order_by(DbData.price).all()
+ordered = Entry.query.order_by(Entry.price).all()
 
 # 7. Delete a specific entry
-     entry = db.session.get(DbData, 1)
-     db.session.delete(entry)
-     db.session.commit()
+entry = db.session.get(Entry, 1)
+db.session.delete(entry)
+db.session.commit()
 
 # 8. Delete all entries
-     DbData.query.delete()
-     db.session.commit()
+Entry.query.delete()
+db.session.commit()
 
 # 9. Update an existing entry
-     entry = db.session.get(DbData, 1)
-     entry.price = 4.0
-     db.session.commit()
+entry = db.session.get(Entry, 1)
+entry.price = 4.0
+db.session.commit()

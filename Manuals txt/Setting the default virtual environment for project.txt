@@ -1,0 +1,4 @@
+Usually:
+    .venv\Scripts\activate - use it in command line, powershell
+
+If you activated it successfully, you should see (.venv) in front of your app path

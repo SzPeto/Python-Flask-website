@@ -157,8 +157,9 @@ def send_reset_mail(user):
     msg = Message("Password reset requets", 
                   sender="info.peterszepesi@gmail.com", 
                   recipients=[user.email_username])
+    # _external in body means, the entire link should be returned insted of only the relative
     msg.body = f"""
-To reset your password, please go to the following link : {url_for('password_reset_verified', token=token)}
+To reset your password, please go to the following link : {url_for('password_reset_verified', token=token, _external=True)}
 If you didn't make this request, simply ignore this email and no changes will be done.
 """
     mail.send(msg)
@@ -167,16 +168,25 @@ If you didn't make this request, simply ignore this email and no changes will be
 @app.route("/password-reset", methods=["GET", "POST"])
 def password_reset_initial():
     form = PasswordResetForm()
-    if form.validate_on_submit():
-        email = form.email.data
-        user = User.query.filter_by(email_username=email).first()
-        send_reset_mail(user)
+    if request.method == "POST":
+        if form.validate_on_submit():
+            email = form.email.data
+            user = User.query.filter_by(email_username=email).first()
+            if user:
+                send_reset_mail(user)
+                flash(f"The instructions to reset you password has been sent to : {email}", "success")
+            else:
+                flash("The mail you've entered doesn't exist in database", "warning")
+        else:
+            if form.email.errors:
+                for error in form.email.errors:
+                    flash(error, "warning")
 
     return render_template("password-reset-initial.html", title="Password reset", current_user=current_user,
                            form=form)
 
 # In Flask you dont't have to explicitly define the string, by default a parameter is string
-@app.route("/password-reset/<token>")
+@app.route("/password-reset/<token>", methods=["GET", "POST"])
 def password_reset_verified(token):
     form = PasswordUpdateForm()
 
