@@ -55,6 +55,12 @@ class PasswordResetForm(FlaskForm):
         if email is None:
             raise ValidationError(f"Error, the email {email} isn't registered")
 
+class PasswordResetUpdateForm(FlaskForm):
+    new_password = PasswordField("New password", validators=[DataRequired()])
+    new_password_confirm = PasswordField("Confirm new password", validators=[DataRequired(),
+                                                                                   EqualTo("new_password")])
+    submit = SubmitField("Submit")
+
 class PasswordUpdateForm(FlaskForm):
     current_password = PasswordField("Current password", validators=[DataRequired(), Length(min=6)])
     new_password = PasswordField("New password", validators=[DataRequired()])

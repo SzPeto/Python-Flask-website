@@ -5,7 +5,7 @@ from PIL import Image
 from flask import render_template, url_for, request, flash, abort
 from flask_login import login_user, current_user, logout_user, login_required
 from werkzeug.utils import redirect
-from validators import PasswordResetForm, PasswordUpdateForm, RegistrationForm, LoginForm, UpdateForm, PostForm
+from validators import PasswordResetForm, PasswordResetUpdateForm, PasswordUpdateForm, RegistrationForm, LoginForm, UpdateForm, PostForm
 from flask_mail import Message
 
 from Main import app, db, weather_app_object, functions, bcrypt, mail
@@ -164,9 +164,11 @@ If you didn't make this request, simply ignore this email and no changes will be
 """
     mail.send(msg)
 
-# TODO
+# TODO - review the password reset routes, add if something missing
 @app.route("/password-reset", methods=["GET", "POST"])
 def password_reset_initial():
+    if current_user.is_authenticated:
+        return redirect(url_for("index"))
     form = PasswordResetForm()
     if request.method == "POST":
         if form.validate_on_submit():
@@ -188,10 +190,36 @@ def password_reset_initial():
 # In Flask you dont't have to explicitly define the string, by default a parameter is string
 @app.route("/password-reset/<token>", methods=["GET", "POST"])
 def password_reset_verified(token):
-    form = PasswordUpdateForm()
+    if current_user.is_authenticated:
+        return redirect(url_for("index"))
+    form = PasswordResetUpdateForm()
+    user = User.verify_reset_token(token)
+    if request.method == "POST":
+        if form.validate_on_submit():
+            encrypted_pw = bcrypt.generate_password_hash(form.new_password.data).decode("utf-8")
+            if user:
+                user.password = encrypted_pw
+                db.session.commit()
+                flash("Password updated successfully!", "success")
+                return redirect(url_for("login"))
+            else:
+                flash("Sorry, it seems your token expired, please try again!", "warning")
+                return redirect(url_for("password_reset_initial"))
+        else:
+            if form.new_password.errors:
+                for error in form.new_password.errors:
+                    flash(error, "warning")
+            if form.new_password_confirm.errors:
+                for error in form.new_password_confirm.errors:
+                    flash(error, "warning")
 
-    return render_template("password-reset-verified.html", title="Password reset", current_user=current_user,
+    if user:
+        return render_template("password-reset-verified.html", title="Password reset", user=user,
                            form=form)
+    else:
+        flash("Verification failed, the token is either invalid or it expired, please try again!",
+              "warning")
+        return redirect(url_for("password_reset_initial"))
 
 @app.route("/blog", methods=["GET", "POST"])
 def blog():

@@ -30,7 +30,7 @@ class User(db.Model, UserMixin):
         return token
 
     @staticmethod
-    def verify_reset_token(token, max_age=1800):
+    def verify_reset_token(token, max_age=3600):
         from Main import app
         s = Serializer(app.config.get("SECRET_KEY"))
         try:
