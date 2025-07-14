@@ -6,8 +6,6 @@ from flask_login import current_user
 
 from db_models import User
 
-# TODO - complete the reset and change password
-
 class RegistrationForm(FlaskForm):
     email_username = StringField("Email - username", validators=[DataRequired(), Email()])
     password = PasswordField("Password", validators=[DataRequired(), Length(min=6)])

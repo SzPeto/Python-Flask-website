@@ -11,53 +11,46 @@ from flask_mail import Message
 from Main import app, db, weather_app_object, functions, bcrypt, mail
 from db_models import User, Post
 
-# TODO - Complete the routes for reset and change password
-
+# ==============================================================================================================================
+#                                                           Main routes
+# ==============================================================================================================================
 @app.route("/")
 def index():
     return render_template("index.html", title = "Home", current_user=current_user)
 
-@app.route("/weather-app", methods = ["GET", "POST"])
-def weather_app():
-    if request.method == "POST":
-        weather_app_object.city_name = request.form.get("city-input").lower()
-        weather_app_object.get_weather()
-        #print(f"def weather_app - weather_app_object.data : {weather_app_object.data}")
-        if weather_app_object.data:
-            return render_template("weather-app.html", title = "Weather app by Peter Szepesi",
-                                   data = weather_app_object.data, local_time = weather_app_object.local_time,
-                                   misc_data = weather_app_object.misc_data,
-                                   astro_data=weather_app_object.astro_data,
-                                   uv_index = weather_app_object.uv_index,
-                                   uv_desc = weather_app_object.uv_description,
-                                   weather_icon = weather_app_object.weather_icon_path,
-                                   temperature = weather_app_object.temperature,
-                                   temp_sign = weather_app_object.temp_sign,
-                                   wind_symbol = weather_app_object.wind_symbol,
-                                   wind_speed=weather_app_object.wind_speed,
-                                   speed_unit = weather_app_object.speed_unit,
-                                   active_tab = "current", geo_data = weather_app_object.geo_data,
-                                   sunrise = weather_app_object.sunrise, sunset = weather_app_object.sunset,
-                                   current_user=current_user)
+
+
+
+# ==============================================================================================================================
+#                                                     User management routes
+# ==============================================================================================================================
+# User functions
+def save_profile_image(profile_image):
+    picture_file = os.path.splitext(profile_image.filename) # This returns a tuple of file name and the extension
+    new_file_name = (f"{current_user.email_username}_{picture_file[0]}_"
+                     f"{datetime.datetime.now().strftime('%Y%m%d%H%M%S')}"
+                     f"{picture_file[1]}")
+    safe_file_name = ""
+    for i in range(0, len(new_file_name)):
+        if new_file_name[i].isspace():
+            safe_file_name += "_"
         else:
-            return redirect("/weather-app")
+            safe_file_name += new_file_name[i]
+    picture_path = os.path.join(app.root_path, "static/Images/profile_images", safe_file_name)
+    # Resizing the image
+    new_image = Image.open(profile_image)
+    new_image_size = (240, 240)
+    new_image.thumbnail(new_image_size)
+    new_image.save(picture_path)
+    return safe_file_name
 
-    return render_template("weather-app.html", title = "Weather app by Peter Szepesi",
-                           data = weather_app_object.data, local_time = weather_app_object.local_time,
-                           misc_data=weather_app_object.misc_data,
-                           astro_data=weather_app_object.astro_data,
-                           uv_index=weather_app_object.uv_index,
-                           uv_desc=weather_app_object.uv_description,
-                           weather_icon = weather_app_object.weather_icon_path,
-                           temperature = weather_app_object.temperature,
-                           temp_sign = weather_app_object.temp_sign,
-                           wind_symbol = weather_app_object.wind_symbol,
-                           wind_speed = weather_app_object.wind_speed,
-                           speed_unit = weather_app_object.speed_unit,
-                           active_tab = "current", geo_data = weather_app_object.geo_data,
-                           sunrise = weather_app_object.sunrise, sunset = weather_app_object.sunset,
-                           current_user=current_user)
+def delete_old_image():
+    old_image_path = f"static/Images/profile_images/{current_user.image_file}"
+    if os.path.exists(old_image_path):
+        if current_user.image_file != "Default - user.jpg" and current_user.image_file != "Default - user.png":
+            os.remove(old_image_path)
 
+# Register, login, logout, profile
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if current_user.is_authenticated:
@@ -84,15 +77,7 @@ def register():
             if form.confirm_password.errors:
                 for error in form.confirm_password.errors:
                     flash(f"Confirm password : {error}", "warning")
-
-    # For debugging purposes only
-    entries = User.query.all()
-    for i in range(0, len(entries)):
-        print(entries[i]) # Since we have defined __repr__ of class, we can print the string representation of object
-        for j in range(0, len(entries[i].posts)):
-            print(entries[i].posts[j])
-
-    # Rendering the page
+    
     return render_template("register.html", title="Register", form=form,
                            current_user=current_user)
 
@@ -126,6 +111,51 @@ def login():
     return render_template("login.html", title="Login", form=form,
                            current_user=current_user)
 
+@app.route("/logout")
+def logout():
+    logout_user()
+    flash("You have been logged out!", "success")
+    return redirect(url_for("login"))
+
+@app.route("/user", methods=["GET", "POST"])
+@login_required # It means we can access this route only if a user is logged in
+def user():
+    form = UpdateForm()
+    if request.method == "POST":
+        if form.validate_on_submit():
+            if form.picture_file.data:
+                picture_file_name = save_profile_image(form.picture_file.data)
+                delete_old_image()
+                current_user.image_file = picture_file_name
+            current_user.email_username = form.email_username.data
+            db.session.commit()
+            flash("Account successfully updated!", "success")
+        else:
+            if form.email_username.errors:
+                for error in form.email_username.errors:
+                    flash(f"Email - username : {error}", "warning")
+            if form.picture_file.errors:
+                for error in form.picture_file.errors:
+                    flash(f"Profile picture : {error}", "warning")
+
+    # Setting the value of input field to be the current_user.email_username
+    form.email_username.data = current_user.email_username
+    return render_template("user.html", title="User account", current_user=current_user,
+                           form=form)
+
+# Password management
+def send_reset_mail(user):
+    token = user.get_reset_token()
+    msg = Message("Password reset requets", 
+                  sender="info.peterszepesi@gmail.com", 
+                  recipients=[user.email_username])
+    # _external in body means, the entire link should be returned insted of only the relative
+    msg.body = f"""
+To reset your password, please go to the following link : {url_for('password_reset_verified', token=token, _external=True)}
+If you didn't make this request, simply ignore this email and no changes will be done.
+"""
+    mail.send(msg)
+
 @app.route("/change-password", methods=["GET", "POST"])
 @login_required
 def change_password():
@@ -152,19 +182,6 @@ def change_password():
             
     return render_template("change-password.html", title="Password change", current_user=current_user, form=form)
 
-def send_reset_mail(user):
-    token = user.get_reset_token()
-    msg = Message("Password reset requets", 
-                  sender="info.peterszepesi@gmail.com", 
-                  recipients=[user.email_username])
-    # _external in body means, the entire link should be returned insted of only the relative
-    msg.body = f"""
-To reset your password, please go to the following link : {url_for('password_reset_verified', token=token, _external=True)}
-If you didn't make this request, simply ignore this email and no changes will be done.
-"""
-    mail.send(msg)
-
-# TODO - review the password reset routes, add if something missing
 @app.route("/password-reset", methods=["GET", "POST"])
 def password_reset_initial():
     if current_user.is_authenticated:
@@ -221,6 +238,59 @@ def password_reset_verified(token):
               "warning")
         return redirect(url_for("password_reset_initial"))
 
+
+
+
+# ==============================================================================================================================
+#                                                       Weather app routes
+# ==============================================================================================================================
+@app.route("/weather-app", methods = ["GET", "POST"])
+def weather_app():
+    if request.method == "POST":
+        weather_app_object.city_name = request.form.get("city-input").lower()
+        weather_app_object.get_weather()
+        #print(f"def weather_app - weather_app_object.data : {weather_app_object.data}")
+        if weather_app_object.data:
+            return render_template("weather-app.html", title = "Weather app by Peter Szepesi",
+                                   data = weather_app_object.data, local_time = weather_app_object.local_time,
+                                   misc_data = weather_app_object.misc_data,
+                                   astro_data=weather_app_object.astro_data,
+                                   uv_index = weather_app_object.uv_index,
+                                   uv_desc = weather_app_object.uv_description,
+                                   weather_icon = weather_app_object.weather_icon_path,
+                                   temperature = weather_app_object.temperature,
+                                   temp_sign = weather_app_object.temp_sign,
+                                   wind_symbol = weather_app_object.wind_symbol,
+                                   wind_speed=weather_app_object.wind_speed,
+                                   speed_unit = weather_app_object.speed_unit,
+                                   active_tab = "current", geo_data = weather_app_object.geo_data,
+                                   sunrise = weather_app_object.sunrise, sunset = weather_app_object.sunset,
+                                   current_user=current_user)
+        else:
+            return redirect("/weather-app")
+
+    return render_template("weather-app.html", title = "Weather app by Peter Szepesi",
+                           data = weather_app_object.data, local_time = weather_app_object.local_time,
+                           misc_data=weather_app_object.misc_data,
+                           astro_data=weather_app_object.astro_data,
+                           uv_index=weather_app_object.uv_index,
+                           uv_desc=weather_app_object.uv_description,
+                           weather_icon = weather_app_object.weather_icon_path,
+                           temperature = weather_app_object.temperature,
+                           temp_sign = weather_app_object.temp_sign,
+                           wind_symbol = weather_app_object.wind_symbol,
+                           wind_speed = weather_app_object.wind_speed,
+                           speed_unit = weather_app_object.speed_unit,
+                           active_tab = "current", geo_data = weather_app_object.geo_data,
+                           sunrise = weather_app_object.sunrise, sunset = weather_app_object.sunset,
+                           current_user=current_user)
+
+
+
+
+# ==============================================================================================================================
+#                                                        Blog routes
+# ==============================================================================================================================
 @app.route("/blog", methods=["GET", "POST"])
 def blog():
     # get the page number from args - after ? in url, access the multidict value of "page", if no value, default it
@@ -307,60 +377,3 @@ def edit_post(post_id):
 
     return render_template("edit-post.html", title="Edit post", current_user=current_user,
                            form=form, entry=entry)
-
-@app.route("/logout")
-def logout():
-    logout_user()
-    flash("You have been logged out!", "success")
-    return redirect(url_for("login"))
-
-def save_profile_image(profile_image):
-    picture_file = os.path.splitext(profile_image.filename) # This returns a tuple of file name and the extension
-    new_file_name = (f"{current_user.email_username}_{picture_file[0]}_"
-                     f"{datetime.datetime.now().strftime('%Y%m%d%H%M%S')}"
-                     f"{picture_file[1]}")
-    safe_file_name = ""
-    for i in range(0, len(new_file_name)):
-        if new_file_name[i].isspace():
-            safe_file_name += "_"
-        else:
-            safe_file_name += new_file_name[i]
-    picture_path = os.path.join(app.root_path, "static/Images/profile_images", safe_file_name)
-    # Resizing the image
-    new_image = Image.open(profile_image)
-    new_image_size = (240, 240)
-    new_image.thumbnail(new_image_size)
-    new_image.save(picture_path)
-    return safe_file_name
-
-def delete_old_image():
-    old_image_path = f"static/Images/profile_images/{current_user.image_file}"
-    if os.path.exists(old_image_path):
-        if current_user.image_file != "Default - user.jpg" and current_user.image_file != "Default - user.png":
-            os.remove(old_image_path)
-
-@app.route("/user", methods=["GET", "POST"])
-@login_required # It means we can access this route only if a user is logged in
-def user():
-    form = UpdateForm()
-    if request.method == "POST":
-        if form.validate_on_submit():
-            if form.picture_file.data:
-                picture_file_name = save_profile_image(form.picture_file.data)
-                delete_old_image()
-                current_user.image_file = picture_file_name
-            current_user.email_username = form.email_username.data
-            db.session.commit()
-            flash("Account successfully updated!", "success")
-        else:
-            if form.email_username.errors:
-                for error in form.email_username.errors:
-                    flash(f"Email - username : {error}", "warning")
-            if form.picture_file.errors:
-                for error in form.picture_file.errors:
-                    flash(f"Profile picture : {error}", "warning")
-
-    # Setting the value of input field to be the current_user.email_username
-    form.email_username.data = current_user.email_username
-    return render_template("user.html", title="User account", current_user=current_user,
-                           form=form)

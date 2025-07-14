@@ -4,7 +4,7 @@ app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///database.db" # It has to be in root folder
 db = SQLAlchemy(app)
 
-# Model class
+# Model class **********************************************************************************************************
 class Entry(db.Model):
     # You can't have the self parameter, since we are inheriting from SQLAlchemy model
     id = db.Column(db.Integer, primary_key = True, autoincrement = True)
@@ -16,6 +16,27 @@ class Entry(db.Model):
     def __repr__(self) -> str: # Repr dunder method represents the string representation of object
                                # -> This symbol means type hinting, mostly for autocomplete purposes
         return f"Task {self.id}"
+
+# Foreign keys **********************************************************************************************************
+class User(db.Model, UserMixin):
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    email_username = db.Column(db.String(50), nullable=False, unique=True)
+    password = db.Column(db.String(60), nullable=False)
+    image_file = db.Column(db.String(20), nullable=False, default="Default - user.jpg")
+    posts = db.relationship("Post", backref="user", lazy=True) # One to many
+
+    # Instance string representation - if you print the instance directly
+    def __repr__(self) -> str:
+        return f"User : {self.id}, {self.email_username}, {self.image_file}"
+
+class Post(db.Model):
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    date_posted = db.Column(db.String(22), nullable=False,
+                            default=datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+    content = db.Column(db.Text, nullable=False)
+    title = db.Column(db.String(100), nullable=False)
+    # Here user.id is with lower, since SQLAlchemy converts automatically the class name to lower table name
+    user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False) # Many to one - foreign key
 
 # Most important commands
 # 1. Add a new entry
