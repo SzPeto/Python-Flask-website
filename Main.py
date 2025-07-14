@@ -12,32 +12,39 @@ import secrets
 
 from db_models import db, login_manager
 
-# Master *****************************************************************************************************
+
+# ==============================================================================================================================
+#                                                           Master
+# ==============================================================================================================================
+
 load_dotenv()
 app = Flask(__name__)
+# Get the secret key like : secrets.token_hex(16)
+app.config.update({
+    "SECRET_KEY":os.environ.get("APP_SECRET_KEY"),
+    "SQLALCHEMY_DATABASE_URI":"sqlite:///database.db",
+    "MAIL_SERVER": "smtp.googlemail.com",
+    "MAIL_PORT": 587,
+    "MAIL_USE_TLS": True,
+    "MAIL_USERNAME": os.environ.get("EMAIL_USERNAME"),
+    "MAIL_PASSWORD": os.environ.get("EMAIL_PASSWORD")
+})
 weather_app_object = WeatherApp()
 functions = Functions()
 is_first_log = True
-# Get it like : secrets.token_hex(16)
-app.config.update({"SECRET_KEY":os.environ.get("APP_SECRET_KEY")})
-app.config.update({"SQLALCHEMY_DATABASE_URI":"sqlite:///database.db"})
 db.init_app(app)
 bcrypt = Bcrypt(app)
 csrf = CSRFProtect(app)
 login_manager.init_app(app)
 login_manager.login_view = "login" # if someone tries to access a @login_required route
 login_manager.login_message_category = "info"
-# Mailing
-app.config.update({
-    "MAIL_SERVER": "smtp.googlemail.com",
-    "MAIL_PORT": 587,
-    "MAIL_USE_TLS": True,
-    "MAIL_USERNAME": os.environ.get("EMAIL_USERNAME"),
-    "MAIL_PASSWORD": os.environ.get("EMAIL_PASSWORD"),
-})
 mail = Mail(app)
 
-# Main *******************************************************************************************************
+
+# ==============================================================================================================================
+#                                                            Main
+# ==============================================================================================================================
+
 if __name__ == "__main__":
     if os.environ.get("WERKZEUG_RUN_MAIN") == "true":
         functions.write_log("******************************* Initial run *******************************************")

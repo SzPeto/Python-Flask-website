@@ -8,19 +8,19 @@
   display: grid;            /* Enables Grid layout for children */
   display: none;            /* Hides element from layout and view */
 
-  /* Flexbox */
-  display: flex;
-    flex-direction: row;       /* Arrange children horizontally */
-    justify-content: center;   /* Align children in the direction of flex inside container */
-    align-items: center;       /* Align children cross-flex direction inside container */
-    gap: 1rem;                 /* Space between flex items */
+    /* Flexbox */
+    display: flex;
+      flex-direction: row;       /* Arrange children horizontally */
+      justify-content: center;   /* Align children in the direction of flex inside container */
+      align-items: center;       /* Align children cross-flex direction inside container */
+      gap: 1rem;                 /* Space between flex items */
 
-  /* Grid */
-  display: grid;
-    grid-template-columns: repeat(3, 1fr);  /* 3 equal columns */
-    grid-gap: 20px;                         /* Space between grid items */
-    grid-template-columns: 150px 1fr; /*First column is 150px wide Second column takes up all the remaining space (fr stands for fraction of available space)*/
-    gap: 15px 20px; /* row gap, column gap */
+    /* Grid */
+    display: grid;
+      grid-template-columns: repeat(3, 1fr);  /* 3 equal columns */
+      grid-gap: 20px;                         /* Space between grid items */
+      grid-template-columns: 150px 1fr; /*First column is 150px wide Second column takes up all the remaining space (fr stands for fraction of available space)*/
+      gap: 15px 20px; /* row gap, column gap */
 
   /* Positioning */
   position: static;     /* Default, element flows normally */
@@ -34,6 +34,13 @@
 
   /* Box Model */
   box-sizing: border-box; /* Includes padding and border inside width/height */
+      /* Example usage, recommended to use most of the time */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box; /* Use it to have all boxes the defined dimension, paddings and margins included */
+      }
+
   width: 100%;            /* Full width of parent container */
   max-width: 1200px;      /* Limits max width (useful for responsiveness) */
   height: auto;           /* Height adjusts based on content */

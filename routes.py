@@ -11,19 +11,20 @@ from flask_mail import Message
 from Main import app, db, weather_app_object, functions, bcrypt, mail
 from db_models import User, Post
 
+
 # ==============================================================================================================================
 #                                                           Main routes
 # ==============================================================================================================================
+
 @app.route("/")
 def index():
     return render_template("index.html", title = "Home", current_user=current_user)
 
 
-
-
 # ==============================================================================================================================
 #                                                     User management routes
 # ==============================================================================================================================
+
 # User functions
 def save_profile_image(profile_image):
     picture_file = os.path.splitext(profile_image.filename) # This returns a tuple of file name and the extension
@@ -36,7 +37,7 @@ def save_profile_image(profile_image):
             safe_file_name += "_"
         else:
             safe_file_name += new_file_name[i]
-    picture_path = os.path.join(app.root_path, "static/Images/profile_images", safe_file_name)
+    picture_path = os.path.join(app.root_path, "static", "Images", "profile_images", safe_file_name)
     # Resizing the image
     new_image = Image.open(profile_image)
     new_image_size = (240, 240)
@@ -45,7 +46,7 @@ def save_profile_image(profile_image):
     return safe_file_name
 
 def delete_old_image():
-    old_image_path = f"static/Images/profile_images/{current_user.image_file}"
+    old_image_path = os.path.join(app.root_path, "static", "Images", "profile_images", current_user.image_file)
     if os.path.exists(old_image_path):
         if current_user.image_file != "Default - user.jpg" and current_user.image_file != "Default - user.png":
             os.remove(old_image_path)
@@ -239,11 +240,10 @@ def password_reset_verified(token):
         return redirect(url_for("password_reset_initial"))
 
 
-
-
 # ==============================================================================================================================
 #                                                       Weather app routes
 # ==============================================================================================================================
+
 @app.route("/weather-app", methods = ["GET", "POST"])
 def weather_app():
     if request.method == "POST":
@@ -286,11 +286,10 @@ def weather_app():
                            current_user=current_user)
 
 
-
-
 # ==============================================================================================================================
 #                                                        Blog routes
 # ==============================================================================================================================
+
 @app.route("/blog", methods=["GET", "POST"])
 def blog():
     # get the page number from args - after ? in url, access the multidict value of "page", if no value, default it

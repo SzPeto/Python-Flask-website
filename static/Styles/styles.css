@@ -2,7 +2,7 @@
 *,
 *::before,
 *::after {
-  box-sizing: border-box; /* Use is to have all boxes the defined dimension, paddings and margins included */
+  box-sizing: border-box; /* Use it to have all boxes the defined dimension, paddings and margins included */
 }
 
 body {
