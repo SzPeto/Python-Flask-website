@@ -8,7 +8,7 @@ weather_app_bp = Blueprint("weather_app_bp", __name__)
 @weather_app_bp.route("/weather-app", methods = ["GET", "POST"])
 def weather_app():
     if request.method == "POST":
-        weather_app_object.city_name = request.form.get("city-input").lower()
+        weather_app_object.city_name = request.form.get("city-input", " ").lower() # Here we set default to " " to avoid crash 
         weather_app_object.get_weather()
         #print(f"def weather_app - weather_app_object.data : {weather_app_object.data}")
         if weather_app_object.data:

@@ -1,6 +1,7 @@
 import datetime
 import os.path
 
+# TODO - refactor with os.path.join
 class Functions:
     def __init__(self):
         self.log_file = self.create_path("Log\\log.txt")

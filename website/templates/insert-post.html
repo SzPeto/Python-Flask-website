@@ -2,7 +2,7 @@
 
 {% block body %}
     <div class="base-container">
-        <form method="POST" action="{{ url_for('insert_post') }}">
+        <form method="POST" action="{{ url_for('blog_bp.insert_post') }}">
             {{ form.hidden_tag() }}
             <div class="base-container-centered-content">
                 <p style="font-size: 18px;">Create a new post as : {{ current_user.email_username }}</p>

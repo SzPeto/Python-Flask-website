@@ -36,7 +36,7 @@ def insert_post():
             db.session.add(entry)
             db.session.commit()
             flash("Post added", "success")
-            return redirect(url_for("blog"))
+            return redirect(url_for("blog_bp.blog"))
         else:
             if form.post_title.errors:
                 for error in form.post_title.errors:
@@ -60,7 +60,7 @@ def delete_post(post_id):
     db.session.commit()
     flash("The post has been successfully deleted!", "success")
 
-    return redirect(url_for("blog"))
+    return redirect(url_for("blog_bp.blog"))
 
 @blog_bp.route("/blog/edit-post/<int:post_id>", methods=["GET", "POST"])
 @login_required
@@ -77,7 +77,7 @@ def edit_post(post_id):
             entry.content = form.post_content.data
             db.session.commit()
             flash("Post successfully updated", "success")
-            return redirect(url_for("blog"))
+            return redirect(url_for("blog_bp.blog"))
         else:
             if form.post_title.errors:
                 for error in form.post_title.errors:

@@ -4,7 +4,7 @@
     <main>
         <div class="base-container" style="margin-top: 35px;">
             <p class="login-title-label">Register new user</p>
-            <form method="POST" action="{{ url_for('register') }}">
+            <form method="POST" action="{{ url_for('users_bp.register') }}">
                 {{ form.hidden_tag() }} <!-- This line is needed for security reasons -->
                 <div class="register-grid">
                     {{ form.email_username.label(class="login-label") }}
@@ -18,7 +18,7 @@
             </form>
             <div class="account-already-container">
                 <p>Already have an account?</p>
-                <a href="{{ url_for('login') }}" class="account-already-button">Login</a>
+                <a href="{{ url_for('users_bp.login') }}" class="account-already-button">Login</a>
             </div>
         </div>
     </main>

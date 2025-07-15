@@ -5,16 +5,9 @@
     <main>
 
         <div class="v-box-container-main">
-            <div class="switch-bar" hidden>
-              <a href="/weather-app" class="switch-tab {% if active_tab == 'current' %}active{% endif %}">Current</a>
-              <a href="/weather-app" class="switch-tab {% if active_tab == 'forecast' %}active{% endif %}">Forecast</a>
-            </div>
             <div class="h-box-main-1">
-
                 <div class="v-box-left">
-
                     <p class="section-label">Current weather</p>
-
                     <form method="POST" action="/weather-app">
                         <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                         <input class="weather-input" type="text" id="city-input" name="city-input" placeholder="Enter a city name"><br>
@@ -26,10 +19,8 @@
                     {% else %}
                         <p class="current-time-label">No data...</p>
                     {% endif %}
-
                 </div>
                 <div class="v-box-right">
-
                     {% if data %}
                         <p class="current-weather-label">{{ geo_data[0].get("name") }},
                         {{ geo_data[0].get("country") }}</p><br><br>
@@ -91,9 +82,7 @@
                             <p class="wind-symbol">{{ wind_symbol }}</p>
                         </div>
                     </div>
-                    
                 </div>
-
             </div>
             <div class="h-box-main-2">
                 <div class="sunset-sunrise-icon-container">

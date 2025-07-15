@@ -2,7 +2,7 @@
 
 {% block body %}
     <div class="base-container">
-        <form action="{{ url_for('edit_post', post_id=entry.id) }}" method="POST">
+        <form action="{{ url_for('blog_bp.edit_post', post_id=entry.id) }}" method="POST">
             {{ form.hidden_tag() }}
             <input type="text" hidden name="event" value="submit-changes">
             <div class="base-container-centered-content">

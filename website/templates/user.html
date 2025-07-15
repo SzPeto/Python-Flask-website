@@ -8,7 +8,7 @@
         <hr>
         <p>Edit user info : </p>
         <!-- Use enctype="multipart/form-data" when sending files with form, otherwise it will fail -->
-        <form method="POST" action="{{ url_for('user') }}" enctype="multipart/form-data">
+        <form method="POST" action="{{ url_for('users_bp.user') }}" enctype="multipart/form-data">
             {{ form.hidden_tag() }}
             <div class="base-v-box">
                 <div class="base-h-box">
@@ -26,12 +26,10 @@
         <p>Password management : </p>
         <div class="base-h-box">
             <!-- window.location is a JS object of current browser window/tab, href is access to address bar -->
-            <button onclick="window.location.href='{{ url_for('change_password') }}'" 
+            <button onclick="window.location.href='{{ url_for('users_bp.change_password') }}'" 
                     class="base-button-blue"> <!-- TODO - Complete the routes -->
                 Change password
             </button>
         </div>
     </div>
-
-
 {% endblock %}
