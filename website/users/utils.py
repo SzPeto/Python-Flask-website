@@ -6,9 +6,9 @@ from flask_mail import Message
 from PIL import Image
 
 from website import mail
-from run import app
 
 def save_profile_image(profile_image):
+    from run import app
     picture_file = os.path.splitext(profile_image.filename) # This returns a tuple of file name and the extension
     new_file_name = (f"{current_user.email_username}_{picture_file[0]}_"
                      f"{datetime.datetime.now().strftime('%Y%m%d%H%M%S')}"
@@ -28,6 +28,7 @@ def save_profile_image(profile_image):
     return safe_file_name
 
 def delete_old_image():
+    from run import app
     old_image_path = os.path.join(app.root_path, "static", "Images", "profile_images", current_user.image_file)
     if os.path.exists(old_image_path):
         if current_user.image_file != "Default - user.jpg" and current_user.image_file != "Default - user.png":

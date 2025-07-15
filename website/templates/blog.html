@@ -7,7 +7,7 @@
         </div>
     {% else %}
         <div class="base-container-centered-content">
-            <a href="{{ url_for('blog_bp.login') }}" class="login-blog-button">Please log in to create a new post</a>
+            <a href="{{ url_for('users_bp.login') }}" class="login-blog-button">Please log in to create a new post</a>
         </div>
     {% endif %}
     {% if user_id %}
