@@ -31,7 +31,6 @@ app.config.update({
 })
 weather_app_object = WeatherApp()
 functions = Functions()
-is_first_log = True
 db.init_app(app)
 bcrypt = Bcrypt(app)
 csrf = CSRFProtect(app)
@@ -46,10 +45,6 @@ mail = Mail(app)
 # ==============================================================================================================================
 
 if __name__ == "__main__":
-    if os.environ.get("WERKZEUG_RUN_MAIN") == "true":
-        functions.write_log("******************************* Initial run *******************************************")
-        is_first_log = False
-
     with app.app_context():
         db.create_all()
 

@@ -21,11 +21,6 @@ class Functions:
         return path
 
     def write_log(self, text):
-        import Main
         timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        if Main.is_first_log:
-            with open(self.log_file, "a", encoding = "UTF-8") as log_file:
-                log_file.write(f"\n\n{timestamp} - {text}")
-        else:
-            with open(self.log_file, "a", encoding = "UTF-8") as log_file:
-                log_file.write(f"{timestamp} - {text}")
+        with open(self.log_file, "a", encoding = "UTF-8") as log_file:
+            log_file.write(f"{timestamp} - {text}\n")

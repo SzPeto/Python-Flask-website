@@ -51,6 +51,17 @@ def delete_old_image():
         if current_user.image_file != "Default - user.jpg" and current_user.image_file != "Default - user.png":
             os.remove(old_image_path)
 
+def get_client_info():
+    # Check the real IP, if behind proxy, x_forwarded_for finds the real IP
+    x_forwarded_for = request.headers.get("X-Forwarded-For")
+    if x_forwarded_for:
+        ip = x_forwarded_for.split(",")[0].strip() # Splits the ip addresses into a list where commas, than we acces the first
+    else:
+        ip = request.remote_addr
+    # Agent
+    agent = request.headers.get("User-Agent", "Unknown")
+    return f"IP : {ip}, Agent : {agent}"
+
 # Register, login, logout, profile
 @app.route("/register", methods=["GET", "POST"])
 def register():
@@ -98,8 +109,10 @@ def login():
                     return redirect(url_for("index"))
                 else:
                     flash("Invalid password!", "warning")
+                    functions.write_log(f"Invalid login - wrong password : {form.email_username.data}, {get_client_info()}")
             else:
                 flash(f"{form.email_username.data} : account doesn't exist!", "warning")
+                functions.write_log(f"Invalid login - wrong username : {form.email_username.data}, {get_client_info()}")
 
         else:
             if form.email_username.errors:
@@ -232,6 +245,7 @@ def password_reset_verified(token):
                     flash(error, "warning")
 
     if user:
+        flash("Verification successful, now you can change your password", "success")
         return render_template("password-reset-verified.html", title="Password reset", user=user,
                            form=form)
     else:

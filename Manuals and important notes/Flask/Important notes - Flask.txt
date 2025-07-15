@@ -1,0 +1,7 @@
+If you use Jinja2 in JS or html attribute, that can be controlled from outside, use escape!
+
+Example:
+<div class="{{ user_input|escape }}" ></div> - this is dangerous, because anyone can insert dangerous content, so use escape
+
+with JS always use escape
+<div  onclick="alert('{{ post.user.email_username|escape }}')"></div> - here use always escape, even if it's not user controlled

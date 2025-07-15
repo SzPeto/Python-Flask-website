@@ -1,0 +1,20 @@
+In python, you create different packages of you app simply by creating a folder, which has to contain __init__.py file,
+that tells the system that it is a package
+
+The function of __init__.py file inside a package folder:
+    1. Marks a folder as a Python package, like a .py file, which is now importable
+        - Without this file, Python may not treat the folder as importable.
+        - Enables you to import the folder using dot notation (e.g., import mypackage).
+
+    2. Runs initialization code when the package is imported
+        - Code inside __init__.py runs automatically once upon import.
+        - Useful for setting up package-level variables, imports, or configurations.
+
+    3. Controls what is exposed from the package
+        - Can define __all__ to specify which submodules or objects are accessible via 'from package import *'.
+        - Can re-export functions, classes, or variables for easier external access.
+
+    Summary:
+    - __init__.py turns a folder into an importable Python module.
+    - It acts like a constructor for the package.
+    - It helps organize and simplify your code structure.
