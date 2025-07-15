@@ -22,14 +22,14 @@ class User(db.Model, UserMixin):
     posts = db.relationship("Post", backref="user", lazy=True)
 
     def get_reset_token(self):
-        from Main import app
+        from run import app
         s = Serializer(app.config.get("SECRET_KEY"))
         token = s.dumps({"user_id": self.id})
         return token
 
     @staticmethod
     def verify_reset_token(token, max_age=3600):
-        from Main import app
+        from run import app
         s = Serializer(app.config.get("SECRET_KEY"))
         try:
             data = s.loads(token, max_age=max_age)

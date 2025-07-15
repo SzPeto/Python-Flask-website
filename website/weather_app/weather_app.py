@@ -2,7 +2,7 @@ import os
 import datetime
 
 import requests
-from functions import Functions
+from website.main.functions import Functions
 
 class WeatherApp:
     def __init__(self):

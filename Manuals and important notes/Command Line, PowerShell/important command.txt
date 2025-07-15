@@ -1,0 +1,1 @@
+tree /F /A > project_tree.txt - make a tree txt from a project, make it from a folder you want to create tree from

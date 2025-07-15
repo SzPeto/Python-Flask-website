@@ -1,0 +1,2 @@
+# Gitignore
+    • In python it should contain most importantly !!! .env !!! and .venv/ too
