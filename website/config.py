@@ -10,3 +10,5 @@ class Config:
     MAIL_USE_TLS = True
     MAIL_USERNAME = os.environ.get("EMAIL_USERNAME")
     MAIL_PASSWORD = os.environ.get("EMAIL_PASSWORD")
+    SESSION_COOKIE_HTTPONLY = True
+    SESSION_COOKIE_SECURE = True

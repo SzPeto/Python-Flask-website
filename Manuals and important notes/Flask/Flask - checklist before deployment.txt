@@ -1,3 +1,70 @@
+Deployment Pre-Launch Checklist
+
+Security
+    Secrets and Configuration
+        Ensure all secret keys (e.g., SECRET_KEY) are set securely and not hardcoded
+        Verify environment variables are used for sensitive info (API keys, DB passwords)
+        Confirm debug mode is OFF (e.g., Flask DEBUG = False)
+    Authentication and Authorization
+        Confirm strong password policies and hashing (bcrypt or better)
+        Verify login rate limiting is implemented to prevent brute force attacks
+        Check session management settings (secure, HttpOnly cookies, expiration)
+        Ensure HTTPS is enforced (SSL certificates installed and redirect enabled)
+    Input Validation and Sanitization
+        Validate and sanitize all user inputs to prevent injection attacks (SQL, XSS)
+        All forms use CSRF protection (e.g. Flask-WTF or `{{ form.csrf_token }}`)
+    Logging and Monitoring
+        Confirm sensitive info is NOT logged (passwords, secrets)
+        Ensure logging is properly set up to capture errors and suspicious activity
+        Verify monitoring and alerting systems are in place for uptime and security
+    Template security
+        JavaScript → escaped with `|escape`
+        HTML attributes → escaped with `|escape`
+
+Functionality
+    Core Features
+        Test all main user flows manually (login, registration, logout, password reset)
+        Verify error messages are user-friendly and do not leak sensitive info
+        Confirm email notifications (if any) are configured and working
+    Data and Database
+        Check database migrations are applied and backups are scheduled
+        Verify data validation on both client and server side
+        Confirm database credentials and access are restricted appropriately
+
+Performance and Stability
+    Load and Stress Testing
+        Run basic load tests to confirm app handles expected traffic gracefully
+        Check caching mechanisms (e.g., Flask-Caching, CDN) are configured if needed
+    Resource Management
+        Monitor memory, CPU, and disk usage during testing
+        Verify proper handling of long-running requests and timeouts
+
+Infrastructure and Deployment
+    Environment
+        Confirm deployment environment matches development/staging (Python version, dependencies)
+        Check requirements.txt or equivalent dependency file is up to date
+        Verify virtual environments or containers are used properly
+    Deployment Process
+        Ensure automated deployment or rollback mechanisms are tested
+        Confirm static files are collected/served correctly (Flask static folder, CDN)
+        Validate web server configuration (gunicorn, nginx, apache) is optimized
+
+Documentation and Backup
+    Documentation
+        Update README with deployment instructions and environment setup
+        Document configuration variables and secrets management process
+    Backup and Recovery
+        Confirm regular backups of database and critical data
+        Test restore procedure from backups
+
+Miscellaneous
+    Accessibility and SEO
+        Verify site is accessible on major browsers and devices
+        Check basic SEO meta tags and sitemap are in place
+    Legal and Compliance
+        Confirm privacy policy and terms of service are up to date
+        Ensure compliance with relevant laws (GDPR, CCPA, etc.)
+
 ✅ DEPLOYMENT SECURITY CHECKLIST (Flask + Jinja2)
 
 TEMPLATE SECURITY (Jinja2):

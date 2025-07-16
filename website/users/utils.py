@@ -66,7 +66,7 @@ def send_reset_mail(user):
                   recipients=[user.email_username])
     # _external in body means, the entire link should be returned insted of only the relative
     msg.body = f"""
-To reset your password, please go to the following link : {url_for('password_reset_verified', token=token, _external=True)}
+To reset your password, please go to the following link : {url_for('users_bp.password_reset_verified', token=token, _external=True)}
 If you didn't make this request, simply ignore this email and no changes will be done.
 """
     mail.send(msg)
