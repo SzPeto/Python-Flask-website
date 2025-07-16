@@ -22,7 +22,6 @@ def create_app(config_class=Config):
     load_dotenv()
     app = Flask(__name__)
     app.config.from_object(config_class)
-    print(app.config.get("SQLALCHEMY_DATABASE_URI"))
 
     db.init_app(app)
     bcrypt.init_app(app)
