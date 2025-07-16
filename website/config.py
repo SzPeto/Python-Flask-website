@@ -1,4 +1,5 @@
 
+from datetime import timedelta
 import os
 
 
@@ -12,3 +13,4 @@ class Config:
     MAIL_PASSWORD = os.environ.get("EMAIL_PASSWORD")
     SESSION_COOKIE_HTTPONLY = True
     SESSION_COOKIE_SECURE = True
+    PERMANENT_SESSION_LIFETIME = timedelta(minutes=30)
