@@ -5,6 +5,8 @@ Security
         Ensure all secret keys (e.g., SECRET_KEY) are set securely and not hardcoded
         Verify environment variables are used for sensitive info (API keys, DB passwords)
         Confirm debug mode is OFF (e.g., Flask DEBUG = False)
+        If using render, set the port to 10000
+        Install gunicorn (pip install gunicorn) and freeze the requirements.txt with gunicorn installed
     Authentication and Authorization
         Confirm strong password policies and hashing (bcrypt or better)
         Verify login rate limiting is implemented to prevent brute force attacks
