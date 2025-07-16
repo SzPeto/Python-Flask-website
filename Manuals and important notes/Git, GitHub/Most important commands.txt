@@ -1,4 +1,103 @@
 # Gitignore
     • In python it should contain most importantly !!! .env !!! and .venv/ too
 
-git restore --staged . - unstage changes
+Git Commands Reference (from most used to least used) : 
+
+    git init
+        Initializes a new Git repository in the current directory.
+
+    git clone <repo_url>
+        Clones a remote repository into a new local directory.
+
+    git status
+        Shows the current status of the working directory and staging area.
+
+    git add .
+        Stages all modified and new files.
+
+    git add <filename>
+        Stages a specific file.
+
+    git commit -m "Your commit message"
+        Commits staged changes with a message.
+
+    git push
+        Pushes commits from the local repository to the remote one.
+
+    git pull
+        Fetches and merges changes from the remote repository to local.
+
+    git log
+        Shows a log of all previous commits.
+
+    git diff
+        Displays the changes not yet staged.
+
+    git diff --staged
+        Shows differences between the staged and last committed versions.
+
+    git restore <filename>
+        Discards changes in the working directory (unstaged).
+
+    git restore --staged <filename>
+        Removes a file from the staging area.
+
+    git restore --staged .
+        Unstages all files.
+
+    git branch
+        Lists all local branches.
+
+    git branch <branch_name>
+        Creates a new branch.
+
+    git checkout <branch_name>
+        Switches to another branch.
+
+    git checkout -b <branch_name>
+        Creates and switches to a new branch.
+
+    git merge <branch_name>
+        Merges a branch into the current one.
+
+    git remote -v
+        Lists all remotes and their URLs.
+
+    git remote add origin <repo_url>
+        Sets a remote repository (usually after `git init`).
+
+    git push -u origin <branch_name>
+        Pushes a branch and sets the upstream (first push of a branch).
+
+    git fetch
+        Retrieves changes from remote but doesn't merge.
+
+    git rm <filename>
+        Removes a file from both the working directory and staging area.
+
+    git reset --hard
+        Resets the working directory and staging area to the last commit (⚠️ destructive!).
+
+    git reset HEAD~1
+        Uncommits the last commit but keeps changes in working directory.
+
+    git stash
+        Temporarily saves uncommitted changes.
+
+    git stash pop
+        Applies the latest stashed changes and removes them from the stash list.
+
+    git tag
+        Lists all tags in the repository.
+
+    git tag <tagname>
+        Creates a new tag at the current commit.
+
+    git show <commit_hash>
+        Shows detailed information about a specific commit.
+
+    git config --global user.name "Your Name"
+        Sets the global username for Git.
+
+    git config --global user.email "you@example.com"
+        Sets the global email for Git.
