@@ -16,6 +16,7 @@ functions = Functions()
 bcrypt = Bcrypt()
 csrf = CSRFProtect()
 mail = Mail()
+login_attempts = {}
 
 def create_app(config_class=Config):
     load_dotenv()

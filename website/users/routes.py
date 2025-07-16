@@ -48,6 +48,12 @@ def login():
         return redirect(url_for("main_bp.index"))
     form = LoginForm()
     if request.method == "POST":
+        # Checking the login attempts and setting a default per minute
+        if not check_login_attempts():
+            flash("Too many login attempts from your IP address, try again later!", "warning")
+            functions.write_log(f"Invalid login - too many attempts : {form.email_username.data}, {get_client_info()}")
+            return redirect(url_for("users_bp.login"))
+
         if form.validate_on_submit():
             # Getting the user based on entered email_username
             user = User.query.filter_by(email_username=form.email_username.data).first()
