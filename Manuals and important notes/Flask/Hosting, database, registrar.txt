@@ -1,0 +1,3 @@
+Hosting : render.com
+Database (PostgreSQL) : supabase.com
+Registrar : cloudflare.com

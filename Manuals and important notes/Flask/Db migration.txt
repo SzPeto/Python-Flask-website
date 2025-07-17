@@ -1,0 +1,14 @@
+1. Command line - install Flask-Migrate
+    pip install Flask-Migrate
+
+2. Where the app variable is initialized
+    migrate = Migrate()
+    migrate.init_app(app, db)
+
+3. Command line - Initialize migration directory and files
+    $env:FLASK_APP = "run.py"
+    flask db init_app
+
+4. Command line - After a change in SQLAlchemy db, save and migrate the changes
+    flask db migrate -m "Version v" - message
+    flask db upgrade - migrate the changes

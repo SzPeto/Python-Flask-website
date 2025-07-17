@@ -1,5 +1,33 @@
 Deployment Pre-Launch Checklist
 
+If you deploy on render.com:
+    Procfile (it should be Procfile as it is without extension in the root folder, where the run.py is run:app - run refers to run.py and app to the app = create_app() variable)
+        web: gunicorn run:app --bind 0.0.0.0:$PORT"
+    
+    Build command on render:
+        pip install -r requirements.txt
+    
+    Start command on render:
+        gunicorn run:app --bind 0.0.0.0:$PORT
+    
+    Connecting the deployed website with domain on cloudflare:
+        https://render.com/docs/custom-domains
+        (On render : select the deployed website, settings/custom domain/add custom domain, add mydomain.com and then save)
+        https://render.com/docs/configure-cloudflare-dns
+        (On cloudflare : SSL,TLS/overview - this should be set to full)
+        (On cloudflare : DNS/records/add record, you should create 2 records : 
+                         1. Type : CNAME, Name : @, Content : mysite.onrender.com, Proxy status : DNS only, TTL : Auto
+                         2. Type : CNAME, Name : www, Content : mysite.onrender.com, Proxy status : DNS only, TTL : Auto)
+
+Flask:
+    In root\run.py
+        from website import create_app, port
+        app.run(host = "0.0.0.0", debug=False, port=port) - if you deploy on render, render provides a port itself
+    In root\website\__init__.py
+        port = int(os.environ.get("PORT", 10000)) - here it gets the PORT variable from render env, and fallback is 10000
+
+
+
 Security
     Secrets and Configuration
         Ensure all secret keys (e.g., SECRET_KEY) are set securely and not hardcoded

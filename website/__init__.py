@@ -2,6 +2,7 @@ import os
 from dotenv import load_dotenv
 from flask import Flask
 from flask_bcrypt import Bcrypt
+from flask_migrate import Migrate
 from flask_wtf import CSRFProtect
 from flask_login import LoginManager
 from flask_mail import Mail
@@ -18,6 +19,7 @@ csrf = CSRFProtect()
 mail = Mail()
 login_attempts = {}
 port = int(os.environ.get("PORT", 10000))
+migrate = Migrate()
 
 def create_app(config_class=Config):
     load_dotenv()
@@ -31,6 +33,7 @@ def create_app(config_class=Config):
     login_manager.login_view = "users_bp.login" # if someone tries to access a @login_required route
     login_manager.login_message_category = "info"
     mail.init_app(app)
+    migrate.init_app(app, db)
 
     from website.weather_app.routes import weather_app_bp
     from website.users.routes import users_bp
