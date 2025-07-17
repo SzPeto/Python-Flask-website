@@ -17,7 +17,7 @@ bcrypt = Bcrypt()
 csrf = CSRFProtect()
 mail = Mail()
 login_attempts = {}
-port = int(os.environ.get("PORT", 5000))
+port = int(os.environ.get("PORT", 10000))
 
 def create_app(config_class=Config):
     load_dotenv()
