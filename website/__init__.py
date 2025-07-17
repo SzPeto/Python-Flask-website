@@ -1,4 +1,4 @@
-
+import os
 from dotenv import load_dotenv
 from flask import Flask
 from flask_bcrypt import Bcrypt
@@ -17,6 +17,7 @@ bcrypt = Bcrypt()
 csrf = CSRFProtect()
 mail = Mail()
 login_attempts = {}
+port = os.environ.get("PORT")
 
 def create_app(config_class=Config):
     load_dotenv()
