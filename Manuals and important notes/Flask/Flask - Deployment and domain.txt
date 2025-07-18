@@ -1,5 +1,10 @@
 Deployment Pre-Launch Checklist
 
+
+========================================================================================================================
+                           Quick manual for domain connection (checklist after this manual)
+========================================================================================================================
+
 If you deploy on render.com:
     Procfile (it should be Procfile as it is without extension in the root folder, where the run.py is run:app - run refers to run.py and app to the app = create_app() variable)
         web: gunicorn run:app --bind 0.0.0.0:$PORT"
@@ -27,6 +32,9 @@ Flask:
         port = int(os.environ.get("PORT", 10000)) - here it gets the PORT variable from render env, and fallback is 10000
 
 
+========================================================================================================================
+                                     Checklist, from most to least important
+========================================================================================================================
 
 Security
     Secrets and Configuration
@@ -34,7 +42,9 @@ Security
         Verify environment variables are used for sensitive info (API keys, DB passwords)
         Confirm debug mode is OFF (e.g., Flask DEBUG = False)
         If using render, set the port to 10000
-        Install gunicorn (pip install gunicorn) and freeze the requirements.txt with gunicorn installed
+        Install gunicorn (pip install gunicorn) 
+        pip freeze > requirements.txt - before you do this, ensure the default venv is set to this directory : 
+                                        .venv\Scripts\activate - in powershell
     Authentication and Authorization
         Confirm strong password policies and hashing (bcrypt or better)
         Verify login rate limiting is implemented to prevent brute force attacks
