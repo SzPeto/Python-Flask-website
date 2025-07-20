@@ -1,0 +1,71 @@
+Root:
+|   .env
+|   .gitignore
+|   Procfile
+|   project_tree.txt
+|   requirements.txt
+|   run.py - ************** Entry point, app variable calls the factory function from website/__init__.py
+|   
++---.idea
+|   \---inspectionProfiles
+|           
++---.venv
+|           
++---Log
+|       log.txt
+|       
++---migrations
+|   |   alembic.ini
+|   |   env.py
+|   |   README
+|   |   script.py.mako
+|   |   
+|   +---versions
+|           
++---website
+|   |   config.py
+|   |   db_models.py
+|   |   __init__.py
+|   |   
+|   +---blog
+|   |   |   routes.py
+|   |   |   validators.py
+|   |   \---__init__.py
+|   |           
+|   +---main
+|   |   |   functions.py
+|   |   |   routes.py
+|   |   \---__init__.py
+|   |           
+|   +---static
+|   |   +---Images
+|   |   |   |   
+|   |   |   \---profile_images
+|   |   |           
+|   |   \---Styles
+|   |           styles.css
+|   |           
+|   +---templates
+|   |       base.html
+|   |       blog.html
+|   |       change-password.html
+|   |       edit-post.html
+|   |       index.html
+|   |       insert-post.html
+|   |       login.html
+|   |       password-reset-initial.html
+|   |       password-reset-verified.html
+|   |       register.html
+|   |       user.html
+|   |       weather-app.html
+|   |       
+|   +---users
+|   |   |   routes.py
+|   |   |   utils.py
+|   |   |   validators.py
+|   |   |   __init__.py
+|   |           
+|   +---weather_app
+|   |   |   routes.py
+|   |   |   weather_app.py
+|   |   |   __init__.py
