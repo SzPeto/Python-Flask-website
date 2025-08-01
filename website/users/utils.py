@@ -5,7 +5,7 @@ from typing import List
 from flask import request, url_for
 from flask_login import current_user
 from flask_mail import Message
-from PIL import Image
+from PIL import Image, ImageOps
 import requests
 
 from website import mail, functions, login_attempts
@@ -25,9 +25,11 @@ def save_profile_image(profile_image):
     picture_path = os.path.join(app.root_path, "static", "Images", "profile_images", safe_file_name)
     # Resizing the image
     new_image = Image.open(profile_image)
+    new_image = ImageOps.exif_transpose(new_image) # Fix orientation
     new_image_size = (240, 240)
     new_image.thumbnail(new_image_size)
     new_image.save(picture_path)
+
     return safe_file_name
 
 def delete_old_image():
